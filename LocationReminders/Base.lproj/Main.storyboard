@@ -25,15 +25,27 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eIX-RM-CBg">
                                 <rect key="frame" x="56" y="99.5" width="262.5" height="467"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jG-l9-WbV">
+                                <rect key="frame" x="154.5" y="591.5" width="65" height="30"/>
+                                <state key="normal" title="location 1"/>
+                                <connections>
+                                    <action selector="location1Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1qb-hs-pzx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="E5R-rn-XZI"/>
+                            <constraint firstItem="8jG-l9-WbV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HHJ-Sr-J3A"/>
+                            <constraint firstItem="8jG-l9-WbV" firstAttribute="top" secondItem="eIX-RM-CBg" secondAttribute="bottom" constant="25" id="aHG-jC-t3q"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="heG-CM-Hqr"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jTB-ui-53E"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="l69-ZM-pzx"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="eIX-RM-CBg" id="0qx-3l-yKp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
