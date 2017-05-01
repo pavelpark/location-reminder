@@ -32,7 +32,15 @@
 //        }
 //    }];
     
+    PFQuery *query = [PFQuery queryWithClassName:@"testObject"];
     
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }else{
+            NSLog(@"Quesry Results %@", objects);
+        }
+    }];
 }
 
 
