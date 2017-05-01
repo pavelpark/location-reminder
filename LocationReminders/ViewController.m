@@ -40,6 +40,14 @@
     [self.mapView setRegion:region animated:YES];
 }
 
+- (IBAction)location2Pressed:(id)sender {
+    
+}
+- (IBAction)location3Pressed:(id)sender {
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
