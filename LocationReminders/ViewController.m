@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+@import Parse;
+
 @interface ViewController ()
 
 @end
@@ -17,6 +19,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+//    PFObject *testObject = [PFObject objectWithClassName:@"testObject"];
+//    
+//    testObject[@"testName"] = @"Pavel Park";
+//    
+//    [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//        if (succeeded){
+//            NSLog(@"Success trying to save object!");
+//        }else{
+//            NSLog(@"There was an error saving. save Error %@", error.localizedDescription);
+//        }
+//    }];
+    
+    
 }
 
 
