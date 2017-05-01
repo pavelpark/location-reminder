@@ -38,7 +38,7 @@
         if (error) {
             NSLog(@"%@", error.localizedDescription);
         }else{
-            NSLog(@"Quesry Results %@", objects);
+            NSLog(@"Query Results %@", objects);
         }
     }];
 }
