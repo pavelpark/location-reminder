@@ -9,12 +9,12 @@
 #import "ViewController.h"
 
 @import Parse;
-
 @import MapKit;
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -22,32 +22,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
-//    PFObject *testObject = [PFObject objectWithClassName:@"testObject"];
-//    
-//    testObject[@"testName"] = @"Pavel Park";
-//    
-//    [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        if (succeeded){
-//            NSLog(@"Success trying to save object!");
-//        }else{
-//            NSLog(@"There was an error saving. save Error %@", error.localizedDescription);
-//        }
-//    }];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"testObject"];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"%@", error.localizedDescription);
-        }else{
-            NSLog(@"Query Results %@", objects);
-        }
-    }];
+    [self requestsPermissions];
+    self.mapView.showsUserLocation = YES;
+
+}
+
+-(void)requestsPermissions{
+    self.locationManager = [[CLLocationManager alloc]init];
+    [self.locationManager requestAlwaysAuthorization];
 }
 
 - (IBAction)location1Pressed:(id)sender {
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.6566674, -122.351096);
+    
     
 }
 
