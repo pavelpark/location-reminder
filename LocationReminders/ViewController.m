@@ -10,6 +10,8 @@
 
 @import Parse;
 
+@import MapKit;
+
 @interface ViewController ()
 
 @end
