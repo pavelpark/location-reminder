@@ -47,7 +47,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cQQ-sw-O9h" secondAttribute="bottom" constant="62" id="2Er-bG-z58"/>
                             <constraint firstItem="cQQ-sw-O9h" firstAttribute="leading" secondItem="Ncf-Eq-mda" secondAttribute="trailing" constant="30" id="564-oA-irk"/>
