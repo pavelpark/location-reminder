@@ -84,13 +84,9 @@
 		DB8004F51EB7AC0400F2C116 /* LocationReminders */ = {
 			isa = PBXGroup;
 			children = (
-				DB8004F91EB7AC0400F2C116 /* AppDelegate.h */,
-				DB8004FA1EB7AC0400F2C116 /* AppDelegate.m */,
-				DB8004FC1EB7AC0400F2C116 /* ViewController.h */,
-				DB8004FD1EB7AC0400F2C116 /* ViewController.m */,
-				DB8004FF1EB7AC0400F2C116 /* Main.storyboard */,
-				DB8005021EB7AC0400F2C116 /* Assets.xcassets */,
-				DB8005041EB7AC0400F2C116 /* LaunchScreen.storyboard */,
+				DB80051A1EB8F46100F2C116 /* Model */,
+				DB80051B1EB8F47E00F2C116 /* View */,
+				DB80051C1EB8F49F00F2C116 /* Controller */,
 				DB8005071EB7AC0400F2C116 /* Info.plist */,
 				DB8004F61EB7AC0400F2C116 /* Supporting Files */,
 			);
@@ -113,6 +109,34 @@
 				DB80050F1EB7B2D600F2C116 /* Parse.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB80051A1EB8F46100F2C116 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DB8004F91EB7AC0400F2C116 /* AppDelegate.h */,
+				DB8004FA1EB7AC0400F2C116 /* AppDelegate.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DB80051B1EB8F47E00F2C116 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DB8004FF1EB7AC0400F2C116 /* Main.storyboard */,
+				DB8005021EB7AC0400F2C116 /* Assets.xcassets */,
+				DB8005041EB7AC0400F2C116 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		DB80051C1EB8F49F00F2C116 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DB8004FC1EB7AC0400F2C116 /* ViewController.h */,
+				DB8004FD1EB7AC0400F2C116 /* ViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +388,7 @@
 				DB80050C1EB7AC0400F2C116 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
