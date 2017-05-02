@@ -19,6 +19,7 @@
 		DB8005141EB7B32400F2C116 /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB80050E1EB7B2D600F2C116 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DB8005161EB7BBBE00F2C116 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB8005151EB7BBBE00F2C116 /* MapKit.framework */; };
 		DB80051F1EB8FF1D00F2C116 /* AddReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB80051E1EB8FF1D00F2C116 /* AddReminderViewController.m */; };
+		DB8005221EB9278100F2C116 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8005211EB9278100F2C116 /* LocationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +52,8 @@
 		DB8005151EB7BBBE00F2C116 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DB80051D1EB8FF1D00F2C116 /* AddReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReminderViewController.h; sourceTree = "<group>"; };
 		DB80051E1EB8FF1D00F2C116 /* AddReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReminderViewController.m; sourceTree = "<group>"; };
+		DB8005201EB9278100F2C116 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
+		DB8005211EB9278100F2C116 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +143,8 @@
 				DB80051E1EB8FF1D00F2C116 /* AddReminderViewController.m */,
 				DB8004FC1EB7AC0400F2C116 /* ViewController.h */,
 				DB8004FD1EB7AC0400F2C116 /* ViewController.m */,
+				DB8005201EB9278100F2C116 /* LocationController.h */,
+				DB8005211EB9278100F2C116 /* LocationController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB8005221EB9278100F2C116 /* LocationController.m in Sources */,
 				DB80051F1EB8FF1D00F2C116 /* AddReminderViewController.m in Sources */,
 				DB8004FE1EB7AC0400F2C116 /* ViewController.m in Sources */,
 				DB8004FB1EB7AC0400F2C116 /* AppDelegate.m in Sources */,
