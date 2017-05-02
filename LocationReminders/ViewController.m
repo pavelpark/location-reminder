@@ -63,11 +63,23 @@
     [self.mapView setRegion:region animated:YES];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)userLongPressed:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        
+        CGPoint touchPoint = [sender locationInView:self.mapView];
+        
+        CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+        
+        MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+        
+        newPoint.coordinate = coordinate;
+        newPoint.title = @"Pinned Location";
+        
+        [self.mapView addAnnotation:newPoint];
+    }
 }
+
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     CLLocation *location = locations.lastObject;
