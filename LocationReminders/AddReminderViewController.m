@@ -8,7 +8,10 @@
 
 #import "AddReminderViewController.h"
 
-@interface AddReminderViewController ()
+@interface AddReminderViewController () <UITextFieldDelegate>
+
+@property(weak, nonatomic) UITextField *locationName;
+@property(weak, nonatomic) UITextField *locationRadius;
 
 @end
 
