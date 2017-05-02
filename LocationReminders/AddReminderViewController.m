@@ -20,6 +20,13 @@
     NSLog(@"Annotation Title: %@", self.annotationTitle);
     NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
 }
+- (IBAction)LocationName:(UITextField *)sender {
+    
+}
+- (IBAction)LocationRadius:(UITextField *)sender {
+    
+}
+
 
 
 @end

@@ -41,6 +41,23 @@
     
     [self.locationManager startUpdatingLocation];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    [super prepareForSegue:segue sender:sender];
+    
+    if ([segue.identifier isEqualToString:@"AddReminderViewController"] && [sender isKindOfClass:[MKAnnotationView class]]) {
+        
+        MKAnnotationView *annotationView = (MKAnnotationView *)sender;
+        
+        AddReminderViewController *newReminderViewController = (AddReminderViewController *)segue.destinationViewController;
+        
+        newReminderViewController.coordinate = annotationView.annotation.coordinate;
+        newReminderViewController.annotationTitle = annotationView.annotation.title;
+        newReminderViewController.title = annotationView.annotation.title;
+        
+    }
+}
+
 //IKEA Store
 - (IBAction)location1Pressed:(id)sender {
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.6566674, -122.351096);
@@ -48,7 +65,7 @@
     
     [self.mapView setRegion:region animated:YES];
 }
-//GoPro HeadQuaters
+//Gopro HeadQuaters
 - (IBAction)location2Pressed:(id)sender {
     CLLocationCoordinate2D coordinateTwo = CLLocationCoordinate2DMake(37.53451769999999, -122.33128290000002);
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinateTwo, 500.0, 500.0);
@@ -69,7 +86,9 @@
         
         CGPoint touchPoint = [sender locationInView:self.mapView];
         
-        CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+        CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint
+                                                  toCoordinateFromView:self.mapView]; //Converts point into coordinate.
+
         
         MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
         
@@ -109,6 +128,10 @@
     annotationView.rightCalloutAccessoryView = rightCalloutAccessory;
     
     return annotationView;
-    
+}
+
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
+    NSLog(@"Accessory Tapped!");
+    [self performSegueWithIdentifier:@"AddReminderViewController" sender:view];
 }
 @end
