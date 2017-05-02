@@ -8,7 +8,28 @@
 
 #import "LocationController.h"
 
+
 @implementation LocationController
 
+@synthesize locationManager;
+@synthesize location;
+
++(LocationController *)sharedLocationController{
+    
+    static LocationController *shared = nil;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        shared = [[self alloc] init];
+    });
+    return shared;
+}
+
+- (LocationController *)init {
+    self = [super init];
+    locationManager = [[CLLocationManager alloc]init];
+    location = [[CLLocation alloc]init];
+    return self;
+}
 
 @end
