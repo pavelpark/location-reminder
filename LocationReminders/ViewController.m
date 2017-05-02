@@ -11,7 +11,7 @@
 @import Parse;
 @import MapKit;
 
-@interface ViewController ()
+@interface ViewController () <CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
@@ -32,6 +32,8 @@
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.distanceFilter = 100; //In meters
+    
+    self.locationManager.delegate = self;
     
     [self.locationManager requestAlwaysAuthorization];
     
