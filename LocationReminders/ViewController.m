@@ -8,7 +8,13 @@
 
 #import "ViewController.h"
 
+@import Parse;
+@import MapKit;
+
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -16,8 +22,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    [self requestsPermissions];
+    self.mapView.showsUserLocation = YES;
+
 }
+
+-(void)requestsPermissions{
+    self.locationManager = [[CLLocationManager alloc]init];
+    [self.locationManager requestAlwaysAuthorization];
+}
+
+- (IBAction)location1Pressed:(id)sender {
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.6566674, -122.351096);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 500.0, 500.0);
+    
+    [self.mapView setRegion:region animated:YES];
+}
+
+- (IBAction)location2Pressed:(id)sender {
+    CLLocationCoordinate2D coordinateTwo = CLLocationCoordinate2DMake(37.53451769999999, -122.33128290000002);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinateTwo, 500.0, 500.0);
+    
+    [self.mapView setRegion:region animated:YES];
+}
+- (IBAction)location3Pressed:(id)sender {
+    CLLocationCoordinate2D coordinateThree = CLLocationCoordinate2DMake(33.7921386, -84.3696071);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinateThree, 500.0, 500.0);
+    
+    [self.mapView setRegion:region animated:YES];
+}
+
 
 
 - (void)didReceiveMemoryWarning {
