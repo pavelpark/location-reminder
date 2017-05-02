@@ -8,6 +8,9 @@
 
 #import "LocationController.h"
 
+#import "ViewController.h"
+
+@import MapKit;
 
 @implementation LocationController
 
@@ -31,5 +34,14 @@
     location = [[CLLocation alloc]init];
     return self;
 }
+
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    CLLocation *location = locations.lastObject;
+    
+    [self.delegate locationControllerUpdatedLocation:location];
+    
+}
+
 
 @end
