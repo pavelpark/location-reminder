@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eIX-RM-CBg">
-                                <rect key="frame" x="56" y="100" width="263" height="467"/>
+                                <rect key="frame" x="37.5" y="100" width="300" height="467"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="q5e-jo-iGb" appends="YES" id="tmO-d9-L3c"/>
@@ -65,7 +65,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8jG-l9-WbV" secondAttribute="bottom" constant="62" id="gcU-YR-XeC"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="heG-CM-Hqr"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jTB-ui-53E"/>
-                            <constraint firstItem="eIX-RM-CBg" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="l69-ZM-pzx"/>
+                            <constraint firstItem="eIX-RM-CBg" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="l69-ZM-pzx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="laj-W0-Sbf"/>
