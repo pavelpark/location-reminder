@@ -24,7 +24,7 @@
     NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
 }
 - (IBAction)LocationName:(UITextField *)sender {
-    
+    NSString *nameField = _locationName.text;
 }
 - (IBAction)LocationRadius:(UITextField *)sender {
     
