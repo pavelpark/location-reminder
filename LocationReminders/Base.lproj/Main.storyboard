@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -96,41 +95,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kgv-ey-J3v">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kgv-ey-J3v">
                                 <rect key="frame" x="98" y="154" width="195" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Radius" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-Je-Ya5">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Radius" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-Je-Ya5">
                                 <rect key="frame" x="98" y="232" width="195" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="position_512" translatesAutoresizingMaskIntoConstraints="NO" id="DgY-4e-vt9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="position_512" translatesAutoresizingMaskIntoConstraints="NO" id="DgY-4e-vt9">
                                 <rect key="frame" x="50" y="154" width="36" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="36" id="k0F-qH-Kob"/>
-                                    <constraint firstAttribute="height" constant="30" id="xOe-rk-4lO"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="position_512" translatesAutoresizingMaskIntoConstraints="NO" id="MZu-rR-WFI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="position_512" translatesAutoresizingMaskIntoConstraints="NO" id="MZu-rR-WFI">
                                 <rect key="frame" x="50" y="232" width="36" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="36" id="7Hi-fR-deU"/>
-                                    <constraint firstAttribute="height" constant="30" id="vZ5-I5-3V8"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="New Reminder" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ayO-FQ-GtY">
-                                <rect key="frame" x="50" y="93" width="275" height="30"/>
+                                <rect key="frame" x="50" y="93" width="275" height="24"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnf-KX-jKt">
-                                <rect key="frame" x="190" y="270" width="103" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnf-KX-jKt">
+                                <rect key="frame" x="256" y="617" width="103" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Set Reminder"/>
                                 <connections>
                                     <action selector="setReminderButtonPressed:" destination="IaI-cQ-ePw" eventType="touchUpInside" id="emo-km-NhH"/>
@@ -140,25 +136,8 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ayO-FQ-GtY" firstAttribute="top" secondItem="tRp-6l-THw" secondAttribute="bottom" constant="29" id="10e-cZ-ACg"/>
-                            <constraint firstItem="gnf-KX-jKt" firstAttribute="top" secondItem="Vsb-Je-Ya5" secondAttribute="bottom" constant="8" id="2k6-KV-6RU"/>
-                            <constraint firstItem="MZu-rR-WFI" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="50" id="39d-Nf-DmX"/>
-                            <constraint firstItem="MZu-rR-WFI" firstAttribute="top" secondItem="DgY-4e-vt9" secondAttribute="bottom" constant="48" id="5kL-iX-QkJ"/>
                             <constraint firstAttribute="trailing" secondItem="ayO-FQ-GtY" secondAttribute="trailing" constant="50" id="8Gd-ni-wlJ"/>
-                            <constraint firstItem="Vsb-Je-Ya5" firstAttribute="leading" secondItem="MZu-rR-WFI" secondAttribute="trailing" constant="12" id="9H0-Hz-lTo"/>
-                            <constraint firstAttribute="trailing" secondItem="Vsb-Je-Ya5" secondAttribute="trailing" constant="82" id="A4d-pY-JNV"/>
-                            <constraint firstItem="DgY-4e-vt9" firstAttribute="top" secondItem="tRp-6l-THw" secondAttribute="bottom" constant="90" id="GMl-jO-4wD"/>
-                            <constraint firstItem="DgY-4e-vt9" firstAttribute="top" secondItem="ayO-FQ-GtY" secondAttribute="bottom" constant="31" id="ID4-AN-DVk"/>
-                            <constraint firstItem="Kgv-ey-J3v" firstAttribute="leading" secondItem="DgY-4e-vt9" secondAttribute="trailing" constant="12" id="Lk5-vw-4y9"/>
                             <constraint firstItem="ayO-FQ-GtY" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="50" id="Lxt-OD-LmY"/>
-                            <constraint firstItem="gnf-KX-jKt" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="190" id="Oqb-YO-c8b"/>
-                            <constraint firstItem="Kgv-ey-J3v" firstAttribute="trailing" secondItem="Vsb-Je-Ya5" secondAttribute="trailing" id="THZ-03-hjY"/>
-                            <constraint firstItem="DgY-4e-vt9" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="50" id="d3Q-xV-Pg3"/>
-                            <constraint firstItem="Vsb-Je-Ya5" firstAttribute="top" secondItem="Kgv-ey-J3v" secondAttribute="bottom" constant="48" id="gTk-Rl-Rh6"/>
-                            <constraint firstItem="lUe-Ae-b6h" firstAttribute="top" secondItem="gnf-KX-jKt" secondAttribute="bottom" constant="367" id="h8L-qp-Wdm"/>
-                            <constraint firstItem="Kgv-ey-J3v" firstAttribute="leading" secondItem="Vsb-Je-Ya5" secondAttribute="leading" id="m3q-ob-6nO"/>
-                            <constraint firstAttribute="trailing" secondItem="gnf-KX-jKt" secondAttribute="trailing" constant="82" id="qyy-nj-Q6W"/>
-                            <constraint firstItem="Kgv-ey-J3v" firstAttribute="top" secondItem="DgY-4e-vt9" secondAttribute="top" id="vOP-Xs-9cZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Kgv-ey-J3v" secondAttribute="trailing" constant="66" id="wCM-mG-kls"/>
                         </constraints>
                     </view>
                     <connections>

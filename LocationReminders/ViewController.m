@@ -172,7 +172,7 @@
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
     MKCircleRenderer *renderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
     
-//    renderer.strokeColor = [UIColor blueColor];
+    renderer.strokeColor = [UIColor blueColor];
     renderer.fillColor = [UIColor blueColor];
     renderer.alpha = 0.25;
     
