@@ -10,9 +10,13 @@
 
 @import MapKit;
 
+typedef void(^NewReminderCreateCompletion)(MKCircle *);
+
 @interface AddReminderViewController : UIViewController
 
 @property(strong, nonatomic) NSString *annotationTitle;
 @property(nonatomic) CLLocationCoordinate2D coordinate;
+
+@property(strong, nonatomic) NewReminderCreateCompletion completion;
 
 @end

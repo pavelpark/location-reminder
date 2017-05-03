@@ -59,6 +59,15 @@
         newReminderViewController.annotationTitle = annotationView.annotation.title;
         newReminderViewController.title = annotationView.annotation.title;
         
+        __weak typeof(self) bruce = self;
+        
+        newReminderViewController.completion = ^(MKCircle *circle) {
+            
+            __strong typeof(bruce) hulk = bruce;
+            
+            [hulk.mapView removeAnnotation:annotationView.annotation];
+            [hulk.mapView addOverlay:circle];
+        };
     }
 }
 
@@ -129,6 +138,17 @@
     NSLog(@"Accessory Tapped!");
     [self performSegueWithIdentifier:@"AddReminderViewController" sender:view];
 }
+
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
+    MKCircleRenderer *renderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
+    
+    renderer.strokeColor = [UIColor blueColor];
+    renderer.fillColor = [UIColor redColor];
+    renderer.alpha = 0.25;
+    
+    return renderer;
+}
+
 - (void)locationControllerUpdatedLocation:(CLLocation *)location{
    
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0);

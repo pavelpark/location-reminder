@@ -32,6 +32,17 @@
         NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
         
         NSLog(@"Save Reminder Successful:%i - Error: %@", succeeded, error.localizedDescription);
+        
+        if (self.completion) {
+            
+            CGFloat radius = 100; //for lab coming from UITextFeild from user.
+            
+            MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
+            
+            self.completion(circle);
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }];
     
 };
