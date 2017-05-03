@@ -27,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     [self requestsPermissions];
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;

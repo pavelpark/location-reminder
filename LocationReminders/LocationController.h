@@ -13,7 +13,9 @@
 @protocol LocationControllerDelegate <NSObject>
 
 @required
+
 - (void)locationControllerUpdatedLocation:(CLLocation *)location;
+
 @end
 
 @interface LocationController : NSObject
