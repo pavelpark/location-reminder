@@ -32,7 +32,7 @@
     [self requestsPermissions];
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
-    self.locationManager = self;
+    LocationController.shared.delegate = self;
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
@@ -45,10 +45,9 @@
         logInViewController.delegate = self;
         logInViewController.signUpController.delegate = self;
         
-        logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword;
+        logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook;
         
         logInViewController.logInView.logo = [[UIView alloc]init];
-        
         
         [self presentViewController:logInViewController animated:YES completion:nil];
     }

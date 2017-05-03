@@ -12,12 +12,15 @@
 
 @import MapKit;
 
+@interface LocationController () <CLLocationManagerDelegate>
+
+@end
 @implementation LocationController
 
 @synthesize locationManager;
 @synthesize location;
 
-+(LocationController *)sharedLocationController{
++(LocationController *)shared{
     
     static LocationController *shared = nil;
     static dispatch_once_t onceToken;
@@ -32,6 +35,7 @@
     self = [super init];
     locationManager = [[CLLocationManager alloc]init];
     location = [[CLLocation alloc]init];
+    self.locationManager.delegate = self;
     return self;
 }
 
@@ -40,7 +44,6 @@
     CLLocation *location = locations.lastObject;
     
     [self.delegate locationControllerUpdatedLocation:location];
-    
 }
 
 
