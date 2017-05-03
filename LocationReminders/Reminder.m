@@ -14,4 +14,13 @@
 @dynamic location;
 @dynamic radius;
 
++(void)load{
+    [super load];
+    [self registerSubclass];
+}
+
++(NSString *)parseClassName{
+    return @"Reminder";
+}
+
 @end
