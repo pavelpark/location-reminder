@@ -34,7 +34,6 @@
         NSLog(@"Save Reminder Successful:%i - Error: %@", succeeded, error.localizedDescription);
     }];
     
-   
 };
 
 //- (IBAction)LocationName:(UITextField *)sender {
