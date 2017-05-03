@@ -16,7 +16,7 @@
 @import MapKit;
 @import ParseUI;
 
-@interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, LocationControllerDelegate>
+@interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, LocationControllerDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
@@ -34,7 +34,25 @@
     self.mapView.delegate = self;
     self.locationManager = self;
     
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
+    
+    [PFUser logOut];
+    
+    if (![PFUser currentUser]) {
+        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        
+        logInViewController.delegate = self;
+        logInViewController.signUpController.delegate = self;
+        
+        logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword;
+        
+        logInViewController.logInView.logo = [[UIView alloc]init];
+        
+        
+        [self presentViewController:logInViewController animated:YES completion:nil];
+    }
+    
 }
 
 -(void)reminderSavedToParse:(id)sender{
@@ -162,11 +180,21 @@
     return renderer;
 }
 
+-(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)locationControllerUpdatedLocation:(CLLocation *)location{
    
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0);
     
     [self.mapView setRegion:region animated:YES];
 }
+
+    
 
 @end
