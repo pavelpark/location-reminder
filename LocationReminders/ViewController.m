@@ -32,6 +32,12 @@
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
     self.locationManager = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
+}
+
+-(void)reminderSavedToParse:(id)sender{
+    NSLog(@"Do some stuff since our new reminder was saved!");
 }
 
 -(void)requestsPermissions{
@@ -69,6 +75,10 @@
             [hulk.mapView addOverlay:circle];
         };
     }
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"ReminderSavedToParse" object:nil];
 }
 
 //IKEA Store
