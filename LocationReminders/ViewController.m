@@ -14,6 +14,7 @@
 
 @import Parse;
 @import MapKit;
+@import ParseUI;
 
 @interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, LocationControllerDelegate>
 
