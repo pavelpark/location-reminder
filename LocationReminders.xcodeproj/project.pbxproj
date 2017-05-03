@@ -20,6 +20,8 @@
 		DB8005161EB7BBBE00F2C116 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB8005151EB7BBBE00F2C116 /* MapKit.framework */; };
 		DB80051F1EB8FF1D00F2C116 /* AddReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB80051E1EB8FF1D00F2C116 /* AddReminderViewController.m */; };
 		DB8005221EB9278100F2C116 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8005211EB9278100F2C116 /* LocationController.m */; };
+		DB8005251EBA465B00F2C116 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8005241EBA465B00F2C116 /* Reminder.m */; };
+		DB8005271EBA5E6F00F2C116 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB8005261EBA5E6F00F2C116 /* ParseUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +56,9 @@
 		DB80051E1EB8FF1D00F2C116 /* AddReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReminderViewController.m; sourceTree = "<group>"; };
 		DB8005201EB9278100F2C116 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
 		DB8005211EB9278100F2C116 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
+		DB8005231EBA465B00F2C116 /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
+		DB8005241EBA465B00F2C116 /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
+		DB8005261EBA5E6F00F2C116 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +68,7 @@
 			files = (
 				DB8005101EB7B2D600F2C116 /* Bolts.framework in Frameworks */,
 				DB8005161EB7BBBE00F2C116 /* MapKit.framework in Frameworks */,
+				DB8005271EBA5E6F00F2C116 /* ParseUI.framework in Frameworks */,
 				DB8005111EB7B2D600F2C116 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +116,7 @@
 		DB80050D1EB7B2D600F2C116 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB8005261EBA5E6F00F2C116 /* ParseUI.framework */,
 				DB8005151EB7BBBE00F2C116 /* MapKit.framework */,
 				DB80050E1EB7B2D600F2C116 /* Bolts.framework */,
 				DB80050F1EB7B2D600F2C116 /* Parse.framework */,
@@ -122,6 +129,8 @@
 			children = (
 				DB8004F91EB7AC0400F2C116 /* AppDelegate.h */,
 				DB8004FA1EB7AC0400F2C116 /* AppDelegate.m */,
+				DB8005231EBA465B00F2C116 /* Reminder.h */,
+				DB8005241EBA465B00F2C116 /* Reminder.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -228,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB8005221EB9278100F2C116 /* LocationController.m in Sources */,
+				DB8005251EBA465B00F2C116 /* Reminder.m in Sources */,
 				DB80051F1EB8FF1D00F2C116 /* AddReminderViewController.m in Sources */,
 				DB8004FE1EB7AC0400F2C116 /* ViewController.m in Sources */,
 				DB8004FB1EB7AC0400F2C116 /* AppDelegate.m in Sources */,
@@ -357,6 +367,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = LocationReminders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -373,6 +384,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = LocationReminders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

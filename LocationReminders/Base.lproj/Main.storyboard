@@ -96,28 +96,54 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kgv-ey-J3v">
-                                <rect key="frame" x="88" y="154" width="205" height="30"/>
+                                <rect key="frame" x="98" y="154" width="195" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="LocationName:" destination="IaI-cQ-ePw" eventType="editingDidEnd" id="L9W-HP-b64"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Radius" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-Je-Ya5">
-                                <rect key="frame" x="88" y="232" width="205" height="30"/>
+                                <rect key="frame" x="98" y="232" width="195" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="LocationRadius:" destination="IaI-cQ-ePw" eventType="editingDidEnd" id="f9i-yg-n5T"/>
-                                </connections>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="position_512" translatesAutoresizingMaskIntoConstraints="NO" id="DgY-4e-vt9">
+                                <rect key="frame" x="50" y="154" width="36" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="position_512" translatesAutoresizingMaskIntoConstraints="NO" id="MZu-rR-WFI">
+                                <rect key="frame" x="50" y="232" width="36" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="New Reminder" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ayO-FQ-GtY">
+                                <rect key="frame" x="50" y="93" width="275" height="24"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnf-KX-jKt">
+                                <rect key="frame" x="256" y="617" width="103" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Set Reminder"/>
+                                <connections>
+                                    <action selector="setReminderButtonPressed:" destination="IaI-cQ-ePw" eventType="touchUpInside" id="emo-km-NhH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ayO-FQ-GtY" firstAttribute="top" secondItem="tRp-6l-THw" secondAttribute="bottom" constant="29" id="10e-cZ-ACg"/>
+                            <constraint firstAttribute="trailing" secondItem="ayO-FQ-GtY" secondAttribute="trailing" constant="50" id="8Gd-ni-wlJ"/>
+                            <constraint firstItem="ayO-FQ-GtY" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="50" id="Lxt-OD-LmY"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="locationName" destination="Kgv-ey-J3v" id="RcI-Dg-8WX"/>
+                        <outlet property="locationRadius" destination="Vsb-Je-Ya5" id="yaH-UC-Oij"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25p-mo-ddS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -142,4 +168,7 @@
             <point key="canvasLocation" x="136.80000000000001" y="127.28635682158921"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="position_512" width="170" height="170"/>
+    </resources>
 </document>

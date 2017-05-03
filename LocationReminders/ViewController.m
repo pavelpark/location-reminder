@@ -14,8 +14,9 @@
 
 @import Parse;
 @import MapKit;
+@import ParseUI;
 
-@interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, LocationControllerDelegate>
+@interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, LocationControllerDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
@@ -27,10 +28,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     [self requestsPermissions];
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
-    self.locationManager = self;
+    LocationController.shared.delegate = self;
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
+    
+    [PFUser logOut];
+    
+    if (![PFUser currentUser]) {
+        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+        
+        logInViewController.delegate = self;
+        logInViewController.signUpController.delegate = self;
+        
+        logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook;
+        
+        logInViewController.logInView.logo = [[UIView alloc]init];
+        
+        [self presentViewController:logInViewController animated:YES completion:nil];
+    }
+    
+}
+
+-(void)reminderSavedToParse:(id)sender{
+    NSLog(@"Do some stuff since our new reminder was saved!");
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"ReminderSavedToParse" object:nil];
 }
 
 -(void)requestsPermissions{
@@ -58,8 +87,18 @@
         newReminderViewController.annotationTitle = annotationView.annotation.title;
         newReminderViewController.title = annotationView.annotation.title;
         
+        __weak typeof(self) bruce = self;
+        
+        newReminderViewController.completion = ^(MKCircle *circle) {
+            
+            __strong typeof(bruce) hulk = bruce;
+            
+            [hulk.mapView removeAnnotation:annotationView.annotation];
+            [hulk.mapView addOverlay:circle];
+        };
     }
 }
+
 
 //IKEA Store
 - (IBAction)location1Pressed:(id)sender {
@@ -128,11 +167,33 @@
     NSLog(@"Accessory Tapped!");
     [self performSegueWithIdentifier:@"AddReminderViewController" sender:view];
 }
+
+//Circle where we pinned.
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
+    MKCircleRenderer *renderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
+    
+    renderer.strokeColor = [UIColor blueColor];
+    renderer.fillColor = [UIColor blueColor];
+    renderer.alpha = 0.25;
+    
+    return renderer;
+}
+
+-(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)locationControllerUpdatedLocation:(CLLocation *)location{
    
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0);
     
     [self.mapView setRegion:region animated:YES];
 }
+
+    
 
 @end

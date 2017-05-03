@@ -7,11 +7,12 @@
 //
 
 #import "AddReminderViewController.h"
+#import "Reminder.h"
 
 @interface AddReminderViewController () <UITextFieldDelegate>
 
-@property(weak, nonatomic) UITextField *locationName;
-@property(weak, nonatomic) UITextField *locationRadius;
+@property (weak, nonatomic) IBOutlet UITextField *locationName;
+@property (weak, nonatomic) IBOutlet UITextField *locationRadius;
 
 @end
 
@@ -20,16 +21,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"Annotation Title: %@", self.annotationTitle);
-    NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
-}
-- (IBAction)LocationName:(UITextField *)sender {
-    NSString *nameField = _locationName.text;
-}
-- (IBAction)LocationRadius:(UITextField *)sender {
+   };
+- (IBAction)setReminderButtonPressed:(UIButton *)sender {
     
+    Reminder *newReminder = [Reminder object];
+    
+    newReminder.name = self.annotationTitle;
+    
+    newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
+    
+    [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        NSLog(@"Annotation Title: %@", self.locationName.text);
+        NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
+        
+        NSLog(@"Save Reminder Successful:%i - Error: %@", succeeded, error.localizedDescription);
+        NSLog(@"Radius Number: %@", self.locationRadius.init);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
+        
+        if (self.completion) {
+            
+            CGFloat radius = [self.locationRadius.text floatValue];
+            
+            MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
+            
+            self.completion(circle);
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+
 }
-
-
 
 @end
