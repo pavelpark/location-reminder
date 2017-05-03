@@ -33,6 +33,8 @@
         
         NSLog(@"Save Reminder Successful:%i - Error: %@", succeeded, error.localizedDescription);
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
+        
         if (self.completion) {
             
             CGFloat radius = 100; //for lab coming from UITextFeild from user.

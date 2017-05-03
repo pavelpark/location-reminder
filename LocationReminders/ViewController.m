@@ -40,6 +40,10 @@
     NSLog(@"Do some stuff since our new reminder was saved!");
 }
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"ReminderSavedToParse" object:nil];
+}
+
 -(void)requestsPermissions{
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -77,9 +81,6 @@
     }
 }
 
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"ReminderSavedToParse" object:nil];
-}
 
 //IKEA Store
 - (IBAction)location1Pressed:(id)sender {
