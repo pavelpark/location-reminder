@@ -35,7 +35,7 @@
         NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
         
         NSLog(@"Save Reminder Successful:%i - Error: %@", succeeded, error.localizedDescription);
-        
+        NSLog(@"Radius Number: %@", self.locationRadius.init);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
         
         if (self.completion) {
