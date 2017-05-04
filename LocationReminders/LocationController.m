@@ -7,9 +7,9 @@
 //
 
 #import "LocationController.h"
-
 #import "ViewController.h"
 
+@import UserNotifications;
 @import MapKit;
 
 @interface LocationController () <CLLocationManagerDelegate>
@@ -60,6 +60,24 @@
 
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{
     NSLog(@"User did enter region:%@", region.identifier);
+    
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
+    content.title = @"Reminder";
+    content.body = [NSString stringWithFormat:@"%@", region.identifier];
+    content.sound = [UNNotificationSound defaultSound];
+    
+    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.1 repeats:NO];
+    
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"Location Entered" content:content trigger:trigger];
+    
+    UNUserNotificationCenter *current = [UNUserNotificationCenter currentNotificationCenter];
+    
+    [current removeAllPendingNotificationRequests];
+    [current addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Error posting user notofication: %@", error.localizedDescription);
+        }
+    }];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region{
