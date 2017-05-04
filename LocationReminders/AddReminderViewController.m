@@ -46,6 +46,7 @@
             
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
             
+            //To start monetoring region.
             if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
                 CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:radius identifier:newReminder.name];
                 

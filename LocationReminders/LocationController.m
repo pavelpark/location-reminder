@@ -46,9 +46,32 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     CLLocation *location = locations.lastObject;
+    
+//    self.location = location;
+    
     [self.delegate locationControllerUpdatedLocation:location];
     
 }
 
+//We need to apply all of these methods in order to identify the region and monitore the region.
+-(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region{
+    NSLog(@"We have successfully started monitoring changes for a region: %@", region.identifier);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{
+    NSLog(@"User did enter region:%@", region.identifier);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region{
+    NSLog(@"The User did exit Region: %@", region.identifier);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"There was an error: %@", error.localizedDescription); //ignore if its in the simulator.
+}
+
+-(void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)visit{
+    NSLog(@"This is here for no reason... But heres a visit: %@", visit);
+}
 
 @end
