@@ -45,6 +45,10 @@
     [self.delegate locationControllerUpdatedLocation:location];
     
 }
+-(void)startMonitoringForRegion:(CLRegion *)region{
+    [self.locationManager startMonitoringForRegion:region];
+}
+
 
 
 @end

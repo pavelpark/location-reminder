@@ -32,7 +32,7 @@
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="754" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jG-l9-WbV">
                                 <rect key="frame" x="56" y="575" width="65" height="30"/>
                                 <state key="normal" title="location 1">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.9367908331" green="0.94606598980000001" blue="0.94606598980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="location1Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1qb-hs-pzx"/>
