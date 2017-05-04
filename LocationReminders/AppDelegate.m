@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 @import Parse;
+@import UserNotifications;
 
 @interface AppDelegate ()
 
@@ -20,6 +21,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [self registerForNotofications];
+    
     ParseClientConfiguration *parseConfig = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration>  _Nonnull configuration) {
         configuration.applicationId = @"34bh5342n50";
         configuration.clientKey = @"as7d7as8d88vfdv091";
@@ -30,6 +33,21 @@
     [Parse initializeWithConfiguration:parseConfig];
     
     return YES;
+}
+
+-(void)registerForNotofications{
+    UNAuthorizationOptions options = UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound;
+    
+    UNUserNotificationCenter *current = [UNUserNotificationCenter currentNotificationCenter];
+    
+    [current requestAuthorizationWithOptions:options completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"There was an error %@", error.localizedDescription);
+        }
+        if (granted) {
+            NSLog(@"The user has allowed permission for notofications!");
+        }
+    }];
 }
 
 
