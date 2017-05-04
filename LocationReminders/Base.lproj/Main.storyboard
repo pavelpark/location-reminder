@@ -31,27 +31,33 @@
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="754" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jG-l9-WbV">
                                 <rect key="frame" x="56" y="575" width="65" height="30"/>
-                                <state key="normal" title="location 1"/>
+                                <state key="normal" title="location 1">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="location1Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1qb-hs-pzx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQQ-sw-O9h">
                                 <rect key="frame" x="251" y="575" width="68" height="30"/>
-                                <state key="normal" title="location 3"/>
+                                <state key="normal" title="location 3">
+                                    <color key="titleColor" red="0.9367908331" green="0.94606598980000001" blue="0.94606598980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="location3Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v7s-n1-kFq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ncf-Eq-mda">
                                 <rect key="frame" x="153" y="575" width="68" height="30"/>
-                                <state key="normal" title="location 2"/>
+                                <state key="normal" title="location 2">
+                                    <color key="titleColor" red="0.9367908331" green="0.94606598980000001" blue="0.94606598980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="location2Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wvx-sO-8pI"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cQQ-sw-O9h" secondAttribute="bottom" constant="62" id="2Er-bG-z58"/>
                             <constraint firstItem="cQQ-sw-O9h" firstAttribute="leading" secondItem="Ncf-Eq-mda" secondAttribute="trailing" constant="30" id="564-oA-irk"/>
@@ -95,49 +101,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kgv-ey-J3v">
-                                <rect key="frame" x="98" y="154" width="195" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Radius" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-Je-Ya5">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Radius" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-Je-Ya5">
                                 <rect key="frame" x="98" y="232" width="195" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="position_512" translatesAutoresizingMaskIntoConstraints="NO" id="DgY-4e-vt9">
-                                <rect key="frame" x="50" y="154" width="36" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="position_512" translatesAutoresizingMaskIntoConstraints="NO" id="MZu-rR-WFI">
-                                <rect key="frame" x="50" y="232" width="36" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="New Reminder" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ayO-FQ-GtY">
                                 <rect key="frame" x="50" y="93" width="275" height="24"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnf-KX-jKt">
-                                <rect key="frame" x="256" y="617" width="103" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Set Reminder"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kgv-ey-J3v">
+                                <rect key="frame" x="98" y="154" width="195" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="position_512" translatesAutoresizingMaskIntoConstraints="NO" id="Zch-2N-z9D">
+                                <rect key="frame" x="8" y="461" width="194" height="170"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnf-KX-jKt">
+                                <rect key="frame" x="190" y="284" width="103" height="30"/>
+                                <state key="normal" title="Set Reminder">
+                                    <color key="titleColor" red="0.9367908331" green="0.94606598980000001" blue="0.94606598980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="setReminderButtonPressed:" destination="IaI-cQ-ePw" eventType="touchUpInside" id="emo-km-NhH"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ayO-FQ-GtY" firstAttribute="top" secondItem="tRp-6l-THw" secondAttribute="bottom" constant="29" id="10e-cZ-ACg"/>
-                            <constraint firstAttribute="trailing" secondItem="ayO-FQ-GtY" secondAttribute="trailing" constant="50" id="8Gd-ni-wlJ"/>
-                            <constraint firstItem="ayO-FQ-GtY" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="50" id="Lxt-OD-LmY"/>
+                            <constraint firstAttribute="trailing" secondItem="Zch-2N-z9D" secondAttribute="trailing" constant="173" id="2BL-WC-NHb"/>
+                            <constraint firstItem="Zch-2N-z9D" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="8" id="3qt-kg-P2P"/>
+                            <constraint firstItem="Zch-2N-z9D" firstAttribute="top" secondItem="gnf-KX-jKt" secondAttribute="bottom" constant="147" id="4BF-18-q3D"/>
+                            <constraint firstItem="Vsb-Je-Ya5" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="98" id="9R4-oX-Vg3"/>
+                            <constraint firstItem="gnf-KX-jKt" firstAttribute="top" secondItem="Vsb-Je-Ya5" secondAttribute="bottom" constant="22" id="Lfd-1m-U03"/>
+                            <constraint firstItem="ayO-FQ-GtY" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="50" id="M3S-dF-DqS"/>
+                            <constraint firstAttribute="trailing" secondItem="Vsb-Je-Ya5" secondAttribute="trailing" constant="82" id="NcJ-nN-XrQ"/>
+                            <constraint firstItem="lUe-Ae-b6h" firstAttribute="top" secondItem="Zch-2N-z9D" secondAttribute="bottom" constant="36" id="OGl-NA-MzB"/>
+                            <constraint firstItem="gnf-KX-jKt" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="190" id="QjW-L5-ijK"/>
+                            <constraint firstAttribute="trailing" secondItem="ayO-FQ-GtY" secondAttribute="trailing" constant="50" id="QjX-x8-9Dk"/>
+                            <constraint firstAttribute="trailing" secondItem="gnf-KX-jKt" secondAttribute="trailing" constant="82" id="UgE-Jj-DpU"/>
+                            <constraint firstItem="Kgv-ey-J3v" firstAttribute="top" secondItem="ayO-FQ-GtY" secondAttribute="bottom" constant="37" id="hUI-PL-CEX"/>
+                            <constraint firstAttribute="trailing" secondItem="Kgv-ey-J3v" secondAttribute="trailing" constant="82" id="ijs-aa-4Bf"/>
+                            <constraint firstItem="Vsb-Je-Ya5" firstAttribute="top" secondItem="Kgv-ey-J3v" secondAttribute="bottom" constant="48" id="j8x-5e-UpP"/>
+                            <constraint firstItem="Kgv-ey-J3v" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="98" id="qJ0-Rz-P2k"/>
+                            <constraint firstItem="ayO-FQ-GtY" firstAttribute="top" secondItem="tRp-6l-THw" secondAttribute="bottom" constant="29" id="z4i-HO-bEu"/>
                         </constraints>
                     </view>
                     <connections>

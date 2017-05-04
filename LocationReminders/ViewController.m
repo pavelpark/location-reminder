@@ -48,6 +48,7 @@
         logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook;
         
         logInViewController.logInView.logo = [[UIView alloc]init];
+        logInViewController.logInView.backgroundColor = [UIColor darkGrayColor];
         
         [self presentViewController:logInViewController animated:YES completion:nil];
     }
