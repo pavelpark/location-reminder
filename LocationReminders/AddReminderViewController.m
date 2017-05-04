@@ -8,6 +8,7 @@
 
 #import "AddReminderViewController.h"
 #import "Reminder.h"
+#import "LocationController.h"
 
 @interface AddReminderViewController () <UITextFieldDelegate>
 
@@ -36,6 +37,7 @@
         
         NSLog(@"Save Reminder Successful:%i - Error: %@", succeeded, error.localizedDescription);
         NSLog(@"Radius Number: %@", self.locationRadius.init);
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
         
         if (self.completion) {
@@ -43,6 +45,12 @@
             CGFloat radius = [self.locationRadius.text floatValue];
             
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
+            
+            if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+                CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:radius identifier:newReminder.name];
+                
+                [LocationController.shared startMonitoringForRegion:region];
+            }
             
             self.completion(circle);
             
