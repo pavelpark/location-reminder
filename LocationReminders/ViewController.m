@@ -7,9 +7,7 @@
 //
 
 #import "ViewController.h"
-
 #import "AddReminderViewController.h"
-
 #import "LocationController.h"
 
 @import Parse;
@@ -33,6 +31,7 @@
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
     LocationController.shared.delegate = self;
+    [self fetchReminders];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSavedToParse:) name:@"ReminderSavedToParse" object:nil];
@@ -73,6 +72,25 @@
     [self.locationManager requestAlwaysAuthorization];
     
     [self.locationManager startUpdatingLocation];
+}
+
+-(void)reminderSaveToParse:(id)sender{
+    NSLog(@"Do some stuff since the new reminder was saved.");
+}
+
+-(void)fetchReminders{
+    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (error) {
+            
+            NSLog(@"%@", error.localizedDescription);
+            
+        }else {
+            
+            NSLog(@"Query Results %@", objects);
+        }
+    }];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
