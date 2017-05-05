@@ -87,7 +87,7 @@
             NSLog(@"%@", error.localizedDescription);
             
         }else {
-            
+        
             NSLog(@"Query Results %@", objects);
         }
     }];
