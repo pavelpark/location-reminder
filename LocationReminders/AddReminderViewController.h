@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @import MapKit;
+//@import ContactsUI;
+//@import MessageUI;
 
 typedef void(^NewReminderCreateCompletion)(MKCircle *);
 
@@ -18,5 +20,6 @@ typedef void(^NewReminderCreateCompletion)(MKCircle *);
 @property(nonatomic) CLLocationCoordinate2D coordinate;
 
 @property(strong, nonatomic) NewReminderCreateCompletion completion;
+
 
 @end
