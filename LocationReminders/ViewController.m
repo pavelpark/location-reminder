@@ -44,7 +44,7 @@
         logInViewController.delegate = self;
         logInViewController.signUpController.delegate = self;
         
-        logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook;
+        logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword;
         
         logInViewController.logInView.logo = [[UIView alloc]init];
         logInViewController.logInView.backgroundColor = [UIColor darkGrayColor];
