@@ -141,6 +141,7 @@
     [self.mapView setRegion:region animated:YES];
 }
 
+
 - (IBAction)userLongPressed:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
@@ -214,5 +215,21 @@
 }
 
     
-
+- (IBAction)setMap:(id)sender {
+    
+    switch (((UISegmentedControl *)sender).selectedSegmentIndex) {
+        case 0:
+            _mapView.mapType = MKMapTypeStandard;
+            break;
+        case 1:
+            _mapView.mapType = MKMapTypeSatellite;
+            break;
+        case 2:
+            _mapView.mapType = MKMapTypeHybrid;
+            break;
+            
+        default:
+            break;
+    }
+}
 @end
