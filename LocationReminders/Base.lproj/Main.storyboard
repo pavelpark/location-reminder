@@ -56,6 +56,17 @@
                                     <action selector="location2Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wvx-sO-8pI"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xZB-TO-axA">
+                                <rect key="frame" x="20" y="619" width="335" height="29"/>
+                                <segments>
+                                    <segment title="Standard"/>
+                                    <segment title="Satellite"/>
+                                    <segment title="Hybrid"/>
+                                </segments>
+                                <connections>
+                                    <action selector="setMap:" destination="BYZ-38-t0r" eventType="valueChanged" id="eKF-BU-zv3"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -64,9 +75,13 @@
                             <constraint firstItem="Ncf-Eq-mda" firstAttribute="leading" secondItem="8jG-l9-WbV" secondAttribute="trailing" constant="32" id="9Mn-oN-n0y"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ncf-Eq-mda" secondAttribute="bottom" constant="62" id="DRq-tQ-7Js"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="E5R-rn-XZI"/>
+                            <constraint firstAttribute="trailing" secondItem="xZB-TO-axA" secondAttribute="trailing" constant="20" id="JaP-DP-Rhe"/>
                             <constraint firstItem="8jG-l9-WbV" firstAttribute="top" secondItem="eIX-RM-CBg" secondAttribute="bottom" constant="8" id="LkC-8G-EK5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xZB-TO-axA" secondAttribute="bottom" constant="20" id="NCr-aQ-KSV"/>
+                            <constraint firstItem="xZB-TO-axA" firstAttribute="top" secondItem="Ncf-Eq-mda" secondAttribute="bottom" constant="14" id="W6a-4M-iyL"/>
                             <constraint firstItem="cQQ-sw-O9h" firstAttribute="top" secondItem="eIX-RM-CBg" secondAttribute="bottom" constant="8" id="WRu-UR-hcb"/>
                             <constraint firstItem="Ncf-Eq-mda" firstAttribute="top" secondItem="eIX-RM-CBg" secondAttribute="bottom" constant="8" id="e7q-Uv-chk"/>
+                            <constraint firstItem="xZB-TO-axA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="eVx-cI-BCi"/>
                             <constraint firstItem="Ncf-Eq-mda" firstAttribute="centerX" secondItem="eIX-RM-CBg" secondAttribute="centerX" id="fip-4u-9iH"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8jG-l9-WbV" secondAttribute="bottom" constant="62" id="gcU-YR-XeC"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="heG-CM-Hqr"/>
@@ -120,9 +135,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="position_512" translatesAutoresizingMaskIntoConstraints="NO" id="Zch-2N-z9D">
-                                <rect key="frame" x="8" y="461" width="194" height="170"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnf-KX-jKt">
                                 <rect key="frame" x="190" y="284" width="103" height="30"/>
                                 <state key="normal" title="Set Reminder">
@@ -135,14 +147,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Zch-2N-z9D" secondAttribute="trailing" constant="173" id="2BL-WC-NHb"/>
-                            <constraint firstItem="Zch-2N-z9D" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="8" id="3qt-kg-P2P"/>
-                            <constraint firstItem="Zch-2N-z9D" firstAttribute="top" secondItem="gnf-KX-jKt" secondAttribute="bottom" constant="147" id="4BF-18-q3D"/>
                             <constraint firstItem="Vsb-Je-Ya5" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="98" id="9R4-oX-Vg3"/>
                             <constraint firstItem="gnf-KX-jKt" firstAttribute="top" secondItem="Vsb-Je-Ya5" secondAttribute="bottom" constant="22" id="Lfd-1m-U03"/>
                             <constraint firstItem="ayO-FQ-GtY" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="50" id="M3S-dF-DqS"/>
                             <constraint firstAttribute="trailing" secondItem="Vsb-Je-Ya5" secondAttribute="trailing" constant="82" id="NcJ-nN-XrQ"/>
-                            <constraint firstItem="lUe-Ae-b6h" firstAttribute="top" secondItem="Zch-2N-z9D" secondAttribute="bottom" constant="36" id="OGl-NA-MzB"/>
                             <constraint firstItem="gnf-KX-jKt" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="190" id="QjW-L5-ijK"/>
                             <constraint firstAttribute="trailing" secondItem="ayO-FQ-GtY" secondAttribute="trailing" constant="50" id="QjX-x8-9Dk"/>
                             <constraint firstAttribute="trailing" secondItem="gnf-KX-jKt" secondAttribute="trailing" constant="82" id="UgE-Jj-DpU"/>
@@ -181,7 +189,4 @@
             <point key="canvasLocation" x="136.80000000000001" y="127.28635682158921"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="position_512" width="170" height="170"/>
-    </resources>
 </document>
