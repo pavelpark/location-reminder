@@ -145,16 +145,27 @@
                                     <action selector="setReminderButtonPressed:" destination="IaI-cQ-ePw" eventType="touchUpInside" id="emo-km-NhH"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download" translatesAutoresizingMaskIntoConstraints="NO" id="qxl-Vy-fXs">
+                                <rect key="frame" x="16" y="377" width="343" height="174"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="174" id="RyR-i2-pSR"/>
+                                    <constraint firstAttribute="width" constant="343" id="pBG-we-jsH"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="lUe-Ae-b6h" firstAttribute="top" secondItem="qxl-Vy-fXs" secondAttribute="bottom" constant="116" id="8f0-mv-Uv6"/>
+                            <constraint firstAttribute="trailing" secondItem="qxl-Vy-fXs" secondAttribute="trailing" constant="16" id="92r-0K-6kA"/>
                             <constraint firstItem="Vsb-Je-Ya5" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="98" id="9R4-oX-Vg3"/>
                             <constraint firstItem="gnf-KX-jKt" firstAttribute="top" secondItem="Vsb-Je-Ya5" secondAttribute="bottom" constant="22" id="Lfd-1m-U03"/>
                             <constraint firstItem="ayO-FQ-GtY" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="50" id="M3S-dF-DqS"/>
                             <constraint firstAttribute="trailing" secondItem="Vsb-Je-Ya5" secondAttribute="trailing" constant="82" id="NcJ-nN-XrQ"/>
                             <constraint firstItem="gnf-KX-jKt" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="190" id="QjW-L5-ijK"/>
                             <constraint firstAttribute="trailing" secondItem="ayO-FQ-GtY" secondAttribute="trailing" constant="50" id="QjX-x8-9Dk"/>
+                            <constraint firstItem="qxl-Vy-fXs" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="16" id="Sgh-ty-qjc"/>
                             <constraint firstAttribute="trailing" secondItem="gnf-KX-jKt" secondAttribute="trailing" constant="82" id="UgE-Jj-DpU"/>
+                            <constraint firstItem="qxl-Vy-fXs" firstAttribute="top" secondItem="gnf-KX-jKt" secondAttribute="bottom" constant="63" id="VmZ-Rk-r5q"/>
                             <constraint firstItem="Kgv-ey-J3v" firstAttribute="top" secondItem="ayO-FQ-GtY" secondAttribute="bottom" constant="37" id="hUI-PL-CEX"/>
                             <constraint firstAttribute="trailing" secondItem="Kgv-ey-J3v" secondAttribute="trailing" constant="82" id="ijs-aa-4Bf"/>
                             <constraint firstItem="Vsb-Je-Ya5" firstAttribute="top" secondItem="Kgv-ey-J3v" secondAttribute="bottom" constant="48" id="j8x-5e-UpP"/>
@@ -190,4 +201,7 @@
             <point key="canvasLocation" x="136.80000000000001" y="127.28635682158921"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="download" width="200" height="101"/>
+    </resources>
 </document>
