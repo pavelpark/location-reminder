@@ -9,6 +9,7 @@
 #import "LocationController.h"
 #import "ViewController.h"
 
+
 @import UserNotifications;
 @import MapKit;
 
@@ -44,14 +45,14 @@
     
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
-    CLLocation *location = locations.lastObject;
+//-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    //CLLocation *location = locations.lastObject;
     
 //    self.location = location;
+    //[self.delegate locationControllerUpdatedLocation:location];
     
-    [self.delegate locationControllerUpdatedLocation:location];
-    
-}
+//}
+
 
 //We need to apply all of these methods in order to identify the region and monitore the region.
 -(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region{

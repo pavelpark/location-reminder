@@ -54,6 +54,11 @@
     
 }
 
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(nonnull MKUserLocation *)userLocation{
+    
+    [self.mapView setRegion: MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f)) animated:YES];
+}
+
 -(void)reminderSavedToParse:(id)sender{
     NSLog(@"Do some stuff since our new reminder was saved!");
 }
