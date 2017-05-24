@@ -21,29 +21,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download" translatesAutoresizingMaskIntoConstraints="NO" id="94q-Gj-MIe">
-                                <rect key="frame" x="21" y="233" width="333" height="215"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="333" id="Q51-5c-KCg"/>
-                                    <constraint firstAttribute="height" constant="215" id="yAk-eq-SwW"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sylwia-bartyzel-442" translatesAutoresizingMaskIntoConstraints="NO" id="94q-Gj-MIe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Reminder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wM5-lh-05G">
-                                <rect key="frame" x="50" y="140.5" width="275" height="48.5"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="94q-Gj-MIe" secondAttribute="bottom" constant="219" id="1VT-NL-ZZC"/>
-                            <constraint firstAttribute="trailing" secondItem="wM5-lh-05G" secondAttribute="trailing" constant="50" id="I56-Bt-bOu"/>
-                            <constraint firstItem="94q-Gj-MIe" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="21" id="OCl-Bl-8k6"/>
-                            <constraint firstAttribute="trailing" secondItem="94q-Gj-MIe" secondAttribute="trailing" constant="21" id="QKa-1c-1YU"/>
-                            <constraint firstItem="wM5-lh-05G" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="50" id="Tuc-EI-Xpa"/>
-                            <constraint firstItem="wM5-lh-05G" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="120.5" id="fa4-so-KGu"/>
-                            <constraint firstItem="94q-Gj-MIe" firstAttribute="top" secondItem="wM5-lh-05G" secondAttribute="bottom" constant="44" id="zwB-5m-cuV"/>
+                            <constraint firstItem="94q-Gj-MIe" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="9B7-x6-8Ue"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="94q-Gj-MIe" secondAttribute="bottom" id="fzl-io-epq"/>
+                            <constraint firstAttribute="trailing" secondItem="94q-Gj-MIe" secondAttribute="trailing" id="gEZ-ub-gjv"/>
+                            <constraint firstItem="94q-Gj-MIe" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="zrV-bO-sL4"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -53,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="download" width="200" height="101"/>
+        <image name="sylwia-bartyzel-442" width="1909" height="1262"/>
     </resources>
 </document>

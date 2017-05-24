@@ -22,6 +22,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sylwia-bartyzel-442" translatesAutoresizingMaskIntoConstraints="NO" id="naa-DT-kHi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eIX-RM-CBg">
                                 <rect key="frame" x="37.5" y="100" width="300" height="467"/>
                                 <gestureRecognizers/>
@@ -44,14 +47,18 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xZB-TO-axA" firstAttribute="top" secondItem="eIX-RM-CBg" secondAttribute="bottom" constant="22" id="Dtt-T5-C3S"/>
+                            <constraint firstAttribute="trailing" secondItem="xZB-TO-axA" secondAttribute="trailing" constant="20" id="BDt-xO-dsk"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="E5R-rn-XZI"/>
-                            <constraint firstAttribute="trailing" secondItem="xZB-TO-axA" secondAttribute="trailing" constant="20" id="JaP-DP-Rhe"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xZB-TO-axA" secondAttribute="bottom" constant="50" id="NCr-aQ-KSV"/>
-                            <constraint firstItem="xZB-TO-axA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="eVx-cI-BCi"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xZB-TO-axA" secondAttribute="bottom" constant="50" id="SXe-VL-YlC"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="naa-DT-kHi" secondAttribute="bottom" id="UkD-2Y-W5O"/>
+                            <constraint firstItem="naa-DT-kHi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cB5-lt-Clu"/>
+                            <constraint firstItem="xZB-TO-axA" firstAttribute="top" secondItem="eIX-RM-CBg" secondAttribute="bottom" constant="22" id="fRL-fl-BGt"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="heG-CM-Hqr"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jTB-ui-53E"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="l69-ZM-pzx"/>
+                            <constraint firstAttribute="trailing" secondItem="naa-DT-kHi" secondAttribute="trailing" id="tjF-9z-o8j"/>
+                            <constraint firstItem="xZB-TO-axA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="yTt-FK-6Xh"/>
+                            <constraint firstItem="naa-DT-kHi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zSa-BF-SVv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="laj-W0-Sbf"/>
@@ -81,6 +88,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sylwia-bartyzel-442" translatesAutoresizingMaskIntoConstraints="NO" id="4gT-MD-4cq">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Radius" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-Je-Ya5">
                                 <rect key="frame" x="98" y="232" width="195" height="30"/>
                                 <nil key="textColor"/>
@@ -89,8 +99,8 @@
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="New Reminder" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ayO-FQ-GtY">
                                 <rect key="frame" x="50" y="93" width="275" height="24"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="textColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -100,8 +110,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnf-KX-jKt">
+                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnf-KX-jKt">
                                 <rect key="frame" x="190" y="284" width="103" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Set Reminder">
                                     <color key="titleColor" red="0.9367908331" green="0.94606598980000001" blue="0.94606598980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -109,31 +120,24 @@
                                     <action selector="setReminderButtonPressed:" destination="IaI-cQ-ePw" eventType="touchUpInside" id="emo-km-NhH"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download" translatesAutoresizingMaskIntoConstraints="NO" id="qxl-Vy-fXs">
-                                <rect key="frame" x="16" y="377" width="343" height="174"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="174" id="RyR-i2-pSR"/>
-                                    <constraint firstAttribute="width" constant="343" id="pBG-we-jsH"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lUe-Ae-b6h" firstAttribute="top" secondItem="qxl-Vy-fXs" secondAttribute="bottom" constant="116" id="8f0-mv-Uv6"/>
-                            <constraint firstAttribute="trailing" secondItem="qxl-Vy-fXs" secondAttribute="trailing" constant="16" id="92r-0K-6kA"/>
+                            <constraint firstAttribute="trailing" secondItem="4gT-MD-4cq" secondAttribute="trailing" id="5bl-98-wSz"/>
                             <constraint firstItem="Vsb-Je-Ya5" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="98" id="9R4-oX-Vg3"/>
                             <constraint firstItem="gnf-KX-jKt" firstAttribute="top" secondItem="Vsb-Je-Ya5" secondAttribute="bottom" constant="22" id="Lfd-1m-U03"/>
                             <constraint firstItem="ayO-FQ-GtY" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="50" id="M3S-dF-DqS"/>
                             <constraint firstAttribute="trailing" secondItem="Vsb-Je-Ya5" secondAttribute="trailing" constant="82" id="NcJ-nN-XrQ"/>
                             <constraint firstItem="gnf-KX-jKt" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="190" id="QjW-L5-ijK"/>
                             <constraint firstAttribute="trailing" secondItem="ayO-FQ-GtY" secondAttribute="trailing" constant="50" id="QjX-x8-9Dk"/>
-                            <constraint firstItem="qxl-Vy-fXs" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="16" id="Sgh-ty-qjc"/>
                             <constraint firstAttribute="trailing" secondItem="gnf-KX-jKt" secondAttribute="trailing" constant="82" id="UgE-Jj-DpU"/>
-                            <constraint firstItem="qxl-Vy-fXs" firstAttribute="top" secondItem="gnf-KX-jKt" secondAttribute="bottom" constant="63" id="VmZ-Rk-r5q"/>
+                            <constraint firstItem="4gT-MD-4cq" firstAttribute="top" secondItem="n4G-Uc-ZuU" secondAttribute="top" id="frZ-lq-WHO"/>
                             <constraint firstItem="Kgv-ey-J3v" firstAttribute="top" secondItem="ayO-FQ-GtY" secondAttribute="bottom" constant="37" id="hUI-PL-CEX"/>
                             <constraint firstAttribute="trailing" secondItem="Kgv-ey-J3v" secondAttribute="trailing" constant="82" id="ijs-aa-4Bf"/>
                             <constraint firstItem="Vsb-Je-Ya5" firstAttribute="top" secondItem="Kgv-ey-J3v" secondAttribute="bottom" constant="48" id="j8x-5e-UpP"/>
                             <constraint firstItem="Kgv-ey-J3v" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="98" id="qJ0-Rz-P2k"/>
+                            <constraint firstItem="lUe-Ae-b6h" firstAttribute="top" secondItem="4gT-MD-4cq" secondAttribute="bottom" id="qZF-uG-Mcg"/>
+                            <constraint firstItem="4gT-MD-4cq" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" id="tQV-Lo-6tF"/>
                             <constraint firstItem="ayO-FQ-GtY" firstAttribute="top" secondItem="tRp-6l-THw" secondAttribute="bottom" constant="29" id="z4i-HO-bEu"/>
                         </constraints>
                     </view>
@@ -166,6 +170,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="download" width="200" height="101"/>
+        <image name="sylwia-bartyzel-442" width="1909" height="1262"/>
     </resources>
 </document>
