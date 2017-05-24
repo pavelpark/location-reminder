@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1C52B4F22C50C0080121C80 /* libPods-LocationReminders.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1A393C1C42E6EF86E70D4CB /* libPods-LocationReminders.a */; };
+		DB3BF0261ED509C900407A66 /* location_pin.json in Resources */ = {isa = PBXBuildFile; fileRef = DB3BF0251ED509C900407A66 /* location_pin.json */; };
 		DB8004F81EB7AC0400F2C116 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8004F71EB7AC0400F2C116 /* main.m */; };
 		DB8004FB1EB7AC0400F2C116 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8004FA1EB7AC0400F2C116 /* AppDelegate.m */; };
 		DB8004FE1EB7AC0400F2C116 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8004FD1EB7AC0400F2C116 /* ViewController.m */; };
@@ -39,6 +41,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		151DD7175E3174D3D4ED4A44 /* Pods-LocationReminders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationReminders.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationReminders/Pods-LocationReminders.debug.xcconfig"; sourceTree = "<group>"; };
+		A1A393C1C42E6EF86E70D4CB /* libPods-LocationReminders.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LocationReminders.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB3BF0251ED509C900407A66 /* location_pin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = location_pin.json; sourceTree = "<group>"; };
 		DB8004F31EB7AC0400F2C116 /* LocationReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8004F71EB7AC0400F2C116 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB8004F91EB7AC0400F2C116 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -59,6 +64,7 @@
 		DB8005231EBA465B00F2C116 /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
 		DB8005241EBA465B00F2C116 /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
 		DB8005261EBA5E6F00F2C116 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		E64A113FE52E715797179F47 /* Pods-LocationReminders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationReminders.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationReminders/Pods-LocationReminders.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,18 +76,29 @@
 				DB8005161EB7BBBE00F2C116 /* MapKit.framework in Frameworks */,
 				DB8005271EBA5E6F00F2C116 /* ParseUI.framework in Frameworks */,
 				DB8005111EB7B2D600F2C116 /* Parse.framework in Frameworks */,
+				B1C52B4F22C50C0080121C80 /* libPods-LocationReminders.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5D30DD54CE013FC3DBB4782 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				151DD7175E3174D3D4ED4A44 /* Pods-LocationReminders.debug.xcconfig */,
+				E64A113FE52E715797179F47 /* Pods-LocationReminders.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DB8004EA1EB7AC0400F2C116 = {
 			isa = PBXGroup;
 			children = (
 				DB8004F51EB7AC0400F2C116 /* LocationReminders */,
 				DB8004F41EB7AC0400F2C116 /* Products */,
 				DB80050D1EB7B2D600F2C116 /* Frameworks */,
+				A5D30DD54CE013FC3DBB4782 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +117,7 @@
 				DB80051B1EB8F47E00F2C116 /* View */,
 				DB80051C1EB8F49F00F2C116 /* Controller */,
 				DB8005071EB7AC0400F2C116 /* Info.plist */,
+				DB3BF0251ED509C900407A66 /* location_pin.json */,
 				DB8004F61EB7AC0400F2C116 /* Supporting Files */,
 			);
 			path = LocationReminders;
@@ -120,6 +138,7 @@
 				DB8005151EB7BBBE00F2C116 /* MapKit.framework */,
 				DB80050E1EB7B2D600F2C116 /* Bolts.framework */,
 				DB80050F1EB7B2D600F2C116 /* Parse.framework */,
+				A1A393C1C42E6EF86E70D4CB /* libPods-LocationReminders.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -165,10 +184,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB80050A1EB7AC0400F2C116 /* Build configuration list for PBXNativeTarget "LocationReminders" */;
 			buildPhases = (
+				E772FE669FAC2E7D36E6B94B /* [CP] Check Pods Manifest.lock */,
 				DB8004EF1EB7AC0400F2C116 /* Sources */,
 				DB8004F01EB7AC0400F2C116 /* Frameworks */,
 				DB8004F11EB7AC0400F2C116 /* Resources */,
 				DB8005121EB7B2F400F2C116 /* CopyFiles */,
+				52F90E58F63AEE16153E3A39 /* [CP] Embed Pods Frameworks */,
+				6CF1CFD7EE724D16C0B5751D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -223,6 +245,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB3BF0261ED509C900407A66 /* location_pin.json in Resources */,
 				DB8005061EB7AC0400F2C116 /* LaunchScreen.storyboard in Resources */,
 				DB8005031EB7AC0400F2C116 /* Assets.xcassets in Resources */,
 				DB8005011EB7AC0400F2C116 /* Main.storyboard in Resources */,
@@ -230,6 +253,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		52F90E58F63AEE16153E3A39 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocationReminders/Pods-LocationReminders-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6CF1CFD7EE724D16C0B5751D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocationReminders/Pods-LocationReminders-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E772FE669FAC2E7D36E6B94B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DB8004EF1EB7AC0400F2C116 /* Sources */ = {
@@ -361,6 +432,7 @@
 		};
 		DB80050B1EB7AC0400F2C116 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 151DD7175E3174D3D4ED4A44 /* Pods-LocationReminders.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6X88V8MC7R;
@@ -378,6 +450,7 @@
 		};
 		DB80050C1EB7AC0400F2C116 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E64A113FE52E715797179F47 /* Pods-LocationReminders.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6X88V8MC7R;
