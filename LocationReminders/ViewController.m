@@ -49,6 +49,9 @@
         logInViewController.logInView.logo = [[UIView alloc]init];
         logInViewController.logInView.backgroundColor = [UIColor darkGrayColor];
         
+        //UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mapImage"]];
+        //[logInViewController.logInView addSubview:imageView];
+        
         [self presentViewController:logInViewController animated:YES completion:nil];
     }
     
