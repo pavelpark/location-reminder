@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sylwia-bartyzel-442" translatesAutoresizingMaskIntoConstraints="NO" id="naa-DT-kHi">
+                            <imageView userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sylwia_bartyzel_442" translatesAutoresizingMaskIntoConstraints="NO" id="naa-DT-kHi">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eIX-RM-CBg">
@@ -88,7 +88,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sylwia-bartyzel-442" translatesAutoresizingMaskIntoConstraints="NO" id="4gT-MD-4cq">
+                            <imageView userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sylwia_bartyzel_442" translatesAutoresizingMaskIntoConstraints="NO" id="4gT-MD-4cq">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Radius" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-Je-Ya5">
@@ -114,7 +114,7 @@
                                 <rect key="frame" x="190" y="284" width="103" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Set Reminder">
-                                    <color key="titleColor" red="0.9367908331" green="0.94606598980000001" blue="0.94606598980000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="setReminderButtonPressed:" destination="IaI-cQ-ePw" eventType="touchUpInside" id="emo-km-NhH"/>
@@ -170,6 +170,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="sylwia-bartyzel-442" width="1909" height="1262"/>
+        <image name="sylwia_bartyzel_442" width="636" height="420"/>
     </resources>
 </document>

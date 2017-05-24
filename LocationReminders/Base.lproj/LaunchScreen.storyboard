@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sylwia-bartyzel-442" translatesAutoresizingMaskIntoConstraints="NO" id="94q-Gj-MIe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sylwia_bartyzel_442" translatesAutoresizingMaskIntoConstraints="NO" id="94q-Gj-MIe">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
@@ -40,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="sylwia-bartyzel-442" width="1909" height="1262"/>
+        <image name="sylwia_bartyzel_442" width="636" height="420"/>
     </resources>
 </document>
