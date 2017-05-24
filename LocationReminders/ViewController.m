@@ -59,9 +59,6 @@
     [self.mapView setRegion: MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f)) animated:YES];
 }
 
--(void)reminderSavedToParse:(id)sender{
-    NSLog(@"Do some stuff since our new reminder was saved!");
-}
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"ReminderSavedToParse" object:nil];
@@ -122,30 +119,6 @@
         };
     }
 }
-
-
-//IKEA Store
-- (IBAction)location1Pressed:(id)sender {
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.6566674, -122.351096);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 500.0, 500.0);
-    
-    [self.mapView setRegion:region animated:YES];
-}
-//Gopro HeadQuaters
-- (IBAction)location2Pressed:(id)sender {
-    CLLocationCoordinate2D coordinateTwo = CLLocationCoordinate2DMake(37.53451769999999, -122.33128290000002);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinateTwo, 500.0, 500.0);
-    
-    [self.mapView setRegion:region animated:YES];
-}
-//Red Bull HeadQuaters
-- (IBAction)location3Pressed:(id)sender {
-    CLLocationCoordinate2D coordinateThree = CLLocationCoordinate2DMake(34.030154, -118.467076);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinateThree, 500.0, 500.0);
-    
-    [self.mapView setRegion:region animated:YES];
-}
-
 
 - (IBAction)userLongPressed:(UILongPressGestureRecognizer *)sender {
     
