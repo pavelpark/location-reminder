@@ -45,15 +45,6 @@
     
 }
 
-//-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
-    //CLLocation *location = locations.lastObject;
-    
-//    self.location = location;
-    //[self.delegate locationControllerUpdatedLocation:location];
-    
-//}
-
-
 //We need to apply all of these methods in order to identify the region and monitore the region.
 -(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region{
     NSLog(@"We have successfully started monitoring changes for a region: %@", region.identifier);
