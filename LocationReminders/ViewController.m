@@ -59,9 +59,6 @@
     [self.mapView setRegion: MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f)) animated:YES];
 }
 
--(void)reminderSavedToParse:(id)sender{
-    NSLog(@"Do some stuff since our new reminder was saved!");
-}
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"ReminderSavedToParse" object:nil];
