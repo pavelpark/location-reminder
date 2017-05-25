@@ -24,9 +24,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sylwia_bartyzel_442" translatesAutoresizingMaskIntoConstraints="NO" id="94q-Gj-MIe">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location Reminder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpo-Ed-Zlx">
-                                <rect key="frame" x="22" y="183" width="330" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Reminder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpo-Ed-Zlx">
+                                <rect key="frame" x="22" y="183" width="331" height="49"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -34,9 +33,13 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qpo-Ed-Zlx" secondAttribute="trailing" constant="22" id="30f-cX-8Qz"/>
                             <constraint firstItem="94q-Gj-MIe" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="9B7-x6-8Ue"/>
+                            <constraint firstItem="qpo-Ed-Zlx" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="163" id="Mcb-0q-EPX"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="94q-Gj-MIe" secondAttribute="bottom" id="fzl-io-epq"/>
                             <constraint firstAttribute="trailing" secondItem="94q-Gj-MIe" secondAttribute="trailing" id="gEZ-ub-gjv"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="qpo-Ed-Zlx" secondAttribute="bottom" constant="435" id="isc-W7-ytB"/>
+                            <constraint firstItem="qpo-Ed-Zlx" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="22" id="yAk-DR-gXj"/>
                             <constraint firstItem="94q-Gj-MIe" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="zrV-bO-sL4"/>
                         </constraints>
                     </view>

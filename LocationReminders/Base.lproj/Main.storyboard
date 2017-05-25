@@ -61,9 +61,7 @@
                             <constraint firstItem="naa-DT-kHi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zSa-BF-SVv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="laj-W0-Sbf">
-                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="cyC-AF-d1e"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="laj-W0-Sbf"/>
                     <connections>
                         <outlet property="mapView" destination="eIX-RM-CBg" id="0qx-3l-yKp"/>
                         <segue destination="IaI-cQ-ePw" kind="show" identifier="AddReminderViewController" id="4Ot-9S-247"/>
