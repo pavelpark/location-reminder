@@ -41,6 +41,8 @@
     if (![PFUser currentUser]) {
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
         
+        //UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sylwia_bartyzel_442"]];
+        //[logInViewController.logInView addSubview:imageView];
         logInViewController.delegate = self;
         logInViewController.signUpController.delegate = self;
         
@@ -49,14 +51,13 @@
         logInViewController.logInView.logo = [[UIView alloc]init];
         logInViewController.logInView.backgroundColor = [UIColor darkGrayColor];
         
-        //UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mapImage"]];
-        //[logInViewController.logInView addSubview:imageView];
         
         [self presentViewController:logInViewController animated:YES completion:nil];
     }
     
 }
 
+//Zooms on the user when they first get in to the app.
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(nonnull MKUserLocation *)userLocation{
     
     [self.mapView setRegion: MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.1f, 0.1f)) animated:YES];
@@ -123,6 +124,7 @@
     }
 }
 
+//LongPress for the pin to drop.
 - (IBAction)userLongPressed:(UILongPressGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
@@ -173,8 +175,8 @@
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
     MKCircleRenderer *renderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
     
-    renderer.strokeColor = [UIColor blueColor];
-    renderer.fillColor = [UIColor blueColor];
+    renderer.strokeColor = [UIColor lightGrayColor];
+    renderer.fillColor = [UIColor redColor];
     renderer.alpha = 0.25;
     
     return renderer;
@@ -195,7 +197,8 @@
     [self.mapView setRegion:region animated:YES];
 }
 
-    
+
+//Different View for the map.
 - (IBAction)setMap:(id)sender {
     
     switch (((UISegmentedControl *)sender).selectedSegmentIndex) {
