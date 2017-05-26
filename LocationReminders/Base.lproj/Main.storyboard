@@ -61,9 +61,7 @@
                             <constraint firstItem="naa-DT-kHi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zSa-BF-SVv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="laj-W0-Sbf">
-                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="cyC-AF-d1e"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="laj-W0-Sbf"/>
                     <connections>
                         <outlet property="mapView" destination="eIX-RM-CBg" id="0qx-3l-yKp"/>
                         <segue destination="IaI-cQ-ePw" kind="show" identifier="AddReminderViewController" id="4Ot-9S-247"/>
@@ -94,26 +92,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Radius" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-Je-Ya5">
-                                <rect key="frame" x="98" y="232" width="195" height="30"/>
+                                <rect key="frame" x="98" y="306" width="179" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="New Reminder" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ayO-FQ-GtY">
-                                <rect key="frame" x="50" y="93" width="275" height="24"/>
+                                <rect key="frame" x="50" y="113" width="275" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kgv-ey-J3v">
-                                <rect key="frame" x="98" y="154" width="195" height="30"/>
+                                <rect key="frame" x="98" y="228" width="179" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnf-KX-jKt">
-                                <rect key="frame" x="190" y="284" width="103" height="30"/>
+                                <rect key="frame" x="170" y="358" width="107" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Set Reminder">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -129,18 +127,18 @@
                             <constraint firstItem="Vsb-Je-Ya5" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="98" id="9R4-oX-Vg3"/>
                             <constraint firstItem="gnf-KX-jKt" firstAttribute="top" secondItem="Vsb-Je-Ya5" secondAttribute="bottom" constant="22" id="Lfd-1m-U03"/>
                             <constraint firstItem="ayO-FQ-GtY" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="50" id="M3S-dF-DqS"/>
-                            <constraint firstAttribute="trailing" secondItem="Vsb-Je-Ya5" secondAttribute="trailing" constant="82" id="NcJ-nN-XrQ"/>
-                            <constraint firstItem="gnf-KX-jKt" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="190" id="QjW-L5-ijK"/>
+                            <constraint firstAttribute="trailing" secondItem="Vsb-Je-Ya5" secondAttribute="trailing" constant="98" id="NcJ-nN-XrQ"/>
+                            <constraint firstItem="gnf-KX-jKt" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="170" id="QjW-L5-ijK"/>
                             <constraint firstAttribute="trailing" secondItem="ayO-FQ-GtY" secondAttribute="trailing" constant="50" id="QjX-x8-9Dk"/>
-                            <constraint firstAttribute="trailing" secondItem="gnf-KX-jKt" secondAttribute="trailing" constant="82" id="UgE-Jj-DpU"/>
+                            <constraint firstAttribute="trailing" secondItem="gnf-KX-jKt" secondAttribute="trailing" constant="98" id="UgE-Jj-DpU"/>
                             <constraint firstItem="4gT-MD-4cq" firstAttribute="top" secondItem="n4G-Uc-ZuU" secondAttribute="top" id="frZ-lq-WHO"/>
-                            <constraint firstItem="Kgv-ey-J3v" firstAttribute="top" secondItem="ayO-FQ-GtY" secondAttribute="bottom" constant="37" id="hUI-PL-CEX"/>
-                            <constraint firstAttribute="trailing" secondItem="Kgv-ey-J3v" secondAttribute="trailing" constant="82" id="ijs-aa-4Bf"/>
+                            <constraint firstItem="Kgv-ey-J3v" firstAttribute="top" secondItem="ayO-FQ-GtY" secondAttribute="bottom" constant="80" id="hUI-PL-CEX"/>
+                            <constraint firstAttribute="trailing" secondItem="Kgv-ey-J3v" secondAttribute="trailing" constant="98" id="ijs-aa-4Bf"/>
                             <constraint firstItem="Vsb-Je-Ya5" firstAttribute="top" secondItem="Kgv-ey-J3v" secondAttribute="bottom" constant="48" id="j8x-5e-UpP"/>
                             <constraint firstItem="Kgv-ey-J3v" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="98" id="qJ0-Rz-P2k"/>
                             <constraint firstItem="lUe-Ae-b6h" firstAttribute="top" secondItem="4gT-MD-4cq" secondAttribute="bottom" id="qZF-uG-Mcg"/>
                             <constraint firstItem="4gT-MD-4cq" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" id="tQV-Lo-6tF"/>
-                            <constraint firstItem="ayO-FQ-GtY" firstAttribute="top" secondItem="tRp-6l-THw" secondAttribute="bottom" constant="29" id="z4i-HO-bEu"/>
+                            <constraint firstItem="ayO-FQ-GtY" firstAttribute="top" secondItem="tRp-6l-THw" secondAttribute="bottom" constant="49" id="z4i-HO-bEu"/>
                         </constraints>
                     </view>
                     <connections>
