@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AddReminderViewController.h"
 #import "LocationController.h"
+#import "Reminder.h"
 
 @import Parse;
 @import MapKit;
@@ -84,6 +85,11 @@
         }else {
         
             NSLog(@"Query Results %@", objects);
+            for (Reminder *reminder in objects) {
+                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
+                MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:reminder.radius.doubleValue];
+                [self.mapView addOverlay:circle];
+            }
         }
     }];
 }
@@ -108,6 +114,7 @@
             __strong typeof(bruce) hulk = bruce;
             
             [hulk.mapView removeAnnotation:annotationView.annotation];
+           
             [hulk.mapView addOverlay:circle];
         };
     }
@@ -162,11 +169,13 @@
 
 //Circle where we pinned.
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
+   
     MKCircleRenderer *renderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
     
-    renderer.strokeColor = [UIColor lightGrayColor];
-    renderer.fillColor = [UIColor redColor];
-    renderer.alpha = 0.25;
+    renderer.strokeColor = [UIColor blueColor];
+    renderer.lineWidth = 2.0;
+    renderer.fillColor = [UIColor purpleColor];
+    renderer.alpha = 0.50;
     
     return renderer;
 }

@@ -32,6 +32,13 @@
     
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
     
+    NSNumber *radius = [NSNumber numberWithFloat:self.locationRadius.text.floatValue];
+    
+    if (radius == 0) {
+        radius = [NSNumber numberWithFloat:100];
+    }
+    newReminder.radius = radius;
+    
     [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         NSLog(@"Annotation Title: %@", self.locationName.text);
         NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
@@ -41,21 +48,19 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
         
+        //To start monetoring region.
+        if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+            CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:[radius intValue] identifier:newReminder.name];
+            
+            [LocationController.shared startMonitoringForRegion:region];
+        }
+
         if (self.completion) {
             
-            CGFloat radius = [self.locationRadius.text floatValue];
-            
-            MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
-            
-            //To start monetoring region.
-            if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
-                CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:radius identifier:newReminder.name];
-                
-                [LocationController.shared startMonitoringForRegion:region];
-            }
+            CGFloat overlayRadius = radius.floatValue;
+            MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:overlayRadius];
             
             self.completion(circle);
-            
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];
