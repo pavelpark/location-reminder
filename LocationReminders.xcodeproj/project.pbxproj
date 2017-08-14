@@ -191,7 +191,7 @@
 				TargetAttributes = {
 					DB8004F21EB7AC0400F2C116 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 6X88V8MC7R;
+						DevelopmentTeam = FQ3G8657EV;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -364,7 +364,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6X88V8MC7R;
+				DEVELOPMENT_TEAM = FQ3G8657EV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -381,7 +381,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6X88V8MC7R;
+				DEVELOPMENT_TEAM = FQ3G8657EV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
