@@ -34,6 +34,7 @@
     [self fetchReminders];
     
     
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSaveToParse:) name:@"ReminderSavedToParse" object:nil];
     
     //[PFUser logOut];
@@ -41,8 +42,6 @@
     if (![PFUser currentUser]) {
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
         
-        //UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sylwia_bartyzel_442"]];
-        //[logInViewController.logInView addSubview:imageView];
         logInViewController.delegate = self;
         logInViewController.signUpController.delegate = self;
         
@@ -57,13 +56,6 @@
     
 }
 
-//Zooms on the user when they first get in to the app.
--(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(nonnull MKUserLocation *)userLocation{
-    
-    [self.mapView setRegion: MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.01f, 0.01f)) animated:YES];
-}
-
-
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"ReminderSavedToParse" object:nil];
 }
@@ -71,12 +63,9 @@
 -(void)requestsPermissions{
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 100; //In meters
-    
+    self.locationManager.distanceFilter = 75; //In meters
     self.locationManager.delegate = self;
-    
     [self.locationManager requestAlwaysAuthorization];
-    
     [self.locationManager startUpdatingLocation];
 }
 
@@ -197,6 +186,11 @@
     [self.mapView setRegion:region animated:YES];
 }
 
+//Zooms on the user when they hit currentLocation button.
+- (IBAction)currentLocation:(id)sender {
+    
+     [self.mapView setRegion: MKCoordinateRegionMake(self.locationManager.location.coordinate, MKCoordinateSpanMake(0.01f, 0.01f)) animated:YES];
+}
 
 //Different View for the map.
 - (IBAction)setMap:(id)sender {
