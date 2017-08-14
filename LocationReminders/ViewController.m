@@ -63,7 +63,7 @@
 -(void)requestsPermissions{
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 75; //In meters
+    self.locationManager.distanceFilter = 50; //In meters
     self.locationManager.delegate = self;
     [self.locationManager requestAlwaysAuthorization];
     [self.locationManager startUpdatingLocation];
