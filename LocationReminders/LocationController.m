@@ -50,6 +50,7 @@
     NSLog(@"We have successfully started monitoring changes for a region: %@", region.identifier);
 }
 
+//When the user enters the region notofication gets pushed.
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{
     NSLog(@"User did enter region:%@", region.identifier);
     
