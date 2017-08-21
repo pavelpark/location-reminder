@@ -90,7 +90,7 @@
                         <viewControllerLayoutGuide type="top" id="tRp-6l-THw"/>
                         <viewControllerLayoutGuide type="bottom" id="lUe-Ae-b6h"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="n4G-Uc-ZuU" customClass="UIControl" customModule="Control">
+                    <view key="view" contentMode="scaleToFill" id="n4G-Uc-ZuU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -146,9 +146,6 @@
                             <constraint firstItem="4gT-MD-4cq" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" id="tQV-Lo-6tF"/>
                             <constraint firstItem="ayO-FQ-GtY" firstAttribute="top" secondItem="tRp-6l-THw" secondAttribute="bottom" constant="49" id="z4i-HO-bEu"/>
                         </constraints>
-                        <connections>
-                            <action selector="backgroundTapped:" destination="IaI-cQ-ePw" eventType="touchUpInside" id="Cyw-N0-KJt"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="locationName" destination="Kgv-ey-J3v" id="nww-fd-lzR"/>
