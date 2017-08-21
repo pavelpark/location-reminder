@@ -34,10 +34,6 @@
     return YES;
 }
 
-- (IBAction)backgroundTapped:(id)sender {
-    [self.view endEditing:YES];
-}
-
 - (IBAction)setReminderButtonPressed:(UIButton *)sender {
     
     Reminder *newReminder = [Reminder object];
