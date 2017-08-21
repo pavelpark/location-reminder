@@ -152,7 +152,7 @@
                     </view>
                     <connections>
                         <outlet property="locationName" destination="Kgv-ey-J3v" id="nww-fd-lzR"/>
-                        <outlet property="locationRadius" destination="Vsb-Je-Ya5" id="yaH-UC-Oij"/>
+                        <outlet property="locationRadius" destination="Vsb-Je-Ya5" id="qhu-7W-ZsE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25p-mo-ddS" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -12,9 +12,8 @@
 
 @interface AddReminderViewController () <UITextFieldDelegate>
 
-//@property (weak, nonatomic) IBOutlet UITextField *locationName;
-@property (weak, nonatomic) IBOutlet UITextField *locationRadius;
 @property (strong, nonatomic) IBOutlet UITextField *locationName;
+@property (strong, nonatomic) IBOutlet UITextField *locationRadius;
 
 @end
 
