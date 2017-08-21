@@ -19,16 +19,17 @@
 
 @implementation AddReminderViewController
 
-@synthesize locationName;
+@synthesize locationName, locationRadius;
 - (void)viewDidLoad {
     [super viewDidLoad];
     locationName.delegate = self;
+    locationRadius.delegate = self;
 };
 
 //Keyboard Away
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [locationName resignFirstResponder];
-//    [_locationRadius resignFirstResponder];
+    [locationRadius resignFirstResponder];
 
     return YES;
 }
