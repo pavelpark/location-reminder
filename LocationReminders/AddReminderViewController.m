@@ -19,14 +19,19 @@
 
 @implementation AddReminderViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+};
+
 //Keyboard Away
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [_locationName resignFirstResponder];
     return YES;
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-};
+
+- (IBAction)backgroundTapped:(id)sender {
+    
+}
 
 - (IBAction)setReminderButtonPressed:(UIButton *)sender {
     
