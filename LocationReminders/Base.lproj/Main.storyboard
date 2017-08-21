@@ -151,7 +151,7 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="locationName" destination="Kgv-ey-J3v" id="RcI-Dg-8WX"/>
+                        <outlet property="locationName" destination="Kgv-ey-J3v" id="nww-fd-lzR"/>
                         <outlet property="locationRadius" destination="Vsb-Je-Ya5" id="yaH-UC-Oij"/>
                     </connections>
                 </viewController>

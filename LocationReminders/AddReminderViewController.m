@@ -12,20 +12,25 @@
 
 @interface AddReminderViewController () <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *locationName;
+//@property (weak, nonatomic) IBOutlet UITextField *locationName;
 @property (weak, nonatomic) IBOutlet UITextField *locationRadius;
+@property (strong, nonatomic) IBOutlet UITextField *locationName;
 
 @end
 
 @implementation AddReminderViewController
 
+@synthesize locationName;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    locationName.delegate = self;
 };
 
 //Keyboard Away
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [_locationName resignFirstResponder];
+    [locationName resignFirstResponder];
+//    [_locationRadius resignFirstResponder];
+
     return YES;
 }
 
