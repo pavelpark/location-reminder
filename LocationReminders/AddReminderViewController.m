@@ -30,7 +30,7 @@
 }
 
 - (IBAction)backgroundTapped:(id)sender {
-    
+    [self.view endEditing:YES];
 }
 
 - (IBAction)setReminderButtonPressed:(UIButton *)sender {
