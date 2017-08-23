@@ -75,8 +75,9 @@
 }
 
 -(void)fetchReminders{
-    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
-    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"PFUser = %@", [PFUser currentUser]];
+    PFQuery *query = [PFQuery queryWithClassName:@"Reminder" predicate: predicate];
+
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (error) {
             
