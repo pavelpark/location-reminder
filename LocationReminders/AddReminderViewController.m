@@ -38,6 +38,8 @@
     
     Reminder *newReminder = [Reminder object];
     
+    newReminder.username = [[PFUser currentUser] username];
+    
     newReminder.name = self.annotationTitle;
     
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];

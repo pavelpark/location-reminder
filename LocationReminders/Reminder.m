@@ -13,6 +13,7 @@
 @dynamic name;
 @dynamic location;
 @dynamic radius;
+@dynamic username;
 
 +(void)load{
     [super load];

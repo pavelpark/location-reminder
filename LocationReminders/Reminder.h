@@ -13,5 +13,6 @@
 @property(strong, nonatomic) NSString *name;
 @property(strong, nonatomic) PFGeoPoint *location;
 @property(strong, nonatomic) NSNumber *radius;
+@property(strong, nonatomic) NSString *username;
 
 @end
