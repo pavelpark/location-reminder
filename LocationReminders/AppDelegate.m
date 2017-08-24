@@ -21,7 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [self registerForNotofications];
+    [self registerForNotifications];
     
     ParseClientConfiguration *parseConfig = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration>  _Nonnull configuration) {
         configuration.applicationId = @"34bh5342n50";
@@ -35,7 +35,7 @@
     return YES;
 }
 
--(void)registerForNotofications{
+-(void)registerForNotifications{
     UNAuthorizationOptions options = UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound;
     
     UNUserNotificationCenter *current = [UNUserNotificationCenter currentNotificationCenter];

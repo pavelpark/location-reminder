@@ -27,38 +27,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     [self requestsPermissions];
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
     LocationController.shared.delegate = self;
-    [self fetchReminders];
-    
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSaveToParse:) name:@"ReminderSavedToParse" object:nil];
     
-    //[PFUser logOut];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    if (![PFUser currentUser]) {
-        PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
-        
-        logInViewController.delegate = self;
-        logInViewController.signUpController.delegate = self;
-        
-        logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword;
-        
-        logInViewController.logInView.logo = [[UIView alloc]init];
-        logInViewController.logInView.backgroundColor = [UIColor darkGrayColor];
-        
-        
-        [self presentViewController:logInViewController animated:YES completion:nil];
+    if ([PFUser currentUser]) {
+        [self fetchReminders];
+    } else {
+        [self displayLogInViewController];
     }
-    
 }
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"ReminderSavedToParse" object:nil];
+}
+
+-(void)displayLogInViewController{
+    PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+    
+    logInViewController.delegate = self;
+    logInViewController.signUpController.delegate = self;
+    
+    logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword;
+    
+    logInViewController.logInView.logo = [[UIView alloc]init];
+    logInViewController.logInView.backgroundColor = [UIColor darkGrayColor];
+    
+    [self presentViewController:logInViewController animated:YES completion:nil];
 }
 
 -(void)requestsPermissions{
@@ -122,25 +125,6 @@
     }
 }
 
-//LongPress for the pin to drop.
-- (IBAction)userLongPressed:(UILongPressGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        
-        CGPoint touchPoint = [sender locationInView:self.mapView];
-        
-        CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint
-                                                  toCoordinateFromView:self.mapView]; //Converts point into coordinate.
-
-        
-        MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
-        
-        newPoint.coordinate = coordinate;
-        newPoint.title = @"Pinned Location";
-        
-        [self.mapView addAnnotation:newPoint];
-    }
-}
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     
@@ -197,10 +181,40 @@
     [self.mapView setRegion:region animated:YES];
 }
 
+//MARK: User actions
+
+//LongPress for the pin to drop.
+- (IBAction)userLongPressed:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        
+        CGPoint touchPoint = [sender locationInView:self.mapView];
+        
+        CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint
+                                                  toCoordinateFromView:self.mapView]; //Converts point into coordinate.
+        
+        
+        MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+        
+        newPoint.coordinate = coordinate;
+        newPoint.title = @"Pinned Location";
+        
+        [self.mapView addAnnotation:newPoint];
+    }
+}
 //Zooms on the user when they hit currentLocation button.
 - (IBAction)currentLocation:(id)sender {
     
      [self.mapView setRegion: MKCoordinateRegionMake(self.locationManager.location.coordinate, MKCoordinateSpanMake(0.01f, 0.01f)) animated:YES];
+}
+
+- (IBAction)signOut:(id)sender {
+    [PFUser logOut];
+    
+    //Clear pins & circle overlays of previous user on sign out.
+    [self.mapView removeAnnotations: self.mapView.annotations];
+    [self.mapView removeOverlays: self.mapView.overlays];
+    [self displayLogInViewController];
 }
 
 //Different View for the map.
