@@ -62,6 +62,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="laj-W0-Sbf">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="nH3-co-HS3">
+                            <connections>
+                                <action selector="signOut:" destination="BYZ-38-t0r" id="2sH-zn-0S6"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Current Location" id="NFi-Fg-om0">
                             <connections>
                                 <action selector="currentLocation:" destination="BYZ-38-t0r" id="YCF-91-WKG"/>
