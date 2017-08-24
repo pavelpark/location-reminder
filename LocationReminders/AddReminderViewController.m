@@ -40,7 +40,10 @@
     
     newReminder.username = [[PFUser currentUser] username];
     
-    newReminder.name = self.annotationTitle;
+    newReminder.name = self.locationName.text;
+    if ([newReminder.name isEqual:@""]) {
+        newReminder.name = @"Reminder";
+    }
     
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
     
