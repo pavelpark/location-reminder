@@ -56,11 +56,11 @@
     logInViewController.delegate = self;
     logInViewController.signUpController.delegate = self;
     
-    logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword;
+    logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsPasswordForgotten;
     
     logInViewController.logInView.logo = [[UIView alloc]init];
     logInViewController.logInView.backgroundColor = [UIColor darkGrayColor];
-    
+        
     [self presentViewController:logInViewController animated:YES completion:nil];
 }
 
