@@ -56,11 +56,11 @@
     logInViewController.delegate = self;
     logInViewController.signUpController.delegate = self;
     
-    logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword;
+    logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsPasswordForgotten;
     
     logInViewController.logInView.logo = [[UIView alloc]init];
     logInViewController.logInView.backgroundColor = [UIColor darkGrayColor];
-    
+        
     [self presentViewController:logInViewController animated:YES completion:nil];
 }
 
@@ -183,6 +183,13 @@
 
 //MARK: User actions
 
+//Current location button.
+
+- (IBAction)currentLocationTapped:(id)sender {
+    
+    [self.mapView setRegion: MKCoordinateRegionMake(self.locationManager.location.coordinate, MKCoordinateSpanMake(0.01f, 0.01f)) animated:YES];
+}
+
 //LongPress for the pin to drop.
 - (IBAction)userLongPressed:(UILongPressGestureRecognizer *)sender {
     
@@ -201,11 +208,6 @@
         
         [self.mapView addAnnotation:newPoint];
     }
-}
-//Zooms on the user when they hit currentLocation button.
-- (IBAction)currentLocation:(id)sender {
-    
-     [self.mapView setRegion: MKCoordinateRegionMake(self.locationManager.location.coordinate, MKCoordinateSpanMake(0.01f, 0.01f)) animated:YES];
 }
 
 - (IBAction)signOut:(id)sender {
