@@ -23,19 +23,24 @@
     
     [self registerForNotifications];
     
-    ParseClientConfiguration *parseConfig = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration>  _Nonnull configuration) {
-        configuration.applicationId = @"34bh5342n50";
-        configuration.clientKey = @"as7d7as8d88vfdv091";
-        
-        configuration.server = @"https://location-reminder-server-pp.herokuapp.com/parse";
+    // Verify that notifications have been authorized
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+        if (settings.authorizationStatus == UNAuthorizationStatusAuthorized) {
+            NSLog(@"Notifications are authorized.");
+            [self setCategoriesForNotificationCenter];
+        } else {
+            NSLog(@"Notifications are not authorized.");
+        }
     }];
     
-    [Parse initializeWithConfiguration:parseConfig];
+    [self initializeParse];
     
     return YES;
 }
 
--(void)registerForNotifications{
+
+- (void)registerForNotifications {
     UNAuthorizationOptions options = UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound;
     
     UNUserNotificationCenter *current = [UNUserNotificationCenter currentNotificationCenter];
@@ -45,10 +50,35 @@
             NSLog(@"There was an error %@", error.localizedDescription);
         }
         if (granted) {
-            NSLog(@"The user has allowed permission for notofications!");
+            NSLog(@"The user has allowed permission for notifications!");
         }
     }];
 }
+
+
+- (void)setCategoriesForNotificationCenter {
+    UNNotificationAction *completeReminderAction = [UNNotificationAction actionWithIdentifier:@"COMPLETE_ACTION" title:@"Mark as complete" options:UNNotificationActionOptionDestructive];
+    UNNotificationAction *snoozeReminderAction = [UNNotificationAction actionWithIdentifier:@"SNOOZE_ACTION" title:@"Snooze" options:UNNotificationActionOptionNone];
+    NSArray *reminderActions = @[completeReminderAction, snoozeReminderAction];
+    
+    UNNotificationCategory *reminderCategory = [UNNotificationCategory categoryWithIdentifier:@"REMINDER" actions:reminderActions intentIdentifiers:@[]                                                                         options:UNNotificationCategoryOptionCustomDismissAction];
+    
+    NSSet *categories = [NSSet setWithObjects:reminderCategory, nil];
+    
+    [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:categories];
+}
+
+- (void)initializeParse {
+    ParseClientConfiguration *parseConfig = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> _Nonnull configuration) {
+        configuration.applicationId = @"34bh5342n50";
+        configuration.clientKey = @"as7d7as8d88vfdv091";
+        
+        configuration.server = @"https://location-reminder-server-pp.herokuapp.com/parse";
+    }];
+    
+    [Parse initializeWithConfiguration:parseConfig];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
