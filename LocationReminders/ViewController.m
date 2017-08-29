@@ -160,8 +160,8 @@
     
     renderer.strokeColor = [UIColor blueColor];
     renderer.lineWidth = 2.0;
-    renderer.fillColor = [UIColor purpleColor];
-    renderer.alpha = 0.50;
+    renderer.fillColor = [UIColor blueColor];
+    renderer.alpha = 0.15;
     
     return renderer;
 }
