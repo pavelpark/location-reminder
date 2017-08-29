@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eIX-RM-CBg">
-                                <rect key="frame" x="37.5" y="100" width="300" height="467"/>
+                                <rect key="frame" x="38" y="100" width="300" height="467"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="q5e-jo-iGb" appends="YES" id="tmO-d9-L3c"/>
@@ -44,10 +44,15 @@
                                     <action selector="setMap:" destination="BYZ-38-t0r" eventType="valueChanged" id="eKF-BU-zv3"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHT-bh-VCB">
-                                <rect key="frame" x="214.5" y="529" width="115" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.56078431370000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Current Location"/>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHT-bh-VCB">
+                                <rect key="frame" x="294" y="523" width="32" height="32"/>
+                                <color key="backgroundColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="om7-jy-IoF"/>
+                                    <constraint firstAttribute="height" constant="32" id="zPZ-sI-1nX"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <state key="normal" image="CurrentLocation"/>
                                 <connections>
                                     <action selector="currentLocationTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="80c-yN-m7b"/>
                                 </connections>
@@ -55,18 +60,18 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pHT-bh-VCB" firstAttribute="bottom" secondItem="eIX-RM-CBg" secondAttribute="bottom" constant="-8" id="0AS-mj-U47"/>
                             <constraint firstAttribute="trailing" secondItem="xZB-TO-axA" secondAttribute="trailing" constant="20" id="BDt-xO-dsk"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="E5R-rn-XZI"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xZB-TO-axA" secondAttribute="bottom" constant="50" id="SXe-VL-YlC"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="naa-DT-kHi" secondAttribute="bottom" id="UkD-2Y-W5O"/>
                             <constraint firstItem="naa-DT-kHi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cB5-lt-Clu"/>
                             <constraint firstItem="xZB-TO-axA" firstAttribute="top" secondItem="eIX-RM-CBg" secondAttribute="bottom" constant="22" id="fRL-fl-BGt"/>
-                            <constraint firstItem="pHT-bh-VCB" firstAttribute="trailing" secondItem="eIX-RM-CBg" secondAttribute="trailing" constant="-8" id="fig-JD-nEi"/>
+                            <constraint firstItem="pHT-bh-VCB" firstAttribute="bottom" secondItem="eIX-RM-CBg" secondAttribute="bottom" constant="-12" id="fmO-wN-6rZ"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="heG-CM-Hqr"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jTB-ui-53E"/>
                             <constraint firstItem="eIX-RM-CBg" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="l69-ZM-pzx"/>
                             <constraint firstAttribute="trailing" secondItem="naa-DT-kHi" secondAttribute="trailing" id="tjF-9z-o8j"/>
+                            <constraint firstItem="pHT-bh-VCB" firstAttribute="trailing" secondItem="eIX-RM-CBg" secondAttribute="trailing" constant="-12" id="veG-2e-0u6"/>
                             <constraint firstItem="xZB-TO-axA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="yTt-FK-6Xh"/>
                             <constraint firstItem="naa-DT-kHi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zSa-BF-SVv"/>
                         </constraints>
@@ -79,6 +84,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="currentLocationPressed" destination="pHT-bh-VCB" id="P1I-fQ-p3k"/>
                         <outlet property="mapView" destination="eIX-RM-CBg" id="0qx-3l-yKp"/>
                         <segue destination="IaI-cQ-ePw" kind="show" identifier="AddReminderViewController" id="4Ot-9S-247"/>
                     </connections>
@@ -186,6 +192,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CurrentLocation" width="400" height="400"/>
         <image name="sylwia_bartyzel_442" width="636" height="420"/>
     </resources>
 </document>

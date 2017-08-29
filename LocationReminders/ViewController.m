@@ -19,6 +19,8 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) IBOutlet UIButton *currentLocationPressed;
+
 
 @end
 
@@ -30,6 +32,9 @@
     [self requestsPermissions];
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
+    self.currentLocationPressed.layer.cornerRadius = 6;
+    self.currentLocationPressed.layer.masksToBounds = true;
+    
     LocationController.shared.delegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSaveToParse:) name:@"ReminderSavedToParse" object:nil];
