@@ -20,6 +20,8 @@
 
 @interface LocationController : NSObject
 
+-(void)requestsPermissions;
+
 +(LocationController *)shared;
 
 @property(strong, nonatomic) CLLocationManager *locationManager;

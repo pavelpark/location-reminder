@@ -40,9 +40,24 @@
     return self;
 }
 
+-(void)requestsPermissions{
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = 50; //In meters
+    self.locationManager.delegate = self;
+    [self.locationManager requestAlwaysAuthorization];
+    [self.locationManager startUpdatingLocation];
+}
+
 -(void)startMonitoringForRegion:(CLRegion *)region{
     [self.locationManager startMonitoringForRegion:region];
     
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+        CLLocation *lastLocation = locations.lastObject;
+        
+        self.location = lastLocation;
+        [self.delegate locationControllerUpdatedLocation:self.location];
 }
 
 //We need to apply all of these methods in order to identify the region and monitore the region.
