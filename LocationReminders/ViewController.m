@@ -15,11 +15,12 @@
 @import MapKit;
 @import ParseUI;
 
-@interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate, LocationControllerDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface ViewController () <MKMapViewDelegate, LocationControllerDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) IBOutlet UIButton *currentLocationPressed;
+@property (nonatomic, assign) BOOL mapShouldFollowUser;
+@property (weak, nonatomic) LocationController *locationController;
 
 
 @end
@@ -28,14 +29,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.locationController = LocationController.shared;
+    self.locationController.delegate = self;
     
-    [self requestsPermissions];
+    [self.locationController requestsPermissions];
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
     self.currentLocationPressed.layer.cornerRadius = 6;
     self.currentLocationPressed.layer.masksToBounds = true;
+    self.mapShouldFollowUser = NO;
+    [self currentLocationTapped:nil];
     
-    LocationController.shared.delegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSaveToParse:) name:@"ReminderSavedToParse" object:nil];
     
@@ -69,14 +73,6 @@
     [self presentViewController:logInViewController animated:YES completion:nil];
 }
 
--(void)requestsPermissions{
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 50; //In meters
-    self.locationManager.delegate = self;
-    [self.locationManager requestAlwaysAuthorization];
-    [self.locationManager startUpdatingLocation];
-}
 
 -(void)reminderSaveToParse:(id)sender{
     NSLog(@"Do some stuff since the new reminder was saved.");
@@ -180,10 +176,12 @@
 }
 
 - (void)locationControllerUpdatedLocation:(CLLocation *)location{
+    if (self.mapShouldFollowUser) {
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0);
+        
+        [self.mapView setRegion:region animated:YES];
+    }
    
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0);
-    
-    [self.mapView setRegion:region animated:YES];
 }
 
 //MARK: User actions
@@ -192,7 +190,10 @@
 
 - (IBAction)currentLocationTapped:(id)sender {
     
-    [self.mapView setRegion: MKCoordinateRegionMake(self.locationManager.location.coordinate, MKCoordinateSpanMake(0.01f, 0.01f)) animated:YES];
+    self.mapShouldFollowUser = !self.mapShouldFollowUser;
+        [self.currentLocationPressed setSelected:self.mapShouldFollowUser];
+    
+    [self.mapView setRegion: MKCoordinateRegionMake(self.locationController.location.coordinate, MKCoordinateSpanMake(0.01f, 0.01f)) animated:YES];
 }
 
 //LongPress for the pin to drop.
