@@ -11,7 +11,7 @@
 @import Parse;
 @import UserNotifications;
 
-@interface AppDelegate ()
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
 
 @end
 
@@ -44,6 +44,7 @@
     UNAuthorizationOptions options = UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound;
     
     UNUserNotificationCenter *current = [UNUserNotificationCenter currentNotificationCenter];
+    current.delegate = self;
     
     [current requestAuthorizationWithOptions:options completionHandler:^(BOOL granted, NSError * _Nullable error) {
         if (error) {
@@ -77,6 +78,29 @@
     }];
     
     [Parse initializeWithConfiguration:parseConfig];
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reminder:" message:notification.request.content.body preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *snooze = [UIAlertAction actionWithTitle:@"Snooze" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"User snoozed the reminder");
+    }];
+    UIAlertAction *complete = [UIAlertAction actionWithTitle:@"Mark as complete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"User completed the reminder");
+    }];
+    UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"User dismissed the reminder");
+    }];
+    [alert addAction:complete];
+    [alert addAction:snooze];
+    [alert addAction:dismiss];
+    
+    [[self.window rootViewController] presentViewController:alert animated: YES completion:nil];
+    
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    
 }
 
 
