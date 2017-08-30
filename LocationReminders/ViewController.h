@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@import CoreLocation;
+
 
 @interface ViewController : UIViewController
+
+- (void)locationControllerUpdatedLocation:(CLLocation *)location;
+
 - (IBAction)setMap:(id)sender;
 
 @end

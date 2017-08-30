@@ -52,7 +52,8 @@
                                     <constraint firstAttribute="height" constant="32" id="zPZ-sI-1nX"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                <state key="normal" image="CurrentLocation"/>
+                                <state key="normal" image="TrackingInactive"/>
+                                <state key="selected" image="TrackingActive"/>
                                 <connections>
                                     <action selector="currentLocationTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="80c-yN-m7b"/>
                                 </connections>
@@ -192,7 +193,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CurrentLocation" width="400" height="400"/>
+        <image name="TrackingActive" width="400" height="400"/>
+        <image name="TrackingInactive" width="400" height="400"/>
         <image name="sylwia_bartyzel_442" width="636" height="420"/>
     </resources>
 </document>
