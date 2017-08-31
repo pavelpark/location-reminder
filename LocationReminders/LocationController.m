@@ -21,7 +21,7 @@
 @synthesize locationManager;
 @synthesize location;
 
-+(LocationController *)shared{
++ (LocationController *)shared {
     
     static LocationController *shared = nil;
     static dispatch_once_t onceToken;
@@ -40,7 +40,7 @@
     return self;
 }
 
--(void)requestsPermissions{
+- (void)requestPermissions {
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.distanceFilter = 50; //In meters
     self.locationManager.delegate = self;
@@ -48,12 +48,17 @@
     [self.locationManager startUpdatingLocation];
 }
 
--(void)startMonitoringForRegion:(CLRegion *)region{
-    [self.locationManager startMonitoringForRegion:region];
-    
+- (void)resetMonitoredRegions {
+    for (CLRegion *monitoredRegion in [self.locationManager monitoredRegions]) {
+        [locationManager stopMonitoringForRegion:monitoredRegion];
+    }
 }
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+- (void)startMonitoringForRegion:(CLRegion *)region {
+    [self.locationManager startMonitoringForRegion:region];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
         CLLocation *lastLocation = locations.lastObject;
         
         self.location = lastLocation;
@@ -61,12 +66,12 @@
 }
 
 //We need to apply all of these methods in order to identify the region and monitore the region.
--(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region{
+- (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
     NSLog(@"We have successfully started monitoring changes for a region: %@", region.identifier);
 }
 
 //When the user enters the region notofication gets pushed.
--(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
     NSLog(@"User did enter region:%@", region.identifier);
     
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
@@ -88,15 +93,15 @@
     }];
 }
 
--(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region{
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
     NSLog(@"The User did exit Region: %@", region.identifier);
 }
 
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"There was an error: %@", error.localizedDescription); //ignore if its in the simulator.
 }
 
--(void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)visit{
+- (void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)visit {
     NSLog(@"This is here for no reason... But heres a visit: %@", visit);
 }
 

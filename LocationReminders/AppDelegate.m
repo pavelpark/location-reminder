@@ -17,7 +17,7 @@
 
 @implementation AppDelegate
 
-# pragma mark - Application lifecycle methods
+//MARK: - Application lifecycle methods
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -73,7 +73,7 @@
 }
 
 
-# pragma mark - UserNotifications Framework
+//MARK: - UserNotifications Framework
 
 - (void)registerForNotifications {
     UNUserNotificationCenter *current = [UNUserNotificationCenter currentNotificationCenter];
@@ -111,7 +111,7 @@
     [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:categories];
 }
 
-# pragma mark UNUserNotificationCenterDelegate
+//MARK: UNUserNotificationCenterDelegate
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
        willPresentNotification:(UNNotification *)notification
          withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
@@ -154,7 +154,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 }
 
 
-# pragma mark - Parse Framework
+//MARK: - Parse Framework
 
 - (void)initializeParse {
     ParseClientConfiguration *parseConfig = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> _Nonnull configuration) {

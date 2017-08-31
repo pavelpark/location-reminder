@@ -20,14 +20,14 @@
 
 @interface LocationController : NSObject
 
--(void)requestsPermissions;
-
-+(LocationController *)shared;
-
 @property(strong, nonatomic) CLLocationManager *locationManager;
 @property(strong, nonatomic) CLLocation *location;
 @property(weak, nonatomic) id delegate;
 
--(void)startMonitoringForRegion:(CLRegion *)region;
++ (LocationController *)shared;
+
+- (void)requestPermissions;
+- (void)startMonitoringForRegion:(CLRegion *)region;
+- (void)resetMonitoredRegions;
 
 @end
