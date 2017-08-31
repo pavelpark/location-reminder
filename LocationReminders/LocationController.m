@@ -89,7 +89,7 @@
     [current removeAllPendingNotificationRequests];
     [current addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
         if (error) {
-            NSLog(@"Error posting user notofication: %@", error.localizedDescription);
+            NSLog(@"Error posting user notification: %@", error.localizedDescription);
         }
     }];
 }

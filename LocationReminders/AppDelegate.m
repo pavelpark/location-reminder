@@ -126,7 +126,7 @@
     UIAlertAction *snooze = [UIAlertAction actionWithTitle:@"Snooze"
                                                      style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"User snoozed the reminder");
+                                                       [self snoozeNotification:notification forUserNotificationCenter:center];
     }];
     UIAlertAction *complete = [UIAlertAction actionWithTitle:@"Mark as complete"
                                                        style:UIAlertActionStyleDefault
@@ -143,7 +143,7 @@
     [alert addAction:complete];
     [alert addAction:snooze];
     [alert addAction:dismiss];
-    
+
     [[self.window rootViewController] presentViewController:alert animated: YES completion:nil];
 }
 
@@ -151,6 +151,35 @@
 didReceiveNotificationResponse:(UNNotificationResponse *)response
          withCompletionHandler:(void (^)())completionHandler {
     // Called to let your app know which action was selected by the user for a given notification.
+    
+    if ([response.actionIdentifier isEqualToString:@"SNOOZE_ACTION"]) {
+        [self snoozeNotification:response.notification forUserNotificationCenter:center];
+    } else if ([response.actionIdentifier isEqualToString:@"COMPLETE_ACTION"]) {
+        
+    } else if ([response.actionIdentifier isEqualToString:UNNotificationDefaultActionIdentifier]) {
+        // User launched the app but did not select an action.
+        NSLog(@"App launched from notification");
+    }
+    
+    if (completionHandler) {
+        completionHandler();
+    }
+}
+
+- (void)snoozeNotification:(UNNotification *)notification forUserNotificationCenter:(UNUserNotificationCenter *)center {
+    NSLog(@"Notification snoozed");
+    UNTimeIntervalNotificationTrigger *newTrigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:600
+                                                                                                       repeats:NO];
+    UNNotificationRequest *newRequest = [UNNotificationRequest requestWithIdentifier:@"Location Entered"
+                                                                             content:notification.request.content
+                                                                             trigger:newTrigger];
+    
+    [center removeAllPendingNotificationRequests];
+    [center addNotificationRequest:newRequest withCompletionHandler:^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Error posting user notification: %@", error.localizedDescription);
+        }
+    }];
 }
 
 
