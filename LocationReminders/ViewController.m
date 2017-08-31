@@ -40,13 +40,7 @@
     self.mapShouldFollowUser = NO;
     [self currentLocationTapped:nil];
     
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSaveToParse:) name:@"ReminderSavedToParse" object:nil];
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     
     if ([PFUser currentUser]) {
         [self fetchReminders];
@@ -179,6 +173,7 @@
 
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self fetchReminders];
 }
 
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
@@ -233,6 +228,7 @@
     //Clear pins & circle overlays of previous user on sign out.
     [self.mapView removeAnnotations: self.mapView.annotations];
     [self.mapView removeOverlays: self.mapView.overlays];
+    [LocationController.shared resetMonitoredRegions];
     [self displayLogInViewController];
 }
 
