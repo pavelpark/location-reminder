@@ -78,6 +78,7 @@
     content.title = @"Reminder";
     content.body = [NSString stringWithFormat:@"%@", region.identifier];
     content.sound = [UNNotificationSound defaultSound];
+    content.categoryIdentifier = @"REMINDER";
     
     UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.1 repeats:NO];
     

@@ -94,7 +94,7 @@
     // Define notification actions.
     UNNotificationAction *completeReminderAction = [UNNotificationAction actionWithIdentifier:@"COMPLETE_ACTION"
                                                                                         title:@"Mark as complete"
-                                                                                      options:UNNotificationActionOptionDestructive];
+                                                                                      options:UNNotificationActionOptionNone];
     UNNotificationAction *snoozeReminderAction = [UNNotificationAction actionWithIdentifier:@"SNOOZE_ACTION"
                                                                                       title:@"Snooze"
                                                                                     options:UNNotificationActionOptionNone];
@@ -129,7 +129,7 @@
         NSLog(@"User snoozed the reminder");
     }];
     UIAlertAction *complete = [UIAlertAction actionWithTitle:@"Mark as complete"
-                                                       style:UIAlertActionStyleDestructive
+                                                       style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"User completed the reminder");
     }];
