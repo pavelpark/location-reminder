@@ -1,29 +1,7 @@
 # LocReminder
 As a Developer, I want to implement a mapKit into my application, to allow each user a way to visualize different locations they would like to set reminders, once the user enters the location their reminder that they've set will push a notofication to their device.
 
-## Inside of LocReminder
+## LocReminder Screenshots
 
-### Launch Screen
-
-<img src="https://user-images.githubusercontent.com/22119101/29585133-ed3dd96e-873a-11e7-88b4-65eed62b8677.jpeg" width="500">
-
-### Main View
-
-<img src="https://user-images.githubusercontent.com/22119101/29585211-2e0274d2-873b-11e7-860a-00c8d732d120.jpeg" width="500">
-
-### Location Pinned
-
-<img src="https://user-images.githubusercontent.com/22119101/29585262-5fdebd76-873b-11e7-8a2a-2011bfb327c5.jpeg" width="500">
-
-### Setting The Reminder
-
-<img src="https://user-images.githubusercontent.com/22119101/29585302-8270d018-873b-11e7-8ce4-0af5ba273a40.jpeg" width="500">
-
-### Reminder Set
-
-<img src="https://user-images.githubusercontent.com/22119101/29585364-bbadb88c-873b-11e7-807a-30ad70520515.jpeg" width="500">
-
-### Reminder Radius Set
-
-<img src="https://user-images.githubusercontent.com/22119101/29585408-dbb5d466-873b-11e7-855f-95919d557cd6.jpeg" width="500">
-
+<img src="https://user-images.githubusercontent.com/22119101/29585133-ed3dd96e-873a-11e7-88b4-65eed62b8677.jpeg" width="280">       <img src="https://user-images.githubusercontent.com/22119101/29953932-cda715c0-8e88-11e7-9434-8c8eaa7a86e5.PNG" width="280">  <img src="https://user-images.githubusercontent.com/22119101/29953947-ea2c151a-8e88-11e7-8833-59e464534cfa.PNG" width="280">
+<img src="https://user-images.githubusercontent.com/22119101/29953958-f812bf80-8e88-11e7-8e81-856292c0134c.PNG" width="280"> <img src="https://user-images.githubusercontent.com/22119101/29953977-1acc7d04-8e89-11e7-81a8-9c35b1f4ce49.PNG" width="280"> <img src="https://user-images.githubusercontent.com/22119101/29953985-2d5669e4-8e89-11e7-9f86-edd4fabf0e2c.PNG" width="280">
