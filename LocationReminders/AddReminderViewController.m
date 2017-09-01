@@ -45,7 +45,8 @@
         newReminder.name = @"Reminder";
     }
     
-    newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
+    newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude
+                                                  longitude:self.coordinate.longitude];
     
     NSNumber *radius = [NSNumber numberWithFloat:self.locationRadius.text.floatValue];
     
@@ -63,9 +64,11 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
         
-        //To start monetoring region.
+        // To start monitoring region.
         if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
-            CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:[radius intValue] identifier:newReminder.name];
+            CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:self.coordinate
+                                                                         radius:[radius intValue]
+                                                                     identifier:newReminder.objectId];
             
             [LocationController.shared startMonitoringForRegion:region];
         }
@@ -79,6 +82,8 @@
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];
+    [newReminder pinInBackground];
+    
 }
 
 @end

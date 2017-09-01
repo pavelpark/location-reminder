@@ -190,6 +190,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
         configuration.applicationId = @"34bh5342n50";
         configuration.clientKey = @"as7d7as8d88vfdv091";
         configuration.server = @"https://location-reminder-server-pp.herokuapp.com/parse";
+        configuration.localDatastoreEnabled = YES;
     }];
     
     [Parse initializeWithConfiguration:parseConfig];
