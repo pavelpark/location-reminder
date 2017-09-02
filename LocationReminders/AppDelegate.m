@@ -126,13 +126,17 @@
     UIAlertAction *snooze = [UIAlertAction actionWithTitle:@"Snooze"
                                                      style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction * _Nonnull action) {
-                                                       [self snoozeNotification:notification forUserNotificationCenter:center];
+                                                       [self snoozeNotification:notification
+                                                      forUserNotificationCenter:center];
     }];
+    
     UIAlertAction *complete = [UIAlertAction actionWithTitle:@"Mark as complete"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"User completed the reminder");
+                                                         [self completeNotification:notification
+                                                          forUserNotificationCenter:center];
     }];
+    
     UIAlertAction *dismiss = [UIAlertAction actionWithTitle:@"Dismiss"
                                                       style:UIAlertActionStyleCancel
                                                     handler:^(UIAlertAction * _Nonnull action) {
@@ -155,7 +159,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
     if ([response.actionIdentifier isEqualToString:@"SNOOZE_ACTION"]) {
         [self snoozeNotification:response.notification forUserNotificationCenter:center];
     } else if ([response.actionIdentifier isEqualToString:@"COMPLETE_ACTION"]) {
-        
+        [self completeNotification:response.notification forUserNotificationCenter:center];
     } else if ([response.actionIdentifier isEqualToString:UNNotificationDefaultActionIdentifier]) {
         // User launched the app but did not select an action.
         NSLog(@"App launched from notification");
@@ -166,6 +170,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
     }
 }
 
+//MARK: Handle user response to notification
 - (void)snoozeNotification:(UNNotification *)notification forUserNotificationCenter:(UNUserNotificationCenter *)center {
     NSLog(@"Notification snoozed");
     UNTimeIntervalNotificationTrigger *newTrigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:600
@@ -180,6 +185,14 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
             NSLog(@"Error posting user notification: %@", error.localizedDescription);
         }
     }];
+}
+
+- (void)completeNotification:(UNNotification *)notification
+   forUserNotificationCenter:(UNUserNotificationCenter *)center {
+    NSLog(@"User completed action: \n objectId: %@ \n Reminder name: %@",
+          [notification.request.content.userInfo objectForKey:@"objectId"],
+          notification.request.content.body);
+    NSLog(@"TODO:");
 }
 
 

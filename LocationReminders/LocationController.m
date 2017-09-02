@@ -8,10 +8,11 @@
 
 #import "LocationController.h"
 #import "ViewController.h"
-
+#import "Reminder.h"
 
 @import UserNotifications;
 @import MapKit;
+@import Parse;
 
 @interface LocationController () <CLLocationManagerDelegate>
 
@@ -65,20 +66,36 @@
         [self.delegate locationControllerUpdatedLocation:self.location];
 }
 
-//We need to apply all of these methods in order to identify the region and monitore the region.
+// We need to apply all of these methods in order to identify the region and monitor the region.
 - (void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region {
     NSLog(@"We have successfully started monitoring changes for a region: %@", region.identifier);
 }
 
-//When the user enters the region notofication gets pushed.
+// When the user enters the region notification gets pushed.
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
-    NSLog(@"User did enter region:%@", region.identifier);
+    NSLog(@"User entered region:%@", region.identifier);
     
+    PFQuery *localQuery = [[PFQuery queryWithClassName:@"Reminder"] fromLocalDatastore];
+//    [localQuery whereKey:@"objectId" equalTo:region.identifier];
+
+    [localQuery getObjectInBackgroundWithId:region.identifier block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Local query error: %@", error);
+        } else {
+            NSLog(@"Local query results: %@", object);
+        [self postNotificationForReminderNamed: object[@"name"] withId: object.objectId];
+        }
+    }];
+
+}
+
+- (void)postNotificationForReminderNamed:(NSString *)name withId:(NSString *)objectId {
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
     content.title = @"Reminder";
-    content.body = [NSString stringWithFormat:@"%@", region.identifier];
+    content.body = [NSString stringWithFormat:@"%@", name];
     content.sound = [UNNotificationSound defaultSound];
     content.categoryIdentifier = @"REMINDER";
+    content.userInfo = [NSDictionary dictionaryWithObject:objectId forKey:@"objectId"];
     
     UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.1 repeats:NO];
     
@@ -95,7 +112,7 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
-    NSLog(@"The User did exit Region: %@", region.identifier);
+    NSLog(@"User exited region: %@", region.identifier);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {

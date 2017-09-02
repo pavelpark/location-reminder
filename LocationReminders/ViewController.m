@@ -96,7 +96,7 @@
                                                                            reminder.location.longitude);
             CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:coordinate
                                                                          radius:reminder.radius.intValue
-                                                                     identifier:reminder.name];
+                                                                     identifier:reminder.objectId];
             [LocationController.shared startMonitoringForRegion:region];
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:reminder.radius.doubleValue];
             [self.mapView addOverlay:circle];
