@@ -76,8 +76,6 @@
     NSLog(@"User entered region:%@", region.identifier);
     
     PFQuery *localQuery = [[PFQuery queryWithClassName:@"Reminder"] fromLocalDatastore];
-//    [localQuery whereKey:@"objectId" equalTo:region.identifier];
-
     [localQuery getObjectInBackgroundWithId:region.identifier block:^(PFObject * _Nullable object, NSError * _Nullable error) {
         if (error) {
             NSLog(@"Local query error: %@", error);

@@ -79,19 +79,28 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Reminder" predicate: predicate];
     NSLog(@"user: %@", [[PFUser currentUser] username]);
 
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable remoteObjects, NSError * _Nullable error) {
         if (error) {
             NSLog(@"%@", error.localizedDescription);
             return;
         }
     
-        NSLog(@"Query Results %@", objects);
+        NSLog(@"Query Results %@", remoteObjects);
+        
+        // Replace local datastore with reminders retrieved from the server
+        PFQuery *localQuery = [[PFQuery queryWithClassName:@"Reminder"] fromLocalDatastore];
+        [localQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable localObjects, NSError * _Nullable error) {
+            if (!error) {
+                [PFObject unpinAllInBackground:localObjects];
+                [PFObject pinAllInBackground:remoteObjects];
+            }
+        }];
         
         // Ensure location monitoring is in sync with user's saved reminders. This is necessary if the user logs in
         // on a new device, or performs a factory reset.
         [LocationController.shared resetMonitoredRegions];
         
-        for (Reminder *reminder in objects) {
+        for (Reminder *reminder in remoteObjects) {
             CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude,
                                                                            reminder.location.longitude);
             CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:coordinate
