@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Reminder.h"
 
 @import Parse;
 @import UserNotifications;
@@ -173,7 +174,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 //MARK: Handle user response to notification
 - (void)snoozeNotification:(UNNotification *)notification forUserNotificationCenter:(UNUserNotificationCenter *)center {
     NSLog(@"Notification snoozed");
-    UNTimeIntervalNotificationTrigger *newTrigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:600
+    UNTimeIntervalNotificationTrigger *newTrigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:10
                                                                                                        repeats:NO];
     UNNotificationRequest *newRequest = [UNNotificationRequest requestWithIdentifier:@"Location Entered"
                                                                              content:notification.request.content
@@ -189,10 +190,36 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 
 - (void)completeNotification:(UNNotification *)notification
    forUserNotificationCenter:(UNUserNotificationCenter *)center {
+    NSString *objectId = [notification.request.content.userInfo objectForKey:@"objectId"];
     NSLog(@"User completed action: \n objectId: %@ \n Reminder name: %@",
-          [notification.request.content.userInfo objectForKey:@"objectId"],
+          objectId,
           notification.request.content.body);
-    NSLog(@"TODO:");
+    Reminder *reminder = [Reminder objectWithoutDataWithObjectId:objectId];
+    [reminder deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Error deleting object %@", objectId);
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            [reminder unpinInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (!error) {
+                    NSLog(@"Deleted object successfully.");
+                    
+                    // TODO: Remove this query after testing
+                    PFQuery *localQuery = [[PFQuery queryWithClassName:@"Reminder"] fromLocalDatastore];
+                    [localQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                        if (error) {
+                            NSLog(@"Local query error: %@", error);
+                        } else {
+                            NSLog(@"Local query results after deleting: %@", objects);
+                        }
+                    }];
+                    
+                }
+            }];
+        }
+        
+        
+    } ];
 }
 
 
