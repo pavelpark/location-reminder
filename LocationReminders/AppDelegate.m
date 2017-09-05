@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Reminder.h"
+#import "LocationController.h"
 
 @import Parse;
 @import UserNotifications;
@@ -200,6 +201,8 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
             NSLog(@"Error deleting object %@", objectId);
             NSLog(@"%@", error.localizedDescription);
         } else {
+            
+            [LocationController.shared stopMonitoringForRegionWithIdentifier:objectId];
             [reminder unpinInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 if (!error) {
                     NSLog(@"Deleted object successfully.");

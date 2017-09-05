@@ -28,6 +28,7 @@
 
 - (void)requestPermissions;
 - (void)startMonitoringForRegion:(CLRegion *)region;
+- (void)stopMonitoringForRegionWithIdentifier:(NSString *)regionIdentifier;
 - (void)resetMonitoredRegions;
 
 @end

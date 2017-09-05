@@ -59,6 +59,15 @@
     [self.locationManager startMonitoringForRegion:region];
 }
 
+- (void)stopMonitoringForRegionWithIdentifier:(NSString *)regionIdentifier {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier = %@", regionIdentifier];
+    CLRegion *regionToRemove = [[[self.locationManager monitoredRegions] filteredSetUsingPredicate:predicate] anyObject];
+    NSLog(@"%@", regionToRemove);
+    [locationManager stopMonitoringForRegion:regionToRemove];
+    
+    
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
         CLLocation *lastLocation = locations.lastObject;
         
