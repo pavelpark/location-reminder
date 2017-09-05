@@ -1,5 +1,7 @@
 # LocReminder
-As a Developer, I want to implement a mapKit into my application, to allow each user a way to visualize different locations they would like to set reminders, once the user enters the location their reminder that they've set will push a notofication to their device.
+To remember that you need to stop by the store is right around the corner with LocReminder. 
+LocReminder is an application the will remind you to stop by the store once you've reached the radius where you last dropped the pin, you are able to stop stop by and pick up the necessary items and mark the pinned location as a complete reminder or you can always snooze the reminder and stop by next time you pass the pinned location.
+
 
 ## LocReminder Screenshots
 
