@@ -7,6 +7,7 @@
 //
 
 #import "Reminder.h"
+#import <Parse/PFObject+Subclass.h>
 
 @implementation Reminder
 
