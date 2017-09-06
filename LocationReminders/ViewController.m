@@ -78,7 +78,7 @@
 
 - (void)fetchReminders {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"username = %@", [[PFUser currentUser] username]];
-    PFQuery *query = [PFQuery queryWithClassName:@"Reminder" predicate: predicate];
+    PFQuery *query = [Reminder queryWithPredicate:predicate];
     NSLog(@"user: %@", [[PFUser currentUser] username]);
 
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable remoteObjects, NSError * _Nullable error) {
@@ -90,7 +90,7 @@
         NSLog(@"Query Results %@", remoteObjects);
         
         // Replace local datastore with reminders retrieved from the server
-        PFQuery *localQuery = [[PFQuery queryWithClassName:@"Reminder"] fromLocalDatastore];
+        PFQuery *localQuery = [[Reminder query] fromLocalDatastore];
         [localQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable localObjects, NSError * _Nullable error) {
             if (!error) {
                 [PFObject unpinAllInBackground:localObjects];

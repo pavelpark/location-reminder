@@ -84,7 +84,7 @@
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
     NSLog(@"User entered region:%@", region.identifier);
     
-    PFQuery *localQuery = [[PFQuery queryWithClassName:@"Reminder"] fromLocalDatastore];
+    PFQuery *localQuery = [[Reminder query] fromLocalDatastore];
     [localQuery getObjectInBackgroundWithId:region.identifier block:^(PFObject * _Nullable object, NSError * _Nullable error) {
         if (error) {
             NSLog(@"Local query error: %@", error);

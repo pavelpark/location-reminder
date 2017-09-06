@@ -202,25 +202,12 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
             NSLog(@"Error deleting object %@", objectId);
             NSLog(@"%@", error.localizedDescription);
         } else {
-            
             [LocationController.shared stopMonitoringForRegionWithIdentifier:objectId];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"Reminder completed" object:nil userInfo:[NSDictionary dictionaryWithObject:objectId forKey:@"objectId"]];
-            [reminder unpinInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                if (!error) {
-                    NSLog(@"Deleted object successfully.");
-                    
-                    // TODO: Remove this query after testing
-                    PFQuery *localQuery = [[PFQuery queryWithClassName:@"Reminder"] fromLocalDatastore];
-                    [localQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-                        if (error) {
-                            NSLog(@"Local query error: %@", error);
-                        } else {
-                            NSLog(@"Local query results after deleting: %@", objects);
-                        }
-                    }];
-                    
-                }
-            }];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Reminder completed"
+                                                                object:nil
+                                                              userInfo:[NSDictionary dictionaryWithObject:objectId
+                                                                                                   forKey:@"objectId"]];
+            [reminder unpinInBackground];
         }
         
         
