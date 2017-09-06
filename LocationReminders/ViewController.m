@@ -45,8 +45,8 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     if ([PFUser currentUser]) {
         [self fetchReminders];
@@ -69,8 +69,8 @@
     
     logInViewController.logInView.logo = [[UIView alloc]init];
     logInViewController.logInView.backgroundColor = [UIColor darkGrayColor];
-        
-    [self presentViewController:logInViewController animated:YES completion:nil];
+    
+    [[self parentViewController] presentViewController:logInViewController animated:YES completion:nil];
 }
 
 
