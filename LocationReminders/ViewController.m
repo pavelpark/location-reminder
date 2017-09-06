@@ -32,14 +32,13 @@
     self.locationController = LocationController.shared;
     self.locationController.delegate = self;
     
-    [self.locationController requestsPermissions];
+    [self.locationController requestPermissions];
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
     self.currentLocationPressed.layer.cornerRadius = 6;
     self.currentLocationPressed.layer.masksToBounds = true;
     self.mapShouldFollowUser = NO;
     [self currentLocationTapped:nil];
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSaveToParse:) name:@"ReminderSavedToParse" object:nil];
     
@@ -55,17 +54,21 @@
     }
 }
 
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"ReminderSavedToParse" object:nil];
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReminderSavedToParse" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Reminder completed" object:nil];
 }
 
--(void)displayLogInViewController{
+- (void)displayLogInViewController {
     PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
     
     logInViewController.delegate = self;
     logInViewController.signUpController.delegate = self;
     
-    logInViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsPasswordForgotten;
+    logInViewController.fields = PFLogInFieldsLogInButton |
+                                 PFLogInFieldsSignUpButton |
+                                 PFLogInFieldsUsernameAndPassword |
+                                 PFLogInFieldsPasswordForgotten;
     
     logInViewController.logInView.logo = [[UIView alloc]init];
     logInViewController.logInView.backgroundColor = [UIColor darkGrayColor];
@@ -73,34 +76,51 @@
     [[self parentViewController] presentViewController:logInViewController animated:YES completion:nil];
 }
 
-
--(void)reminderSaveToParse:(id)sender{
+- (void)reminderSaveToParse:(id)sender {
     NSLog(@"Do some stuff since the new reminder was saved.");
 }
 
--(void)fetchReminders{
+- (void)fetchReminders {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"username = %@", [[PFUser currentUser] username]];
-    PFQuery *query = [PFQuery queryWithClassName:@"Reminder" predicate: predicate];
+    PFQuery *query = [Reminder queryWithPredicate:predicate];
     NSLog(@"user: %@", [[PFUser currentUser] username]);
 
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable remoteObjects, NSError * _Nullable error) {
         if (error) {
-            
             NSLog(@"%@", error.localizedDescription);
-            
-        }else {
+            return;
+        }
+    
+        NSLog(@"Query Results %@", remoteObjects);
         
-            NSLog(@"Query Results %@", objects);
-            for (Reminder *reminder in objects) {
-                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
-                MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:reminder.radius.doubleValue];
-                [self.mapView addOverlay:circle];
+        // Replace local datastore with reminders retrieved from the server
+        PFQuery *localQuery = [[Reminder query] fromLocalDatastore];
+        [localQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable localObjects, NSError * _Nullable error) {
+            if (!error) {
+                [PFObject unpinAllInBackground:localObjects];
+                [PFObject pinAllInBackground:remoteObjects];
             }
+        }];
+        
+        // Ensure location monitoring is in sync with user's saved reminders. This is necessary if the user logs in
+        // on a new device, or performs a factory reset.
+        [LocationController.shared resetMonitoredRegions];
+        
+        for (Reminder *reminder in remoteObjects) {
+            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude,
+                                                                           reminder.location.longitude);
+            CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:coordinate
+                                                                         radius:reminder.radius.intValue
+                                                                     identifier:reminder.objectId];
+            [LocationController.shared startMonitoringForRegion:region];
+            MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:reminder.radius.doubleValue];
+            circle.title = reminder.objectId;
+            [self.mapView addOverlay:circle];
         }
     }];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [super prepareForSegue:segue sender:sender];
     
     if ([segue.identifier isEqualToString:@"AddReminderViewController"] && [sender isKindOfClass:[MKAnnotationView class]]) {
@@ -127,7 +147,7 @@
 }
 
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
@@ -149,13 +169,13 @@
     return annotationView;
 }
 
--(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     NSLog(@"Accessory Tapped!");
     [self performSegueWithIdentifier:@"AddReminderViewController" sender:view];
 }
 
 //Circle where we pinned.
--(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
    
     MKCircleRenderer *renderer = [[MKCircleRenderer alloc] initWithCircle:overlay];
     
@@ -167,15 +187,16 @@
     return renderer;
 }
 
--(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self fetchReminders];
+}
+
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)locationControllerUpdatedLocation:(CLLocation *)location{
+- (void)locationControllerUpdatedLocation:(CLLocation *)location {
     if (self.mapShouldFollowUser) {
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500.0, 500.0);
         
@@ -193,7 +214,8 @@
     self.mapShouldFollowUser = !self.mapShouldFollowUser;
         [self.currentLocationPressed setSelected:self.mapShouldFollowUser];
     
-    [self.mapView setRegion: MKCoordinateRegionMake(self.locationController.location.coordinate, MKCoordinateSpanMake(0.01f, 0.01f)) animated:YES];
+    [self.mapView setRegion: MKCoordinateRegionMake(self.locationController.location.coordinate, MKCoordinateSpanMake(0.01f, 0.01f))
+                   animated:YES];
 }
 
 //LongPress for the pin to drop.
@@ -222,6 +244,7 @@
     //Clear pins & circle overlays of previous user on sign out.
     [self.mapView removeAnnotations: self.mapView.annotations];
     [self.mapView removeOverlays: self.mapView.overlays];
+    [LocationController.shared resetMonitoredRegions];
     [self displayLogInViewController];
 }
 
@@ -243,4 +266,12 @@
             break;
     }
 }
+
+- (void)removeOverlayForNotification:(NSNotification *)notification {
+    NSString *title = [notification.userInfo valueForKey:@"objectId"];
+    NSPredicate *circlePredicate = [NSPredicate predicateWithFormat:@"title = %@", title];
+    MKCircle *overlay = [[[self.mapView overlays] filteredArrayUsingPredicate:circlePredicate] firstObject];
+    [self.mapView removeOverlay:overlay];
+}
+
 @end

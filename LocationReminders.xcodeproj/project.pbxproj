@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4098BDE1F59001D00344CDC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4098BDD1F59001D00344CDC /* libsqlite3.tbd */; };
 		DB8004F81EB7AC0400F2C116 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8004F71EB7AC0400F2C116 /* main.m */; };
 		DB8004FB1EB7AC0400F2C116 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8004FA1EB7AC0400F2C116 /* AppDelegate.m */; };
 		DB8004FE1EB7AC0400F2C116 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8004FD1EB7AC0400F2C116 /* ViewController.m */; };
@@ -40,6 +41,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D4098BDB1F58FEC200344CDC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
+		D4098BDD1F59001D00344CDC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		DB8004F31EB7AC0400F2C116 /* LocationReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8004F71EB7AC0400F2C116 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB8004F91EB7AC0400F2C116 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4098BDE1F59001D00344CDC /* libsqlite3.tbd in Frameworks */,
 				DB8005101EB7B2D600F2C116 /* Bolts.framework in Frameworks */,
 				DB8005161EB7BBBE00F2C116 /* MapKit.framework in Frameworks */,
 				DB8005271EBA5E6F00F2C116 /* ParseUI.framework in Frameworks */,
@@ -117,6 +121,8 @@
 		DB80050D1EB7B2D600F2C116 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4098BDD1F59001D00344CDC /* libsqlite3.tbd */,
+				D4098BDB1F58FEC200344CDC /* libsqlite3.dylib */,
 				DB8005261EBA5E6F00F2C116 /* ParseUI.framework */,
 				DB8005151EB7BBBE00F2C116 /* MapKit.framework */,
 				DB80050E1EB7B2D600F2C116 /* Bolts.framework */,
@@ -374,6 +380,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MyFirstApp..LocationReminders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -391,6 +398,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.MyFirstApp..LocationReminders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
