@@ -189,7 +189,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aee-TB-bax" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="127.28635682158921"/>
+            <point key="canvasLocation" x="214" y="127"/>
         </scene>
     </scenes>
     <resources>
