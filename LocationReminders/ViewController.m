@@ -41,6 +41,7 @@
     [self currentLocationTapped:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSaveToParse:) name:@"ReminderSavedToParse" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeOverlayForNotification:) name:@"Reminder completed" object:nil];
     
     if ([PFUser currentUser]) {
         [self fetchReminders];
@@ -50,7 +51,8 @@
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"ReminderSavedToParse" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReminderSavedToParse" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Reminder completed" object:nil];
 }
 
 - (void)displayLogInViewController {
@@ -108,6 +110,7 @@
                                                                      identifier:reminder.objectId];
             [LocationController.shared startMonitoringForRegion:region];
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:reminder.radius.doubleValue];
+            circle.title = reminder.objectId;
             [self.mapView addOverlay:circle];
         }
     }];
@@ -259,4 +262,12 @@
             break;
     }
 }
+
+- (void)removeOverlayForNotification:(NSNotification *)notification {
+    NSString *title = [notification.userInfo valueForKey:@"objectId"];
+    NSPredicate *circlePredicate = [NSPredicate predicateWithFormat:@"title = %@", title];
+    MKCircle *overlay = [[[self.mapView overlays] filteredArrayUsingPredicate:circlePredicate] firstObject];
+    [self.mapView removeOverlay:overlay];
+}
+
 @end

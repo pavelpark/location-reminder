@@ -196,6 +196,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
           objectId,
           notification.request.content.body);
     Reminder *reminder = [Reminder objectWithoutDataWithObjectId:objectId];
+    
     [reminder deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (error) {
             NSLog(@"Error deleting object %@", objectId);
@@ -203,6 +204,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
         } else {
             
             [LocationController.shared stopMonitoringForRegionWithIdentifier:objectId];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Reminder completed" object:nil userInfo:[NSDictionary dictionaryWithObject:objectId forKey:@"objectId"]];
             [reminder unpinInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 if (!error) {
                     NSLog(@"Deleted object successfully.");

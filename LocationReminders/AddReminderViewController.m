@@ -77,6 +77,7 @@
             
             CGFloat overlayRadius = radius.floatValue;
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:overlayRadius];
+            circle.title = newReminder.objectId;
             
             self.completion(circle);
             [self.navigationController popViewControllerAnimated:YES];
