@@ -175,7 +175,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 //MARK: Handle user response to notification
 - (void)snoozeNotification:(UNNotification *)notification forUserNotificationCenter:(UNUserNotificationCenter *)center {
     NSLog(@"Notification snoozed");
-    UNTimeIntervalNotificationTrigger *newTrigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:10
+    UNTimeIntervalNotificationTrigger *newTrigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:600
                                                                                                        repeats:NO];
     UNNotificationRequest *newRequest = [UNNotificationRequest requestWithIdentifier:@"Location Entered"
                                                                              content:notification.request.content
