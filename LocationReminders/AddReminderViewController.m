@@ -12,8 +12,11 @@
 
 @interface AddReminderViewController () <UITextFieldDelegate>
 
-@property (strong, nonatomic) IBOutlet UITextField *locationName;
-@property (strong, nonatomic) IBOutlet UITextField *locationRadius;
+@property (weak, nonatomic) IBOutlet UITextField *locationName;
+@property (weak, nonatomic) IBOutlet UITextField *locationRadius;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *radiusUnits;
+@property (weak, nonatomic) NSUserDefaults *userDefaults;
+@property (assign, nonatomic) NSInteger userUnits;
 
 @end
 
@@ -24,7 +27,23 @@
     [super viewDidLoad];
     locationName.delegate = self;
     locationRadius.delegate = self;
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
 };
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.userUnits = [self.userDefaults integerForKey:@"userUnits"];
+    NSLog(@"User units: %ld", (long)self.userUnits);
+    if (!self.userUnits) {
+        NSLog(@"ViewWillAppear: Units are not set, setting to 0");
+        self.locationRadius.placeholder = @"Distance in m";
+        self.userUnits = 0;
+        [self.userDefaults setInteger:0 forKey:@"userUnits"];
+        [self.radiusUnits setSelectedSegmentIndex:0];
+    }
+    [self updateUnits];
+}
 
 //Keyboard Away
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -33,6 +52,73 @@
 
     return YES;
 }
+
+- (IBAction)radiusUnitsChanged:(UISegmentedControl *)sender {
+    NSLog(@"Units changed");
+    // Capture current value
+    NSMeasurement *radiusMeasurement = [NSMeasurement alloc];
+    double oldRadiusValue = self.locationRadius.text.doubleValue;
+    switch (self.userUnits) {
+        case 0:
+            radiusMeasurement = [radiusMeasurement initWithDoubleValue:oldRadiusValue unit:[NSUnitLength meters]];
+            NSLog(@"Captured value: %f meters", oldRadiusValue);
+            break;
+        case 1:
+            radiusMeasurement = [radiusMeasurement initWithDoubleValue:oldRadiusValue unit:[NSUnitLength kilometers]];
+            NSLog(@"Captured value: %f km", oldRadiusValue);
+            break;
+        case 2:
+            radiusMeasurement = [radiusMeasurement initWithDoubleValue:oldRadiusValue unit:[NSUnitLength feet]];
+            NSLog(@"Captured value: %f feet", oldRadiusValue);
+            break;
+        case 3:
+            radiusMeasurement = [radiusMeasurement initWithDoubleValue:oldRadiusValue unit:[NSUnitLength miles]];
+            NSLog(@"Captured value: %f miles", oldRadiusValue);
+            break;
+        default:
+            radiusMeasurement = [radiusMeasurement initWithDoubleValue:oldRadiusValue unit:[NSUnitLength meters]];
+            NSLog(@"Captured default value: %f meters", oldRadiusValue);
+            break;
+    }
+    NSLog(@"Current measurement units: %@", radiusMeasurement.unit);
+    
+    
+    // Change displayed value and update userDefaults
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            // set units to m
+            radiusMeasurement = [radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
+            break;
+        case 1:
+            // set units to km
+            radiusMeasurement = [radiusMeasurement measurementByConvertingToUnit:[NSUnitLength kilometers]];
+            break;
+        case 2:
+            // set units to ft
+            radiusMeasurement = [radiusMeasurement measurementByConvertingToUnit:[NSUnitLength feet]];
+            break;
+        case 3:
+            // set units to mi
+            radiusMeasurement = [radiusMeasurement measurementByConvertingToUnit:[NSUnitLength miles]];
+            break;
+        default:
+            radiusMeasurement = [radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
+            break;
+    }
+    NSLog(@"New measurement units: %@", radiusMeasurement.unit);
+    
+    NSString *newRadiusString = [NSString alloc];
+    if (radiusMeasurement.doubleValue == 0.0) {
+        newRadiusString = @"";
+    } else {
+        newRadiusString = [NSString stringWithFormat:@"%f",radiusMeasurement.doubleValue];
+    }
+    self.locationRadius.text = newRadiusString;
+    self.userUnits = sender.selectedSegmentIndex;
+    [self.userDefaults setInteger:self.userUnits forKey:@"userUnits"];
+    [self updateUnits];
+}
+
 
 - (IBAction)setReminderButtonPressed:(UIButton *)sender {
     
@@ -85,6 +171,34 @@
     }];
     [newReminder pinInBackground];
     
+}
+
+- (void)updateUnits {
+    switch (self.userUnits) {
+        case 0:
+            // Meters
+            self.locationRadius.placeholder = @"Distance in m";
+            break;
+        case 1:
+            // Kilometers
+            self.locationRadius.placeholder = @"Distance in km";
+            break;
+        case 2:
+            // Feet
+            self.locationRadius.placeholder = @"Distance in ft";
+            break;
+        case 3:
+            // Miles
+            self.locationRadius.placeholder = @"Distance in mi";
+            break;
+        default:
+            NSLog(@"Updating units: Units are not set; setting to 0");
+            self.locationRadius.placeholder = @"Distance in m";
+            self.userUnits = 0;
+            [self.userDefaults setInteger:0 forKey:@"userUnits"];
+            [self.radiusUnits setSelectedSegmentIndex:0];
+            break;
+    }
 }
 
 @end
