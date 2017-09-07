@@ -43,6 +43,7 @@
 /* Begin PBXFileReference section */
 		D4098BDB1F58FEC200344CDC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 		D4098BDD1F59001D00344CDC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		DB0C5E501F61C6E200E2AC0A /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Credentials.h; sourceTree = "<group>"; };
 		DB8004F31EB7AC0400F2C116 /* LocationReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8004F71EB7AC0400F2C116 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB8004F91EB7AC0400F2C116 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -138,6 +139,7 @@
 				DB8004FA1EB7AC0400F2C116 /* AppDelegate.m */,
 				DB8005231EBA465B00F2C116 /* Reminder.h */,
 				DB8005241EBA465B00F2C116 /* Reminder.m */,
+				DB0C5E501F61C6E200E2AC0A /* Credentials.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
