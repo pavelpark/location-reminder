@@ -15,110 +15,150 @@
 @property (weak, nonatomic) IBOutlet UITextField *locationName;
 @property (weak, nonatomic) IBOutlet UITextField *locationRadius;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *radiusUnits;
-@property (weak, nonatomic) NSUserDefaults *userDefaults;
+@property (weak, nonatomic) IBOutlet UIButton *setReminderButton;
+
 @property (assign, nonatomic) NSInteger userUnits;
+@property (strong, nonatomic) NSMeasurement *radiusMeasurement;
 
 @end
 
 @implementation AddReminderViewController
 
 @synthesize locationName, locationRadius;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     locationName.delegate = self;
     locationRadius.delegate = self;
-    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(validateReminder:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.locationRadius];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(validateReminder:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:self.locationName];
 };
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.userUnits = [self.userDefaults integerForKey:@"userUnits"];
+    // Defaults to 0 (meters) if not already set
+    self.userUnits = [[NSUserDefaults standardUserDefaults] integerForKey:@"userUnits"];
     NSLog(@"User units: %ld", (long)self.userUnits);
-    if (!self.userUnits) {
-        NSLog(@"ViewWillAppear: Units are not set, setting to 0");
-        self.locationRadius.placeholder = @"Distance in m";
-        self.userUnits = 0;
-        [self.userDefaults setInteger:0 forKey:@"userUnits"];
-        [self.radiusUnits setSelectedSegmentIndex:0];
-    }
+    [self.radiusUnits setSelectedSegmentIndex:self.userUnits];
+    self.radiusMeasurement = [[NSMeasurement alloc] initWithDoubleValue:0.0 unit:[NSUnitLength meters]];
     [self updateUnits];
+    
 }
 
 //Keyboard Away
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [locationName resignFirstResponder];
     [locationRadius resignFirstResponder];
 
     return YES;
 }
 
+- (void)validateReminder:(NSNotification *)sender {
+    NSLog(@"Text field changed");
+    BOOL validName = YES;
+    BOOL validRadius = YES;
+    
+    if ([self.locationName.text isEqual: @""]) {
+        validName = NO;
+    }
+    
+    NSString *regex = @"(^[^\\D]{0,9}(\\.?)\\d{0,2}$)";
+    NSRange replacementRange = [self.locationRadius.text rangeOfString:regex options:NSRegularExpressionSearch];
+    
+    if (replacementRange.location == NSNotFound || ! (self.locationRadius.text.floatValue > 0.0) ) {
+        validRadius = NO;
+    } else if (sender.object == self.locationRadius) {
+        NSLog(@"Sender: %@", sender);
+        NSMeasurement *newMeasurement = [[NSMeasurement alloc] initWithDoubleValue:self.locationRadius.text.doubleValue unit:self.radiusMeasurement.unit];
+        self.radiusMeasurement = newMeasurement;
+        NSLog(@"Text changed, new measurement: %@", self.radiusMeasurement);
+    }
+    
+    if (validRadius && validName) {
+        [self.setReminderButton setEnabled:YES];
+        [self.setReminderButton setBackgroundColor:[UIColor colorWithRed:0.0 green:0.478431 blue:1.0 alpha:1.0]];
+    } else {
+        [self.setReminderButton setEnabled:NO];
+        [self.setReminderButton setBackgroundColor:[UIColor grayColor]];
+    }
+}
+
 - (IBAction)radiusUnitsChanged:(UISegmentedControl *)sender {
     NSLog(@"Units changed");
-    // Capture current value
-    NSMeasurement *radiusMeasurement = [NSMeasurement alloc];
-    double oldRadiusValue = self.locationRadius.text.doubleValue;
+    // Capture current measurement
+    [self checkRadius];
+    self.userUnits = sender.selectedSegmentIndex;
+    // Change displayed value and update userDefaults
     switch (self.userUnits) {
         case 0:
-            radiusMeasurement = [radiusMeasurement initWithDoubleValue:oldRadiusValue unit:[NSUnitLength meters]];
-            NSLog(@"Captured value: %f meters", oldRadiusValue);
-            break;
-        case 1:
-            radiusMeasurement = [radiusMeasurement initWithDoubleValue:oldRadiusValue unit:[NSUnitLength kilometers]];
-            NSLog(@"Captured value: %f km", oldRadiusValue);
-            break;
-        case 2:
-            radiusMeasurement = [radiusMeasurement initWithDoubleValue:oldRadiusValue unit:[NSUnitLength feet]];
-            NSLog(@"Captured value: %f feet", oldRadiusValue);
-            break;
-        case 3:
-            radiusMeasurement = [radiusMeasurement initWithDoubleValue:oldRadiusValue unit:[NSUnitLength miles]];
-            NSLog(@"Captured value: %f miles", oldRadiusValue);
-            break;
-        default:
-            radiusMeasurement = [radiusMeasurement initWithDoubleValue:oldRadiusValue unit:[NSUnitLength meters]];
-            NSLog(@"Captured default value: %f meters", oldRadiusValue);
-            break;
-    }
-    NSLog(@"Current measurement units: %@", radiusMeasurement.unit);
-    
-    
-    // Change displayed value and update userDefaults
-    switch (sender.selectedSegmentIndex) {
-        case 0:
             // set units to m
-            radiusMeasurement = [radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
+            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
             break;
         case 1:
             // set units to km
-            radiusMeasurement = [radiusMeasurement measurementByConvertingToUnit:[NSUnitLength kilometers]];
+            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength kilometers]];
             break;
         case 2:
             // set units to ft
-            radiusMeasurement = [radiusMeasurement measurementByConvertingToUnit:[NSUnitLength feet]];
+            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength feet]];
             break;
         case 3:
             // set units to mi
-            radiusMeasurement = [radiusMeasurement measurementByConvertingToUnit:[NSUnitLength miles]];
+            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength miles]];
             break;
         default:
-            radiusMeasurement = [radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
+            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
             break;
     }
-    NSLog(@"New measurement units: %@", radiusMeasurement.unit);
+    NSLog(@"New measurement: %@", self.radiusMeasurement);
     
     NSString *newRadiusString = [NSString alloc];
-    if (radiusMeasurement.doubleValue == 0.0) {
+    if (self.radiusMeasurement.doubleValue == 0.0) {
         newRadiusString = @"";
     } else {
-        newRadiusString = [NSString stringWithFormat:@"%f",radiusMeasurement.doubleValue];
+        newRadiusString = [NSString stringWithFormat:@"%f",self.radiusMeasurement.doubleValue];
     }
     self.locationRadius.text = newRadiusString;
     self.userUnits = sender.selectedSegmentIndex;
-    [self.userDefaults setInteger:self.userUnits forKey:@"userUnits"];
+    [[NSUserDefaults standardUserDefaults] setInteger:self.userUnits forKey:@"userUnits"];
     [self updateUnits];
 }
 
+- (void)checkRadius {
+    NSMeasurement *currentMeasurement = self.radiusMeasurement;
+    double radiusDouble = self.locationRadius.text.doubleValue;
+    switch (self.userUnits) {
+        case 0:
+            currentMeasurement = [currentMeasurement initWithDoubleValue:radiusDouble unit:[NSUnitLength meters]];
+            NSLog(@"Captured value: %f meters", radiusDouble);
+            break;
+        case 1:
+            currentMeasurement = [currentMeasurement initWithDoubleValue:radiusDouble unit:[NSUnitLength kilometers]];
+            NSLog(@"Captured value: %f km", radiusDouble);
+            break;
+        case 2:
+            currentMeasurement = [currentMeasurement initWithDoubleValue:radiusDouble unit:[NSUnitLength feet]];
+            NSLog(@"Captured value: %f feet", radiusDouble);
+            break;
+        case 3:
+            currentMeasurement = [currentMeasurement initWithDoubleValue:radiusDouble unit:[NSUnitLength miles]];
+            NSLog(@"Captured value: %f miles", radiusDouble);
+            break;
+        default:
+            currentMeasurement = [currentMeasurement initWithDoubleValue:radiusDouble unit:[NSUnitLength meters]];
+            NSLog(@"Captured default value: %f meters", radiusDouble);
+            break;
+    }
+
+    self.radiusMeasurement = currentMeasurement;
+}
 
 - (IBAction)setReminderButtonPressed:(UIButton *)sender {
     
@@ -134,10 +174,13 @@
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude
                                                   longitude:self.coordinate.longitude];
     
-    NSNumber *radius = [NSNumber numberWithFloat:self.locationRadius.text.floatValue];
+    [self checkRadius];
+    NSMeasurement *currentRadiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
+    NSNumber *radius = [NSNumber numberWithDouble:currentRadiusMeasurement.doubleValue];
     
     if (radius == 0) {
-        radius = [NSNumber numberWithFloat:100];
+        NSLog(@"Radius string resulted in a zero, default to 100 meters");
+        radius = [NSNumber numberWithDouble:100];
     }
     newReminder.radius = radius;
     
@@ -153,7 +196,7 @@
         // To start monitoring region.
         if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
             CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:self.coordinate
-                                                                         radius:[radius intValue]
+                                                                         radius:[radius doubleValue]
                                                                      identifier:newReminder.objectId];
             
             [LocationController.shared startMonitoringForRegion:region];
@@ -161,8 +204,8 @@
 
         if (self.completion) {
             
-            CGFloat overlayRadius = radius.floatValue;
-            MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:overlayRadius];
+            // CGFloat overlayRadius = radius.floatValue;
+            MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius.doubleValue];
             circle.title = newReminder.objectId;
             
             self.completion(circle);
@@ -178,25 +221,24 @@
         case 0:
             // Meters
             self.locationRadius.placeholder = @"Distance in m";
+            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
             break;
         case 1:
             // Kilometers
             self.locationRadius.placeholder = @"Distance in km";
+            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength kilometers]];
             break;
         case 2:
             // Feet
             self.locationRadius.placeholder = @"Distance in ft";
+            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength feet]];
             break;
         case 3:
             // Miles
             self.locationRadius.placeholder = @"Distance in mi";
+            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength miles]];
             break;
         default:
-            NSLog(@"Updating units: Units are not set; setting to 0");
-            self.locationRadius.placeholder = @"Distance in m";
-            self.userUnits = 0;
-            [self.userDefaults setInteger:0 forKey:@"userUnits"];
-            [self.radiusUnits setSelectedSegmentIndex:0];
             break;
     }
 }

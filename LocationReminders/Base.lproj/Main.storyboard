@@ -184,6 +184,7 @@
                         <outlet property="locationName" destination="Kgv-ey-J3v" id="nww-fd-lzR"/>
                         <outlet property="locationRadius" destination="Vsb-Je-Ya5" id="qhu-7W-ZsE"/>
                         <outlet property="radiusUnits" destination="zqQ-4k-7ax" id="6dd-iX-kRl"/>
+                        <outlet property="setReminderButton" destination="gnf-KX-jKt" id="3u1-Sc-oFK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25p-mo-ddS" userLabel="First Responder" sceneMemberID="firstResponder"/>
