@@ -50,6 +50,7 @@
     self.radiusMeasurement = [[NSMeasurement alloc] initWithDoubleValue:0.0 unit:[NSUnitLength meters]];
     [self updateUnits];
     
+    [self.setReminderButton setBackgroundColor:[UIColor grayColor]];
 }
 
 //Keyboard Away
