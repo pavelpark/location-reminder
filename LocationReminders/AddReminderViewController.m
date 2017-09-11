@@ -79,7 +79,8 @@
         validRadius = NO;
     } else if (sender.object == self.locationRadius) {
         NSLog(@"Sender: %@", sender);
-        NSMeasurement *newMeasurement = [[NSMeasurement alloc] initWithDoubleValue:self.locationRadius.text.doubleValue unit:self.radiusMeasurement.unit];
+        NSMeasurement *newMeasurement = [[NSMeasurement alloc] initWithDoubleValue:self.locationRadius.text.doubleValue
+                                                                              unit:self.radiusMeasurement.unit];
         self.radiusMeasurement = newMeasurement;
         NSLog(@"Text changed, new measurement: %@", self.radiusMeasurement);
     }
@@ -95,9 +96,8 @@
 
 - (IBAction)radiusUnitsChanged:(UISegmentedControl *)sender {
     NSLog(@"Units changed");
-    // Capture current measurement
-    [self checkRadius];
     self.userUnits = sender.selectedSegmentIndex;
+
     // Change displayed value and update userDefaults
     switch (self.userUnits) {
         case 0:
@@ -134,35 +134,6 @@
     [self updateUnits];
 }
 
-- (void)checkRadius {
-    NSMeasurement *currentMeasurement = self.radiusMeasurement;
-    double radiusDouble = self.locationRadius.text.doubleValue;
-    switch (self.userUnits) {
-        case 0:
-            currentMeasurement = [currentMeasurement initWithDoubleValue:radiusDouble unit:[NSUnitLength meters]];
-            NSLog(@"Captured value: %f meters", radiusDouble);
-            break;
-        case 1:
-            currentMeasurement = [currentMeasurement initWithDoubleValue:radiusDouble unit:[NSUnitLength kilometers]];
-            NSLog(@"Captured value: %f km", radiusDouble);
-            break;
-        case 2:
-            currentMeasurement = [currentMeasurement initWithDoubleValue:radiusDouble unit:[NSUnitLength feet]];
-            NSLog(@"Captured value: %f feet", radiusDouble);
-            break;
-        case 3:
-            currentMeasurement = [currentMeasurement initWithDoubleValue:radiusDouble unit:[NSUnitLength miles]];
-            NSLog(@"Captured value: %f miles", radiusDouble);
-            break;
-        default:
-            currentMeasurement = [currentMeasurement initWithDoubleValue:radiusDouble unit:[NSUnitLength meters]];
-            NSLog(@"Captured default value: %f meters", radiusDouble);
-            break;
-    }
-
-    self.radiusMeasurement = currentMeasurement;
-}
-
 - (IBAction)setReminderButtonPressed:(UIButton *)sender {
     
     Reminder *newReminder = [Reminder object];
@@ -177,7 +148,6 @@
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude
                                                   longitude:self.coordinate.longitude];
     
-    [self checkRadius];
     NSMeasurement *currentRadiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
     NSNumber *radius = [NSNumber numberWithDouble:currentRadiusMeasurement.doubleValue];
     
