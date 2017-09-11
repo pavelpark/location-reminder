@@ -51,6 +51,8 @@
     [self updateUnits];
     
     [self.setReminderButton setBackgroundColor:[UIColor grayColor]];
+    self.setReminderButton.layer.cornerRadius = 5.0;
+    self.setReminderButton.clipsToBounds = YES;
 }
 
 //Keyboard Away
