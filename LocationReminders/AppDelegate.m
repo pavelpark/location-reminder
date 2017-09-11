@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "Reminder.h"
 #import "LocationController.h"
+#import "Credentials.h"
 
 @import Parse;
 @import UserNotifications;
@@ -219,9 +220,9 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 
 - (void)initializeParse {
     ParseClientConfiguration *parseConfig = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> _Nonnull configuration) {
-        configuration.applicationId = @"34bh5342n50";
-        configuration.clientKey = @"as7d7as8d88vfdv091";
-        configuration.server = @"https://location-reminder-server-pp.herokuapp.com/parse";
+        configuration.applicationId = APPLICATION_ID;
+        configuration.clientKey = CLIENT_KEY;
+        configuration.server = SERVER_URL;
         configuration.localDatastoreEnabled = YES;
     }];
     
