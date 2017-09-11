@@ -40,8 +40,14 @@
     self.mapShouldFollowUser = NO;
     [self currentLocationTapped:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderSaveToParse:) name:@"ReminderSavedToParse" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reminderSaveToParse:)
+                                                 name:@"ReminderSavedToParse"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(removeOverlayForNotification:)
+                                                 name:@"Reminder completed"
+                                               object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
