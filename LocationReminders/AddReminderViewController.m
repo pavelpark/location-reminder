@@ -207,24 +207,31 @@
             // Meters
             self.locationRadius.placeholder = @"Distance in m";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
+            self.locationRadius.keyboardType = UIKeyboardTypeNumberPad;
             break;
         case 1:
             // Kilometers
             self.locationRadius.placeholder = @"Distance in km";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength kilometers]];
+            self.locationRadius.keyboardType = UIKeyboardTypeDecimalPad;
             break;
         case 2:
             // Feet
             self.locationRadius.placeholder = @"Distance in ft";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength feet]];
+            self.locationRadius.keyboardType = UIKeyboardTypeNumberPad;
             break;
         case 3:
             // Miles
             self.locationRadius.placeholder = @"Distance in mi";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength miles]];
+            self.locationRadius.keyboardType = UIKeyboardTypeDecimalPad;
             break;
         default:
             break;
+    }
+    if (self.locationRadius.isFirstResponder) {
+        [self.locationRadius reloadInputViews];
     }
 }
 
