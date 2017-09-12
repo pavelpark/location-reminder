@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -114,13 +115,6 @@
                             <imageView userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sylwia_bartyzel_442" translatesAutoresizingMaskIntoConstraints="NO" id="4gT-MD-4cq">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="New Reminder" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ayO-FQ-GtY">
-                                <rect key="frame" x="50" y="113" width="275" height="35"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kgv-ey-J3v">
                                 <rect key="frame" x="98" y="228" width="179" height="30"/>
                                 <nil key="textColor"/>
@@ -156,28 +150,34 @@
                                     <action selector="setReminderButtonPressed:" destination="IaI-cQ-ePw" eventType="touchUpInside" id="emo-km-NhH"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Reminder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBw-L4-swv">
+                                <rect key="frame" x="66" y="113" width="243" height="35"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gnf-KX-jKt" firstAttribute="top" secondItem="zqQ-4k-7ax" secondAttribute="bottom" constant="36" id="4dc-yh-zUI"/>
                             <constraint firstAttribute="trailing" secondItem="4gT-MD-4cq" secondAttribute="trailing" id="5bl-98-wSz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SBw-L4-swv" secondAttribute="trailing" constant="50" id="7mG-nl-XWt"/>
                             <constraint firstItem="Vsb-Je-Ya5" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="98" id="9R4-oX-Vg3"/>
                             <constraint firstItem="zqQ-4k-7ax" firstAttribute="centerX" secondItem="n4G-Uc-ZuU" secondAttribute="centerX" id="GZ6-O5-Txi"/>
+                            <constraint firstItem="SBw-L4-swv" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leadingMargin" constant="50" id="Jpz-1c-qnW"/>
                             <constraint firstItem="zqQ-4k-7ax" firstAttribute="top" secondItem="Vsb-Je-Ya5" secondAttribute="bottom" constant="12" id="L7H-Rf-lvl"/>
-                            <constraint firstItem="ayO-FQ-GtY" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="50" id="M3S-dF-DqS"/>
                             <constraint firstAttribute="trailing" secondItem="Vsb-Je-Ya5" secondAttribute="trailing" constant="98" id="NcJ-nN-XrQ"/>
                             <constraint firstItem="gnf-KX-jKt" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="170" id="QjW-L5-ijK"/>
-                            <constraint firstAttribute="trailing" secondItem="ayO-FQ-GtY" secondAttribute="trailing" constant="50" id="QjX-x8-9Dk"/>
+                            <constraint firstItem="SBw-L4-swv" firstAttribute="top" secondItem="tRp-6l-THw" secondAttribute="bottom" constant="49" id="RBK-zo-kWt"/>
                             <constraint firstItem="zqQ-4k-7ax" firstAttribute="width" secondItem="n4G-Uc-ZuU" secondAttribute="width" multiplier="0.75" id="Svr-T4-hpU"/>
                             <constraint firstAttribute="trailing" secondItem="gnf-KX-jKt" secondAttribute="trailing" constant="98" id="UgE-Jj-DpU"/>
+                            <constraint firstItem="Kgv-ey-J3v" firstAttribute="top" secondItem="SBw-L4-swv" secondAttribute="bottom" constant="80" id="Vjy-Xu-e0K"/>
                             <constraint firstItem="4gT-MD-4cq" firstAttribute="top" secondItem="n4G-Uc-ZuU" secondAttribute="top" id="frZ-lq-WHO"/>
-                            <constraint firstItem="Kgv-ey-J3v" firstAttribute="top" secondItem="ayO-FQ-GtY" secondAttribute="bottom" constant="80" id="hUI-PL-CEX"/>
                             <constraint firstAttribute="trailing" secondItem="Kgv-ey-J3v" secondAttribute="trailing" constant="98" id="ijs-aa-4Bf"/>
                             <constraint firstItem="Vsb-Je-Ya5" firstAttribute="top" secondItem="Kgv-ey-J3v" secondAttribute="bottom" constant="24" id="j8x-5e-UpP"/>
                             <constraint firstItem="Kgv-ey-J3v" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="98" id="qJ0-Rz-P2k"/>
                             <constraint firstItem="lUe-Ae-b6h" firstAttribute="top" secondItem="4gT-MD-4cq" secondAttribute="bottom" id="qZF-uG-Mcg"/>
                             <constraint firstItem="4gT-MD-4cq" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" id="tQV-Lo-6tF"/>
-                            <constraint firstItem="ayO-FQ-GtY" firstAttribute="top" secondItem="tRp-6l-THw" secondAttribute="bottom" constant="49" id="z4i-HO-bEu"/>
                         </constraints>
                     </view>
                     <connections>
