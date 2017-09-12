@@ -97,36 +97,48 @@
 - (IBAction)radiusUnitsChanged:(UISegmentedControl *)sender {
     NSLog(@"Units changed");
     self.userUnits = sender.selectedSegmentIndex;
-
+    NSString *newRadiusString = [NSString alloc];
+    NSNumber *newRadiusNumber = [NSNumber alloc];
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    
     // Change displayed value and update userDefaults
     switch (self.userUnits) {
         case 0:
             // set units to m
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
+            numberFormatter.numberStyle = NSNumberFormatterNoStyle;
             break;
         case 1:
             // set units to km
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength kilometers]];
+            numberFormatter.usesSignificantDigits = YES;
+            numberFormatter.minimumSignificantDigits = 1;
+            numberFormatter.maximumSignificantDigits = 2;
+            numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
             break;
         case 2:
             // set units to ft
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength feet]];
+            numberFormatter.numberStyle = NSNumberFormatterNoStyle;
             break;
         case 3:
             // set units to mi
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength miles]];
+            numberFormatter.usesSignificantDigits = YES;
+            numberFormatter.minimumSignificantDigits = 1;
+            numberFormatter.maximumSignificantDigits = 2;
+            numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
             break;
         default:
-            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
             break;
     }
     NSLog(@"New measurement: %@", self.radiusMeasurement);
     
-    NSString *newRadiusString = [NSString alloc];
-    if (self.radiusMeasurement.doubleValue == 0.0) {
+    if (! (self.radiusMeasurement.doubleValue > 0.0)) {
         newRadiusString = @"";
     } else {
-        newRadiusString = [NSString stringWithFormat:@"%f",self.radiusMeasurement.doubleValue];
+        newRadiusNumber = [NSNumber numberWithDouble: self.radiusMeasurement.doubleValue];
+        newRadiusString = [numberFormatter stringFromNumber:newRadiusNumber];
     }
     self.locationRadius.text = newRadiusString;
     self.userUnits = sender.selectedSegmentIndex;
@@ -169,7 +181,7 @@
         // To start monitoring region.
         if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
             CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:self.coordinate
-                                                                         radius:[radius doubleValue]
+                                                                         radius:radius.doubleValue
                                                                      identifier:newReminder.objectId];
             
             [LocationController.shared startMonitoringForRegion:region];
