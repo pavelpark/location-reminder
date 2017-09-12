@@ -17,19 +17,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-}
-
-- (void)displayLogInViewController {
-    
     self.fields = PFLogInFieldsLogInButton |
     PFLogInFieldsSignUpButton |
     PFLogInFieldsUsernameAndPassword |
     PFLogInFieldsPasswordForgotten;
     
-    self.logInView.logo = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"LoginLogo"]];
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LoginLogo"]];
+    logoView.contentMode = UIViewContentModeScaleAspectFit;
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sylwia_bartyzel_442"]];
+    [self.view addSubview:backgroundView];
+    backgroundView.contentMode = UIViewContentModeScaleAspectFit;
+    backgroundView.clipsToBounds = YES;
+    self.logInView.logo = logoView;
     self.view.backgroundColor = [UIColor darkGrayColor];
     
 }
-
 
 @end
