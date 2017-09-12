@@ -205,25 +205,25 @@
     switch (self.userUnits) {
         case 0:
             // Meters
-            self.locationRadius.placeholder = @"Distance in m";
+            self.locationRadius.placeholder = @"Distance in meters";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
             self.locationRadius.keyboardType = UIKeyboardTypeNumberPad;
             break;
         case 1:
             // Kilometers
-            self.locationRadius.placeholder = @"Distance in km";
+            self.locationRadius.placeholder = @"Distance in kilometers";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength kilometers]];
             self.locationRadius.keyboardType = UIKeyboardTypeDecimalPad;
             break;
         case 2:
             // Feet
-            self.locationRadius.placeholder = @"Distance in ft";
+            self.locationRadius.placeholder = @"Distance in feet";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength feet]];
             self.locationRadius.keyboardType = UIKeyboardTypeNumberPad;
             break;
         case 3:
             // Miles
-            self.locationRadius.placeholder = @"Distance in mi";
+            self.locationRadius.placeholder = @"Distance in miles";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength miles]];
             self.locationRadius.keyboardType = UIKeyboardTypeDecimalPad;
             break;
