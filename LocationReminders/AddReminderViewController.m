@@ -47,7 +47,8 @@
     self.userUnits = [[NSUserDefaults standardUserDefaults] integerForKey:@"userUnits"];
     NSLog(@"User units: %ld", (long)self.userUnits);
     [self.radiusUnits setSelectedSegmentIndex:self.userUnits];
-    self.radiusMeasurement = [[NSMeasurement alloc] initWithDoubleValue:0.0 unit:[NSUnitLength meters]];
+    self.radiusMeasurement = [[NSMeasurement alloc] initWithDoubleValue:0.0
+                                                                   unit:[NSUnitLength meters]];
     [self updateUnits];
     
     [self.setReminderButton setBackgroundColor:[UIColor grayColor]];
@@ -64,7 +65,6 @@
 }
 
 - (void)validateReminder:(NSNotification *)sender {
-    NSLog(@"Text field changed");
     BOOL validName = YES;
     BOOL validRadius = YES;
     
@@ -72,7 +72,7 @@
         validName = NO;
     }
     
-    NSString *regex = @"(^[^\\D]{0,9}(\\.?)\\d{0,2}$)";
+    NSString *regex = @"(^[^\\D]{0,4}(\\.?)\\d{0,2}$)";
     NSRange replacementRange = [self.locationRadius.text rangeOfString:regex options:NSRegularExpressionSearch];
     
     if (replacementRange.location == NSNotFound || ! (self.locationRadius.text.floatValue > 0.0) ) {
@@ -97,6 +97,9 @@
 - (IBAction)radiusUnitsChanged:(UISegmentedControl *)sender {
     NSLog(@"Units changed");
     self.userUnits = sender.selectedSegmentIndex;
+    [[NSUserDefaults standardUserDefaults] setInteger:self.userUnits forKey:@"userUnits"];
+    [self updateUnits];
+    
     NSString *newRadiusString = [NSString alloc];
     NSNumber *newRadiusNumber = [NSNumber alloc];
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
@@ -105,12 +108,10 @@
     switch (self.userUnits) {
         case 0:
             // set units to m
-            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
             numberFormatter.numberStyle = NSNumberFormatterNoStyle;
             break;
         case 1:
             // set units to km
-            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength kilometers]];
             numberFormatter.usesSignificantDigits = YES;
             numberFormatter.minimumSignificantDigits = 1;
             numberFormatter.maximumSignificantDigits = 2;
@@ -118,12 +119,10 @@
             break;
         case 2:
             // set units to ft
-            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength feet]];
             numberFormatter.numberStyle = NSNumberFormatterNoStyle;
             break;
         case 3:
             // set units to mi
-            self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength miles]];
             numberFormatter.usesSignificantDigits = YES;
             numberFormatter.minimumSignificantDigits = 1;
             numberFormatter.maximumSignificantDigits = 2;
@@ -141,9 +140,6 @@
         newRadiusString = [numberFormatter stringFromNumber:newRadiusNumber];
     }
     self.locationRadius.text = newRadiusString;
-    self.userUnits = sender.selectedSegmentIndex;
-    [[NSUserDefaults standardUserDefaults] setInteger:self.userUnits forKey:@"userUnits"];
-    [self updateUnits];
 }
 
 - (IBAction)setReminderButtonPressed:(UIButton *)sender {
