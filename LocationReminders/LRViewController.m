@@ -17,19 +17,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor darkGrayColor];
+    
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LoginLogoClear"]];
+    logoView.contentMode = UIViewContentModeScaleAspectFit;
+    self.logInView.logo = logoView;
+    
     self.fields = PFLogInFieldsLogInButton |
     PFLogInFieldsSignUpButton |
     PFLogInFieldsUsernameAndPassword |
     PFLogInFieldsPasswordForgotten;
-    
-    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LoginLogo"]];
-    logoView.contentMode = UIViewContentModeScaleAspectFit;
-    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sylwia_bartyzel_442"]];
-    [self.view addSubview:backgroundView];
-    backgroundView.contentMode = UIViewContentModeScaleAspectFit;
-    backgroundView.clipsToBounds = YES;
-    self.logInView.logo = logoView;
-    self.view.backgroundColor = [UIColor darkGrayColor];
     
 }
 
