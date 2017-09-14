@@ -10,6 +10,7 @@
 #import "AddReminderViewController.h"
 #import "LocationController.h"
 #import "Reminder.h"
+#import "LRViewController.h"
 
 @import Parse;
 @import MapKit;
@@ -66,18 +67,10 @@
 }
 
 - (void)displayLogInViewController {
-    PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+    LRViewController *logInViewController = [[LRViewController alloc] init];
     
     logInViewController.delegate = self;
     logInViewController.signUpController.delegate = self;
-    
-    logInViewController.fields = PFLogInFieldsLogInButton |
-                                 PFLogInFieldsSignUpButton |
-                                 PFLogInFieldsUsernameAndPassword |
-                                 PFLogInFieldsPasswordForgotten;
-    
-    logInViewController.logInView.logo = [[UIView alloc]init];
-    logInViewController.logInView.backgroundColor = [UIColor darkGrayColor];
     
     [[self parentViewController] presentViewController:logInViewController animated:YES completion:nil];
 }

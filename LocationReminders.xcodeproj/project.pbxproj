@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D4098BDE1F59001D00344CDC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4098BDD1F59001D00344CDC /* libsqlite3.tbd */; };
+		D42A625A1F6B00A30025B30C /* LogoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42A62591F6B00A30025B30C /* LogoView.xib */; };
+		D42A625D1F6B06240025B30C /* LogoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42A625C1F6B06240025B30C /* LogoView.m */; };
+		DB0C5E531F6869D100E2AC0A /* LRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0C5E521F6869D100E2AC0A /* LRViewController.m */; };
 		DB8004F81EB7AC0400F2C116 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8004F71EB7AC0400F2C116 /* main.m */; };
 		DB8004FB1EB7AC0400F2C116 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8004FA1EB7AC0400F2C116 /* AppDelegate.m */; };
 		DB8004FE1EB7AC0400F2C116 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB8004FD1EB7AC0400F2C116 /* ViewController.m */; };
@@ -43,7 +46,12 @@
 /* Begin PBXFileReference section */
 		D4098BDB1F58FEC200344CDC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 		D4098BDD1F59001D00344CDC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		D42A62591F6B00A30025B30C /* LogoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogoView.xib; sourceTree = "<group>"; };
+		D42A625B1F6B06240025B30C /* LogoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoView.h; sourceTree = "<group>"; };
+		D42A625C1F6B06240025B30C /* LogoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoView.m; sourceTree = "<group>"; };
 		DB0C5E501F61C6E200E2AC0A /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Credentials.h; sourceTree = "<group>"; };
+		DB0C5E511F6869D100E2AC0A /* LRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRViewController.h; sourceTree = "<group>"; };
+		DB0C5E521F6869D100E2AC0A /* LRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRViewController.m; sourceTree = "<group>"; };
 		DB8004F31EB7AC0400F2C116 /* LocationReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8004F71EB7AC0400F2C116 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB8004F91EB7AC0400F2C116 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -147,9 +155,12 @@
 		DB80051B1EB8F47E00F2C116 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D42A625B1F6B06240025B30C /* LogoView.h */,
+				D42A625C1F6B06240025B30C /* LogoView.m */,
 				DB8004FF1EB7AC0400F2C116 /* Main.storyboard */,
 				DB8005021EB7AC0400F2C116 /* Assets.xcassets */,
 				DB8005041EB7AC0400F2C116 /* LaunchScreen.storyboard */,
+				D42A62591F6B00A30025B30C /* LogoView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -163,6 +174,8 @@
 				DB8004FD1EB7AC0400F2C116 /* ViewController.m */,
 				DB8005201EB9278100F2C116 /* LocationController.h */,
 				DB8005211EB9278100F2C116 /* LocationController.m */,
+				DB0C5E511F6869D100E2AC0A /* LRViewController.h */,
+				DB0C5E521F6869D100E2AC0A /* LRViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -233,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB8005061EB7AC0400F2C116 /* LaunchScreen.storyboard in Resources */,
+				D42A625A1F6B00A30025B30C /* LogoView.xib in Resources */,
 				DB8005031EB7AC0400F2C116 /* Assets.xcassets in Resources */,
 				DB8005011EB7AC0400F2C116 /* Main.storyboard in Resources */,
 			);
@@ -246,7 +260,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB8005221EB9278100F2C116 /* LocationController.m in Sources */,
+				D42A625D1F6B06240025B30C /* LogoView.m in Sources */,
 				DB8005251EBA465B00F2C116 /* Reminder.m in Sources */,
+				DB0C5E531F6869D100E2AC0A /* LRViewController.m in Sources */,
 				DB80051F1EB8FF1D00F2C116 /* AddReminderViewController.m in Sources */,
 				DB8004FE1EB7AC0400F2C116 /* ViewController.m in Sources */,
 				DB8004FB1EB7AC0400F2C116 /* AppDelegate.m in Sources */,
