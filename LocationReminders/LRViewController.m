@@ -38,6 +38,14 @@
     PFLogInFieldsUsernameAndPassword |
     PFLogInFieldsPasswordForgotten;
     
+    // Customize buttons
+    UIColor *customBlue = [UIColor colorWithRed:0.08984375 green:0.57421875 blue:0.78515625 alpha:1.0];
+    [self.logInView.logInButton setBackgroundImage:nil forState:normal];
+    [self.logInView.logInButton setBackgroundColor: customBlue];
+    
+    [self.logInView.passwordForgottenButton setTitleColor: [UIColor whiteColor] forState:normal];
+    [self.logInView.passwordForgottenButton setTitle:@"Forgot Password" forState:normal];
+
 }
 
 - (void) viewDidLayoutSubviews {
