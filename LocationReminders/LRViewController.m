@@ -39,13 +39,19 @@
     PFLogInFieldsPasswordForgotten;
     
     // Customize buttons
-    UIColor *customBlue = [UIColor colorWithRed:0.08984375 green:0.57421875 blue:0.78515625 alpha:1.0];
+    UIColor *customLightBlue = [UIColor colorWithRed:0.08984375 green:0.57421875 blue:0.78515625 alpha:1.0];
+    UIColor *customDarkBlue = [UIColor colorWithRed:0.05882352941 green:0.4352941176 blue:0.6352941176 alpha:1.0];
+    
     [self.logInView.logInButton setBackgroundImage:nil forState:normal];
-    [self.logInView.logInButton setBackgroundColor: customBlue];
+    [self.logInView.logInButton setBackgroundColor: customLightBlue];
     
     [self.logInView.passwordForgottenButton setTitleColor: [UIColor whiteColor] forState:normal];
     [self.logInView.passwordForgottenButton setTitle:@"Forgot Password" forState:normal];
 
+    [self.logInView.signUpButton setBackgroundImage:nil forState:normal];
+    [self.logInView.signUpButton setBackgroundColor:customDarkBlue];
+    self.logInView.signUpButton.layer.cornerRadius = 5.0;
+    self.logInView.signUpButton.clipsToBounds = YES;
 }
 
 - (void) viewDidLayoutSubviews {
