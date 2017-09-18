@@ -1,5 +1,5 @@
 //
-//  LRViewController.h
+//  LRLoginViewController.h
 //  LocationReminders
 //
 //  Created by Pavel Parkhomey on 9/12/17.
@@ -8,6 +8,6 @@
 
 #import <ParseUI/ParseUI.h>
 
-@interface LRViewController : PFLogInViewController
+@interface LRLoginViewController : PFLogInViewController
 
 @end

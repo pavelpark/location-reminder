@@ -1,22 +1,22 @@
 //
-//  LRViewController.m
+//  LRLoginViewController.m
 //  LocationReminders
 //
 //  Created by Pavel Parkhomey on 9/12/17.
 //  Copyright © 2017 Pavel Parkhomey. All rights reserved.
 //
 
-#import "LRViewController.h"
+#import "LRLoginViewController.h"
 #import "LogoView.h"
 
-@interface LRViewController ()
+@interface LRLoginViewController ()
 
 @property UIImageView *backgroundView;
 @property LogoView *logoView;
 
 @end
 
-@implementation LRViewController
+@implementation LRLoginViewController
 
 
 

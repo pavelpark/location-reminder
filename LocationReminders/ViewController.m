@@ -10,7 +10,7 @@
 #import "AddReminderViewController.h"
 #import "LocationController.h"
 #import "Reminder.h"
-#import "LRViewController.h"
+#import "LRLoginViewController.h"
 
 @import Parse;
 @import MapKit;
@@ -67,7 +67,7 @@
 }
 
 - (void)displayLogInViewController {
-    LRViewController *logInViewController = [[LRViewController alloc] init];
+    LRLoginViewController *logInViewController = [[LRLoginViewController alloc] init];
     
     logInViewController.delegate = self;
     logInViewController.signUpController.delegate = self;
