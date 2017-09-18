@@ -7,6 +7,7 @@
 //
 
 #import "LRLoginViewController.h"
+#import "LRSignUpViewController.h"
 #import "LogoView.h"
 
 @interface LRLoginViewController ()
@@ -22,8 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Set background color and image
-    self.view.backgroundColor = [UIColor darkGrayColor];
+    self.signUpController = [[LRSignUpViewController alloc] init];
+    
+    // Set background image.
     self.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sylwia_bartyzel_442"]];
     self.backgroundView.contentMode = UIViewContentModeScaleAspectFill;
     [self.view insertSubview:self.backgroundView atIndex:0];

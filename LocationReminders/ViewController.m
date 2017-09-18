@@ -68,7 +68,8 @@
 
 - (void)displayLogInViewController {
     LRLoginViewController *logInViewController = [[LRLoginViewController alloc] init];
-    
+    logInViewController.emailAsUsername = YES;
+    logInViewController.signUpController.emailAsUsername = YES;
     logInViewController.delegate = self;
     logInViewController.signUpController.delegate = self;
     
