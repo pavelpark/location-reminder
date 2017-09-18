@@ -12,7 +12,6 @@
 @interface LRLoginViewController ()
 
 @property UIImageView *backgroundView;
-@property LogoView *logoView;
 
 @end
 
@@ -30,8 +29,8 @@
     [self.view insertSubview:self.backgroundView atIndex:0];
     
     // Create logo view and assign as new logInview
-    self.logoView = [[LogoView alloc] initWithFrame:CGRectMake(0, 0, 400, 200)];
-    self.logInView.logo = self.logoView;
+    LogoView *logoView = [[LogoView alloc] initWithFrame:CGRectMake(0, 0, 400, 200)];
+    self.logInView.logo = logoView;
     
     self.fields = PFLogInFieldsLogInButton |
     PFLogInFieldsSignUpButton |
