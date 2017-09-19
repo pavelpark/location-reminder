@@ -68,6 +68,19 @@
     NSLog(@"All regions: %@", self.allRegions);
 }
 
+- (void)checkForNearbyRegions {
+    // Check for reminders within 10 km of current location
+    NSMutableArray *nearbyRegions = [[NSMutableArray alloc] init];
+    
+    for (CLCircularRegion *region in allRegions) {
+        CLLocation *regionCenterLocation = [[CLLocation alloc] initWithLatitude:region.center.latitude
+                                                                      longitude:region.center.longitude];
+        if ([regionCenterLocation distanceFromLocation: self.location] < 10000) {
+            [nearbyRegions addObject:region];
+        }
+    }
+}
+
 - (void)resetMonitoredRegions {
     for (CLRegion *monitoredRegion in [self.locationManager monitoredRegions]) {
         [locationManager stopMonitoringForRegion:monitoredRegion];
@@ -83,8 +96,6 @@
     CLRegion *regionToRemove = [[[self.locationManager monitoredRegions] filteredSetUsingPredicate:predicate] anyObject];
     NSLog(@"%@", regionToRemove);
     [locationManager stopMonitoringForRegion:regionToRemove];
-    
-    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
