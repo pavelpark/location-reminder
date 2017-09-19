@@ -31,4 +31,6 @@
 - (void)stopMonitoringForRegionWithIdentifier:(NSString *)regionIdentifier;
 - (void)resetMonitoredRegions;
 
+- (void)addRegion:(CLRegion *)region;
+
 @end

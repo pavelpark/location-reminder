@@ -15,12 +15,14 @@
 @import Parse;
 
 @interface LocationController () <CLLocationManagerDelegate>
-
+@property NSMutableArray<CLRegion *> *allRegions;
 @end
+
 @implementation LocationController
 
 @synthesize locationManager;
 @synthesize location;
+@synthesize allRegions;
 
 + (LocationController *)shared {
     
@@ -35,18 +37,35 @@
 
 - (LocationController *)init {
     self = [super init];
-    locationManager = [[CLLocationManager alloc]init];
-    location = [[CLLocation alloc]init];
+    locationManager = [[CLLocationManager alloc] init];
+    location = [[CLLocation alloc] init];
+    allRegions = [[NSMutableArray alloc] init];
     self.locationManager.delegate = self;
     return self;
 }
 
 - (void)requestPermissions {
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 50; //In meters
     self.locationManager.delegate = self;
     [self.locationManager requestAlwaysAuthorization];
     [self.locationManager startUpdatingLocation];
+}
+
+- (void)monitorSignificantMovements {
+    [self.locationManager stopUpdatingLocation];
+    self.locationManager.distanceFilter = 5000; // Update only every 5 km while in background
+    [self.locationManager startMonitoringSignificantLocationChanges];
+}
+
+- (void)monitorFullMovements {
+    [self.locationManager stopMonitoringSignificantLocationChanges];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone; // Continual updates when more accuracy is needed
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)addRegion:(CLRegion *)region {
+    [self.allRegions addObject:region];
+    NSLog(@"All regions: %@", self.allRegions);
 }
 
 - (void)resetMonitoredRegions {
