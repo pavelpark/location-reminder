@@ -156,9 +156,9 @@
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
 didReceiveNotificationResponse:(UNNotificationResponse *)response
-         withCompletionHandler:(void (^)())completionHandler {
+         withCompletionHandler:(void (^)(void))completionHandler {
     // Called to let your app know which action was selected by the user for a given notification.
-    
+
     if ([response.actionIdentifier isEqualToString:@"SNOOZE_ACTION"]) {
         [self snoozeNotification:response.notification forUserNotificationCenter:center];
     } else if ([response.actionIdentifier isEqualToString:@"COMPLETE_ACTION"]) {
@@ -167,7 +167,7 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
         // User launched the app but did not select an action.
         NSLog(@"App launched from notification");
     }
-    
+
     if (completionHandler) {
         completionHandler();
     }
