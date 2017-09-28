@@ -85,6 +85,7 @@
     for (CLRegion *monitoredRegion in [self.locationManager monitoredRegions]) {
         [locationManager stopMonitoringForRegion:monitoredRegion];
     }
+    [self.allRegions removeAllObjects];
 }
 
 - (void)startMonitoringForRegion:(CLRegion *)region {
