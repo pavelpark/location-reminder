@@ -56,6 +56,20 @@
     self.setReminderButton.clipsToBounds = YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // Check how many regions are currently being monitored.
+    NSUInteger monitoredRegionCount = LocationController.shared.locationManager.monitoredRegions.count;
+    NSUInteger regionLimit = 20;
+    NSUInteger regionWarningCount = 17;
+    if (monitoredRegionCount == regionLimit) {
+        NSLog(@"We're full!");
+    } else if (monitoredRegionCount > regionWarningCount) {
+        NSLog(@"Almost full!");
+    }
+}
+
 //Keyboard Away
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [locationName resignFirstResponder];
