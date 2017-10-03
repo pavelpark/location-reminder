@@ -61,27 +61,27 @@
     
     // Check how many regions are currently being monitored.
     NSUInteger monitoredRegionCount = LocationController.shared.locationManager.monitoredRegions.count;
-    NSUInteger regionLimit = 20;
-    NSUInteger regionWarningCount = 17;
+    NSUInteger regionLimit = 20; // Default is 20
+    NSUInteger regionWarningCount = 17; // Default is 17
     if (monitoredRegionCount < regionWarningCount) {
         return;
     }
     
     NSString *warningMessage = [NSString alloc];
-    if (monitoredRegionCount == regionLimit) {
+    if (monitoredRegionCount >= regionLimit) {
         NSLog(@"We're full!");
-        warningMessage = @"No new reminders can be monitored.";
+        warningMessage = @"You can create this reminder, but you will not be alerted of it until you complete some of your previous reminders.";
     } else {
         NSLog(@"Almost full!");
         NSUInteger remainingRegions = regionLimit - monitoredRegionCount;
         if (remainingRegions == 1) {
-            warningMessage = [NSString stringWithFormat: @"Warning: You can create this reminder, but you will not be alerted of it until you complete some of your previous reminders."];
+            warningMessage = [NSString stringWithFormat: @"This is the last reminder we can actively monitor. Complete reminders to free up space."];
         } else {
-            warningMessage = [NSString stringWithFormat: @"You are approaching your limit; there are %lu reminders remaining.", remainingRegions];
+            warningMessage = [NSString stringWithFormat: @"We can only monitor %lu reminders at a time. You are approaching your limit; there are %lu reminders remaining.", regionLimit, remainingRegions];
         }
     }
     
-    UIAlertController *regionLimitAlertController = [UIAlertController alertControllerWithTitle:@"Warning"
+    UIAlertController *regionLimitAlertController = [UIAlertController alertControllerWithTitle:@"LocReminder Warning"
                                                                                         message:warningMessage
                                                                                  preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
