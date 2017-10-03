@@ -15,12 +15,14 @@
 @import Parse;
 
 @interface LocationController () <CLLocationManagerDelegate>
-
+@property NSMutableArray<CLRegion *> *allRegions;
 @end
+
 @implementation LocationController
 
 @synthesize locationManager;
 @synthesize location;
+@synthesize allRegions;
 
 + (LocationController *)shared {
     
@@ -35,24 +37,55 @@
 
 - (LocationController *)init {
     self = [super init];
-    locationManager = [[CLLocationManager alloc]init];
-    location = [[CLLocation alloc]init];
+    locationManager = [[CLLocationManager alloc] init];
+    location = [[CLLocation alloc] init];
+    allRegions = [[NSMutableArray alloc] init];
     self.locationManager.delegate = self;
     return self;
 }
 
 - (void)requestPermissions {
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 50; //In meters
     self.locationManager.delegate = self;
     [self.locationManager requestAlwaysAuthorization];
     [self.locationManager startUpdatingLocation];
+}
+
+- (void)monitorSignificantMovements {
+    [self.locationManager stopUpdatingLocation];
+    self.locationManager.distanceFilter = 5000; // Update only every 5 km while in background
+    [self.locationManager startMonitoringSignificantLocationChanges];
+}
+
+- (void)monitorFullMovements {
+    [self.locationManager stopMonitoringSignificantLocationChanges];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone; // Continual updates when more accuracy is needed
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)addRegion:(CLRegion *)region {
+    [self.allRegions addObject:region];
+    NSLog(@"All regions: %@", self.allRegions);
+}
+
+- (void)checkForNearbyRegions {
+    // Check for reminders within 10 km of current location
+    NSMutableArray *nearbyRegions = [[NSMutableArray alloc] init];
+    
+    for (CLCircularRegion *region in allRegions) {
+        CLLocation *regionCenterLocation = [[CLLocation alloc] initWithLatitude:region.center.latitude
+                                                                      longitude:region.center.longitude];
+        if ([regionCenterLocation distanceFromLocation: self.location] < 10000) {
+            [nearbyRegions addObject:region];
+        }
+    }
 }
 
 - (void)resetMonitoredRegions {
     for (CLRegion *monitoredRegion in [self.locationManager monitoredRegions]) {
         [locationManager stopMonitoringForRegion:monitoredRegion];
     }
+    [self.allRegions removeAllObjects];
 }
 
 - (void)startMonitoringForRegion:(CLRegion *)region {
@@ -64,8 +97,6 @@
     CLRegion *regionToRemove = [[[self.locationManager monitoredRegions] filteredSetUsingPredicate:predicate] anyObject];
     NSLog(@"%@", regionToRemove);
     [locationManager stopMonitoringForRegion:regionToRemove];
-    
-    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {

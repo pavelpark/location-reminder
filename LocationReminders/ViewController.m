@@ -112,11 +112,13 @@
             CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:coordinate
                                                                          radius:reminder.radius.intValue
                                                                      identifier:reminder.objectId];
+            [LocationController.shared addRegion:region];
             [LocationController.shared startMonitoringForRegion:region];
             MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:reminder.radius.doubleValue];
             circle.title = reminder.objectId;
             [self.mapView addOverlay:circle];
         }
+        
     }];
 }
 
