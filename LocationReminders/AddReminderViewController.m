@@ -19,6 +19,8 @@
 
 @property (assign, nonatomic) NSInteger userUnits;
 @property (strong, nonatomic) NSMeasurement *radiusMeasurement;
+@property (assign, nonatomic) NSInteger minRadius, maxRadius;
+
 
 @end
 
@@ -28,8 +30,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Radius must be 15m - 40km.
+    self.minRadius = 15; // 15 m. / ~49 ft.
+    self.maxRadius = 40000; // 40 km. / ~25 mi.
+    
     locationName.delegate = self;
     locationRadius.delegate = self;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(validateReminder:)
                                                  name:UITextFieldTextDidChangeNotification
@@ -114,8 +122,15 @@
         NSLog(@"Sender: %@", sender);
         NSMeasurement *newMeasurement = [[NSMeasurement alloc] initWithDoubleValue:self.locationRadius.text.doubleValue
                                                                               unit:self.radiusMeasurement.unit];
-        self.radiusMeasurement = newMeasurement;
-        NSLog(@"Text changed, new measurement: %@", self.radiusMeasurement);
+        // Verify that new measurement is within min & max radius limits.
+        double meterCheck = [[newMeasurement measurementByConvertingToUnit:[NSUnitLength meters]] doubleValue];
+        if ( meterCheck >= self.minRadius && meterCheck <= self.maxRadius ) {
+            self.radiusMeasurement = newMeasurement;
+            NSLog(@"Text changed, new measurement: %@", self.radiusMeasurement);
+        } else {
+            validRadius = NO;
+        }
+        
     }
     
     if (validRadius && validName) {
