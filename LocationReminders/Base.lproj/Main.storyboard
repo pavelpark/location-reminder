@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,13 +121,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Radius in Meters" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-Je-Ya5">
-                                <rect key="frame" x="94" y="258" width="187.5" height="30"/>
+                                <rect key="frame" x="94" y="266" width="187.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zqQ-4k-7ax">
-                                <rect key="frame" x="94" y="312" width="187.5" height="29"/>
+                                <rect key="frame" x="94" y="328" width="187.5" height="29"/>
                                 <segments>
                                     <segment title="m"/>
                                     <segment title="km"/>
@@ -140,7 +140,7 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnf-KX-jKt">
-                                <rect key="frame" x="181.5" y="376" width="100" height="30"/>
+                                <rect key="frame" x="181.5" y="380" width="100" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="IpM-Gs-QTR"/>
@@ -159,32 +159,54 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A number from 15 to 40,000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWe-jS-fSs">
+                                <rect key="frame" x="94" y="300" width="188" height="16"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A name is required." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ChU-bC-W5a">
+                                <rect key="frame" x="94" y="238" width="187.5" height="16"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Kgv-ey-J3v" firstAttribute="centerX" secondItem="n4G-Uc-ZuU" secondAttribute="centerX" id="1U6-ff-PhX"/>
-                            <constraint firstItem="gnf-KX-jKt" firstAttribute="top" secondItem="zqQ-4k-7ax" secondAttribute="bottom" constant="36" id="4dc-yh-zUI"/>
+                            <constraint firstItem="ChU-bC-W5a" firstAttribute="top" secondItem="Kgv-ey-J3v" secondAttribute="bottom" constant="4" id="3S6-XT-hTw"/>
+                            <constraint firstItem="gnf-KX-jKt" firstAttribute="top" secondItem="zqQ-4k-7ax" secondAttribute="bottom" constant="24" id="4dc-yh-zUI"/>
                             <constraint firstAttribute="trailing" secondItem="4gT-MD-4cq" secondAttribute="trailing" id="5bl-98-wSz"/>
                             <constraint firstItem="Vsb-Je-Ya5" firstAttribute="centerX" secondItem="Kgv-ey-J3v" secondAttribute="centerX" id="720-Cy-1ze"/>
                             <constraint firstItem="zqQ-4k-7ax" firstAttribute="centerX" secondItem="n4G-Uc-ZuU" secondAttribute="centerX" id="GZ6-O5-Txi"/>
-                            <constraint firstItem="zqQ-4k-7ax" firstAttribute="top" secondItem="Vsb-Je-Ya5" secondAttribute="bottom" constant="24" id="L7H-Rf-lvl"/>
+                            <constraint firstItem="ChU-bC-W5a" firstAttribute="width" secondItem="Kgv-ey-J3v" secondAttribute="width" id="IJ8-It-WUT"/>
+                            <constraint firstItem="zqQ-4k-7ax" firstAttribute="top" secondItem="Vsb-Je-Ya5" secondAttribute="bottom" constant="32" id="L7H-Rf-lvl"/>
                             <constraint firstItem="gnf-KX-jKt" firstAttribute="trailing" secondItem="Kgv-ey-J3v" secondAttribute="trailing" id="NZa-sa-aep"/>
                             <constraint firstItem="SBw-L4-swv" firstAttribute="top" secondItem="tRp-6l-THw" secondAttribute="bottom" constant="45" id="RBK-zo-kWt"/>
+                            <constraint firstItem="DWe-jS-fSs" firstAttribute="centerX" secondItem="n4G-Uc-ZuU" secondAttribute="centerX" id="V8y-3l-cO2"/>
                             <constraint firstItem="Kgv-ey-J3v" firstAttribute="top" secondItem="SBw-L4-swv" secondAttribute="bottom" constant="60" id="Vjy-Xu-e0K"/>
                             <constraint firstItem="Vsb-Je-Ya5" firstAttribute="width" secondItem="Kgv-ey-J3v" secondAttribute="width" id="fFe-Lq-MMP"/>
                             <constraint firstItem="4gT-MD-4cq" firstAttribute="top" secondItem="n4G-Uc-ZuU" secondAttribute="top" id="frZ-lq-WHO"/>
                             <constraint firstItem="gnf-KX-jKt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="n4G-Uc-ZuU" secondAttribute="leading" constant="20" symbolic="YES" id="gmc-MC-Aey"/>
                             <constraint firstItem="zqQ-4k-7ax" firstAttribute="width" secondItem="Vsb-Je-Ya5" secondAttribute="width" id="hCG-pL-eGw"/>
-                            <constraint firstItem="Vsb-Je-Ya5" firstAttribute="top" secondItem="Kgv-ey-J3v" secondAttribute="bottom" constant="24" id="j8x-5e-UpP"/>
+                            <constraint firstItem="Vsb-Je-Ya5" firstAttribute="top" secondItem="Kgv-ey-J3v" secondAttribute="bottom" constant="32" id="j8x-5e-UpP"/>
                             <constraint firstItem="SBw-L4-swv" firstAttribute="centerX" secondItem="n4G-Uc-ZuU" secondAttribute="centerX" id="mUJ-rg-cuY"/>
                             <constraint firstItem="Kgv-ey-J3v" firstAttribute="width" secondItem="n4G-Uc-ZuU" secondAttribute="width" multiplier="0.5" id="mcN-dc-hAP"/>
                             <constraint firstItem="lUe-Ae-b6h" firstAttribute="top" secondItem="4gT-MD-4cq" secondAttribute="bottom" id="qZF-uG-Mcg"/>
+                            <constraint firstItem="ChU-bC-W5a" firstAttribute="centerX" secondItem="Kgv-ey-J3v" secondAttribute="centerX" id="qZw-Bi-HqM"/>
+                            <constraint firstItem="DWe-jS-fSs" firstAttribute="top" secondItem="Vsb-Je-Ya5" secondAttribute="bottom" constant="4" id="seh-fs-JNz"/>
                             <constraint firstItem="4gT-MD-4cq" firstAttribute="leading" secondItem="n4G-Uc-ZuU" secondAttribute="leading" id="tQV-Lo-6tF"/>
+                            <constraint firstItem="DWe-jS-fSs" firstAttribute="width" secondItem="Vsb-Je-Ya5" secondAttribute="width" id="z50-21-nHg"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="locationName" destination="Kgv-ey-J3v" id="nww-fd-lzR"/>
                         <outlet property="locationRadius" destination="Vsb-Je-Ya5" id="qhu-7W-ZsE"/>
+                        <outlet property="nameNoteLabel" destination="ChU-bC-W5a" id="qbC-f6-ZWD"/>
+                        <outlet property="radiusNoteLabel" destination="DWe-jS-fSs" id="81G-ou-UZf"/>
                         <outlet property="radiusUnits" destination="zqQ-4k-7ax" id="6dd-iX-kRl"/>
                         <outlet property="setReminderButton" destination="gnf-KX-jKt" id="3u1-Sc-oFK"/>
                     </connections>

@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *locationRadius;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *radiusUnits;
 @property (weak, nonatomic) IBOutlet UIButton *setReminderButton;
+@property (weak, nonatomic) IBOutlet UILabel *nameNoteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *radiusNoteLabel;
 
 @property (assign, nonatomic) NSInteger userUnits;
 @property (strong, nonatomic) NSMeasurement *radiusMeasurement;
@@ -111,6 +113,9 @@
     
     if ([self.locationName.text isEqual: @""]) {
         validName = NO;
+        [self.nameNoteLabel setHidden:NO];
+    } else {
+        [self.nameNoteLabel setHidden:YES];
     }
     
     NSString *regex = @"(^[^\\D]{0,4}(\\.?)\\d{0,3}$)";
@@ -249,25 +254,29 @@
     switch (self.userUnits) {
         case 0:
             // Meters
-            self.locationRadius.placeholder = @"Distance in meters (15 - 40,000)";
+            self.locationRadius.placeholder = @"Distance in meters";
+            self.radiusNoteLabel.text = @"A number from 15 to 40,000";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
             self.locationRadius.keyboardType = UIKeyboardTypeNumberPad;
             break;
         case 1:
             // Kilometers
-            self.locationRadius.placeholder = @"Distance in kilometers (0.1 - 40)";
+            self.locationRadius.placeholder = @"Distance in kilometers";
+            self.radiusNoteLabel.text = @"A number from 0.1 to 40";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength kilometers]];
             self.locationRadius.keyboardType = UIKeyboardTypeDecimalPad;
             break;
         case 2:
             // Feet
-            self.locationRadius.placeholder = @"Distance in feet (50 - 132,000)";
+            self.locationRadius.placeholder = @"Distance in feet";
+            self.radiusNoteLabel.text = @"A number from 50 to 132,000";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength feet]];
             self.locationRadius.keyboardType = UIKeyboardTypeNumberPad;
             break;
         case 3:
             // Miles
-            self.locationRadius.placeholder = @"Distance in miles (0.01 - 25)";
+            self.locationRadius.placeholder = @"Distance in miles";
+            self.radiusNoteLabel.text = @"A number from 0.01 to 25";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength miles]];
             self.locationRadius.keyboardType = UIKeyboardTypeDecimalPad;
             break;
