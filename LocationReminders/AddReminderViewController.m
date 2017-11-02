@@ -18,11 +18,28 @@
 @property (weak, nonatomic) IBOutlet UIButton *setReminderButton;
 @property (weak, nonatomic) IBOutlet UILabel *nameNoteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *radiusNoteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameWarning;
+@property (weak, nonatomic) IBOutlet UILabel *radiusWarning;
 
 @property (assign, nonatomic) NSInteger userUnits;
 @property (strong, nonatomic) NSMeasurement *radiusMeasurement;
 @property (assign, nonatomic) NSInteger minRadius, maxRadius;
 
+@end
+
+@implementation UIColor (Extensions)
+
++ (UIColor *)enabledButtonColor {
+    return [UIColor colorWithRed:0.0 green:0.478431 blue:1.0 alpha:1.0];
+}
+
++ (UIColor *)yellowNoteColor {
+    return [UIColor colorWithRed:0.999534 green:0.988357 blue:0.472736 alpha:1];
+}
+
++ (UIColor *)pinkNoteColor {
+    return [UIColor colorWithRed:0.939375 green:0.703384 blue:0.837451 alpha:1];
+}
 
 @end
 
@@ -117,9 +134,13 @@
     
     if ([self.locationName.text isEqual: @""]) {
         validName = NO;
-        [self.nameNoteLabel setHidden:NO];
+        [self.nameNoteLabel setTextColor:[UIColor whiteColor]];
+        [self.nameNoteLabel setBackgroundColor:[UIColor pinkNoteColor]];
+        [self.nameWarning setHidden:NO];
     } else {
-        [self.nameNoteLabel setHidden:YES];
+        [self.nameNoteLabel setTextColor:[UIColor darkGrayColor]];
+        [self.nameNoteLabel setBackgroundColor:[UIColor yellowNoteColor]];
+        [self.nameWarning setHidden:YES];
     }
     
     NSString *regex = @"(^[^\\D]{0,4}(\\.?)\\d{0,3}$)";
@@ -128,7 +149,6 @@
     if (replacementRange.location == NSNotFound || ! (self.locationRadius.text.floatValue > 0.0) ) {
         validRadius = NO;
     } else if (sender.object == self.locationRadius) {
-        NSLog(@"Sender: %@", sender);
         NSMeasurement *newMeasurement = [[NSMeasurement alloc] initWithDoubleValue:self.locationRadius.text.doubleValue
                                                                               unit:self.radiusMeasurement.unit];
         // Verify that new measurement is within min & max radius limits.
@@ -139,12 +159,21 @@
         } else {
             validRadius = NO;
         }
-        
+    }
+    
+    if (validRadius) {
+        [self.radiusNoteLabel setTextColor:[UIColor darkGrayColor]];
+        [self.radiusNoteLabel setBackgroundColor:[UIColor yellowNoteColor]];
+        [self.radiusWarning setHidden:YES];
+    } else {
+        [self.radiusNoteLabel setTextColor:[UIColor whiteColor]];
+        [self.radiusNoteLabel setBackgroundColor:[UIColor pinkNoteColor]];
+        [self.radiusWarning setHidden:NO];
     }
     
     if (validRadius && validName) {
         [self.setReminderButton setEnabled:YES];
-        [self.setReminderButton setBackgroundColor:[UIColor colorWithRed:0.0 green:0.478431 blue:1.0 alpha:1.0]];
+        [self.setReminderButton setBackgroundColor:[UIColor enabledButtonColor]];
     } else {
         [self.setReminderButton setEnabled:NO];
         [self.setReminderButton setBackgroundColor:[UIColor grayColor]];
