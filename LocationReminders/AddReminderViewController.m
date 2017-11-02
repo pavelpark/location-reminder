@@ -64,6 +64,10 @@
     [self.setReminderButton setBackgroundColor:[UIColor grayColor]];
     self.setReminderButton.layer.cornerRadius = 5.0;
     self.setReminderButton.clipsToBounds = YES;
+    self.radiusNoteLabel.layer.cornerRadius = 2.5;
+    self.radiusNoteLabel.clipsToBounds = YES;
+    self.nameNoteLabel.layer.cornerRadius = 2.5;
+    self.nameNoteLabel.clipsToBounds = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -255,28 +259,28 @@
         case 0:
             // Meters
             self.locationRadius.placeholder = @"Distance in meters";
-            self.radiusNoteLabel.text = @"A number from 15 to 40,000";
+            self.radiusNoteLabel.text = @"From 15 to 40,000 m";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
             self.locationRadius.keyboardType = UIKeyboardTypeNumberPad;
             break;
         case 1:
             // Kilometers
             self.locationRadius.placeholder = @"Distance in kilometers";
-            self.radiusNoteLabel.text = @"A number from 0.1 to 40";
+            self.radiusNoteLabel.text = @"From 0.1 to 40 km";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength kilometers]];
             self.locationRadius.keyboardType = UIKeyboardTypeDecimalPad;
             break;
         case 2:
             // Feet
             self.locationRadius.placeholder = @"Distance in feet";
-            self.radiusNoteLabel.text = @"A number from 50 to 132,000";
+            self.radiusNoteLabel.text = @"From 50 to 132,000 ft";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength feet]];
             self.locationRadius.keyboardType = UIKeyboardTypeNumberPad;
             break;
         case 3:
             // Miles
             self.locationRadius.placeholder = @"Distance in miles";
-            self.radiusNoteLabel.text = @"A number from 0.01 to 25";
+            self.radiusNoteLabel.text = @"From 0.01 to 25 mi";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength miles]];
             self.locationRadius.keyboardType = UIKeyboardTypeDecimalPad;
             break;
