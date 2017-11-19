@@ -16,9 +16,30 @@
 @property (weak, nonatomic) IBOutlet UITextField *locationRadius;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *radiusUnits;
 @property (weak, nonatomic) IBOutlet UIButton *setReminderButton;
+@property (weak, nonatomic) IBOutlet UILabel *nameNoteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *radiusNoteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameWarning;
+@property (weak, nonatomic) IBOutlet UILabel *radiusWarning;
 
 @property (assign, nonatomic) NSInteger userUnits;
 @property (strong, nonatomic) NSMeasurement *radiusMeasurement;
+@property (assign, nonatomic) NSInteger minRadius, maxRadius;
+
+@end
+
+@implementation UIColor (Extensions)
+
++ (UIColor *)enabledButtonColor {
+    return [UIColor colorWithRed:0.0 green:0.478431 blue:1.0 alpha:1.0];
+}
+
++ (UIColor *)yellowNoteColor {
+    return [UIColor colorWithRed:0.999534 green:0.988357 blue:0.472736 alpha:1];
+}
+
++ (UIColor *)pinkNoteColor {
+    return [UIColor colorWithRed:0.939375 green:0.703384 blue:0.837451 alpha:1];
+}
 
 @end
 
@@ -28,8 +49,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Radius must be 15m - 40km.
+    self.minRadius = 15; // 15 m. / ~50 ft.
+    self.maxRadius = 40234; // ~40 km. / 25 mi.
+    
     locationName.delegate = self;
     locationRadius.delegate = self;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(validateReminder:)
                                                  name:UITextFieldTextDidChangeNotification
@@ -54,6 +81,10 @@
     [self.setReminderButton setBackgroundColor:[UIColor grayColor]];
     self.setReminderButton.layer.cornerRadius = 5.0;
     self.setReminderButton.clipsToBounds = YES;
+    self.radiusNoteLabel.layer.cornerRadius = 2.5;
+    self.radiusNoteLabel.clipsToBounds = YES;
+    self.nameNoteLabel.layer.cornerRadius = 2.5;
+    self.nameNoteLabel.clipsToBounds = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -103,24 +134,46 @@
     
     if ([self.locationName.text isEqual: @""]) {
         validName = NO;
+        [self.nameNoteLabel setTextColor:[UIColor whiteColor]];
+        [self.nameNoteLabel setBackgroundColor:[UIColor pinkNoteColor]];
+        [self.nameWarning setHidden:NO];
+    } else {
+        [self.nameNoteLabel setTextColor:[UIColor darkGrayColor]];
+        [self.nameNoteLabel setBackgroundColor:[UIColor yellowNoteColor]];
+        [self.nameWarning setHidden:YES];
     }
     
-    NSString *regex = @"(^[^\\D]{0,4}(\\.?)\\d{0,2}$)";
+    NSString *regex = @"(^[^\\D]{0,4}(\\.?)\\d{0,3}$)";
     NSRange replacementRange = [self.locationRadius.text rangeOfString:regex options:NSRegularExpressionSearch];
     
     if (replacementRange.location == NSNotFound || ! (self.locationRadius.text.floatValue > 0.0) ) {
         validRadius = NO;
     } else if (sender.object == self.locationRadius) {
-        NSLog(@"Sender: %@", sender);
         NSMeasurement *newMeasurement = [[NSMeasurement alloc] initWithDoubleValue:self.locationRadius.text.doubleValue
                                                                               unit:self.radiusMeasurement.unit];
-        self.radiusMeasurement = newMeasurement;
-        NSLog(@"Text changed, new measurement: %@", self.radiusMeasurement);
+        // Verify that new measurement is within min & max radius limits.
+        double meterCheck = [[newMeasurement measurementByConvertingToUnit:[NSUnitLength meters]] doubleValue];
+        if ( meterCheck >= self.minRadius && meterCheck <= self.maxRadius ) {
+            self.radiusMeasurement = newMeasurement;
+            NSLog(@"Text changed, new measurement: %@", self.radiusMeasurement);
+        } else {
+            validRadius = NO;
+        }
+    }
+    
+    if (validRadius) {
+        [self.radiusNoteLabel setTextColor:[UIColor darkGrayColor]];
+        [self.radiusNoteLabel setBackgroundColor:[UIColor yellowNoteColor]];
+        [self.radiusWarning setHidden:YES];
+    } else {
+        [self.radiusNoteLabel setTextColor:[UIColor whiteColor]];
+        [self.radiusNoteLabel setBackgroundColor:[UIColor pinkNoteColor]];
+        [self.radiusWarning setHidden:NO];
     }
     
     if (validRadius && validName) {
         [self.setReminderButton setEnabled:YES];
-        [self.setReminderButton setBackgroundColor:[UIColor colorWithRed:0.0 green:0.478431 blue:1.0 alpha:1.0]];
+        [self.setReminderButton setBackgroundColor:[UIColor enabledButtonColor]];
     } else {
         [self.setReminderButton setEnabled:NO];
         [self.setReminderButton setBackgroundColor:[UIColor grayColor]];
@@ -235,24 +288,28 @@
         case 0:
             // Meters
             self.locationRadius.placeholder = @"Distance in meters";
+            self.radiusNoteLabel.text = @"From 15 to 40,000 m";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength meters]];
             self.locationRadius.keyboardType = UIKeyboardTypeNumberPad;
             break;
         case 1:
             // Kilometers
             self.locationRadius.placeholder = @"Distance in kilometers";
+            self.radiusNoteLabel.text = @"From 0.1 to 40 km";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength kilometers]];
             self.locationRadius.keyboardType = UIKeyboardTypeDecimalPad;
             break;
         case 2:
             // Feet
             self.locationRadius.placeholder = @"Distance in feet";
+            self.radiusNoteLabel.text = @"From 50 to 132,000 ft";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength feet]];
             self.locationRadius.keyboardType = UIKeyboardTypeNumberPad;
             break;
         case 3:
             // Miles
             self.locationRadius.placeholder = @"Distance in miles";
+            self.radiusNoteLabel.text = @"From 0.01 to 25 mi";
             self.radiusMeasurement = [self.radiusMeasurement measurementByConvertingToUnit:[NSUnitLength miles]];
             self.locationRadius.keyboardType = UIKeyboardTypeDecimalPad;
             break;
