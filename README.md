@@ -1,4 +1,8 @@
 # LocReminder
+
+**NOTE:** This version is no longer maintained and has been rewritten in Swift 4.0  
+Click [here](https://github.com/pavelpark/LocReminder) to view the newer version of this app.
+
 To set a reminder that you need to stop by the store is right around the corner with LocReminder. 
 LocReminder is an application the will remind you to stop by the store once you've reached the radius where you last dropped the pin, you are able to stop by and pick up the necessary items and mark the pinned location as a complete reminder or you can always snooze the reminder and stop by next time you pass the pinned location.
 
