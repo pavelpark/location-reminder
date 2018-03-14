@@ -1,6 +1,6 @@
 # LocReminder
 
-**NOTE:** This version is no longer maintained and has been rewritten in Swift 4.0  
+**NOTE:** This version is no longer maintained and is being rewritten in Swift 4.0  
 Click [here](https://github.com/pavelpark/LocReminder) to view the newer version of this app.
 
 To set a reminder that you need to stop by the store is right around the corner with LocReminder. 
